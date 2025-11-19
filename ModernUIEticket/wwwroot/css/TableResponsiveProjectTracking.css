@@ -1,0 +1,118 @@
+﻿/* Keep table compact on smaller screens */
+@media (max-width: 992px) {
+    #trackingTable th,
+    #trackingTable td {
+        font-size: 0.75rem !important;
+        padding: 0.4rem !important;
+        white-space: nowrap;
+    }
+
+        #trackingTable td .badge {
+            font-size: 0.65rem !important;
+            padding: 0.25em 0.4em !important;
+            display: inline-block; /* ensures proper wrapping */
+        }
+}
+
+/* Mobile card layout with label/value side by side */
+@media (max-width: 768px) {
+    /* Hide table header */
+    #trackingTable thead {
+        display: none;
+    }
+
+    /* Make table elements block */
+    #trackingTable,
+    #trackingTable tbody,
+    #trackingTable tr,
+    #trackingTable td {
+        display: block;
+        width: 100%;
+    }
+
+        /* Card styling for each row */
+        #trackingTable tr {
+            margin-bottom: 1rem;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Flex for each cell */
+        #trackingTable td {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0.3rem 0.5rem;
+            border: none;
+            border-bottom: 1px dashed #eee;
+            font-size: 0.8rem;
+            align-items: center;
+        }
+
+            #trackingTable td:last-child {
+                border-bottom: none;
+            }
+
+            /* Label before value */
+            #trackingTable td:before {
+                content: attr(data-label);
+                flex: 0 0 35%; /* label width */
+                font-weight: 600;
+                color: #555;
+                text-align: left;
+                padding-right: 0.5rem;
+                white-space: nowrap;
+            }
+
+            /* Value span */
+            #trackingTable td span.value {
+                flex: 1;
+                white-space: normal;
+                word-break: break-word;
+                overflow-wrap: break-word;
+                text-align: left;
+            }
+
+            /* Fallback labels for nth-child */
+            #trackingTable td:nth-child(1):before {
+                content: "No:";
+            }
+
+            #trackingTable td:nth-child(2):before {
+                content: "Project Code:";
+            }
+
+            #trackingTable td:nth-child(3):before {
+                content: "Project Name:";
+            }
+
+            #trackingTable td:nth-child(4):before {
+                content: "Project Manager:";
+            }
+
+            #trackingTable td:nth-child(5):before {
+                content: "Team:";
+            }
+
+            #trackingTable td:nth-child(6):before {
+                content: "Status:";
+            }
+
+            #trackingTable td:nth-child(7):before {
+                content: "Create Date:";
+            }
+
+            #trackingTable td:nth-child(8):before {
+                content: "Start Date:";
+            }
+
+            #trackingTable td:nth-child(9):before {
+                content: "End Date:";
+            }
+
+            #trackingTable td:nth-child(10):before {
+                content: "Action:";
+            }
+}

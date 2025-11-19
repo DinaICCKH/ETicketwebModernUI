@@ -1,0 +1,399 @@
+﻿@model ETicketNewUI.Models.AttendanceHeader
+
+@{
+    ViewData["Title"] = "Edit Attendance Session";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+<div class="container mt-4">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-primary text-white" style="background-color:#0099CC !important">
+            <h6><i class="bi bi-plus-circle me-2"></i> Edit Attendance Session</h6>
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit" method="post">
+                <input type="hidden" asp-for="AttendanceID" />
+
+                <!-- Project / Status / QR -->
+                <div class="card shadow-sm mb-3">
+                    <div class="card-header fw-bold">Project & Status</div>
+                    <div class="card-body">
+                        <div class="row g-3 align-items-center">
+                            <!-- Project -->
+                            <div class="col-md-4">
+                                <label asp-for="ProjectID" class="form-label">Project / Branch</label>
+                                <select asp-for="ProjectID" class="form-select form-select-sm">
+                                    <option value="">-- Select Project / Branch --</option>
+                                    @foreach (var branch in ViewBag.BranchClientList ?? new List<dynamic>())
+                                    {
+                                        <option value="@branch.CompanyId" selected="@(branch.CompanyId == Model.ProjectID)">
+                                            @branch.CompanyName
+                                        </option>
+                                    }
+                                </select>
+                                <span asp-validation-for="ProjectID" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Status -->
+                            <div class="col-md-4">
+                                <label asp-for="Status" class="form-label">Status</label>
+                                <select asp-for="Status" class="form-select form-select-sm">
+                                    <option>Planned</option>
+                                    <option>Ongoing</option>
+                                    <option>Closed</option>
+                                    <option>Cancelled</option>
+                                </select>
+                                <span asp-validation-for="Status" class="text-danger small"></span>
+                            </div>
+
+                            <!-- QR Code -->
+                            <div class="col-md-4">
+                                <label class="form-label">QR Code</label>
+                                <div class="d-flex align-items-center gap-3">
+                                    @if (!string.IsNullOrEmpty(Model.QrCodeImagePath))
+                                    {
+                                        <img src="@Model.QrCodeImagePath" alt="QR Code"
+                                             class="rounded border" style="max-width:70px;" />
+                                        <div class="d-flex flex-column gap-1">
+                                            <button type="button" class="btn btn-sm btn-outline-primary" onclick="copyQrLink()">Copy</button>
+                                            <a href="@Model.QrCodeImagePath" download="QRCode.png" class="btn btn-sm btn-outline-success">Download</a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted small">No QR Code</span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dates -->
+                <div class="card shadow-sm mb-3">
+                    <div class="card-header fw-bold">Schedule</div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <!-- Training Date -->
+                            <div class="col-md-4">
+                                <label asp-for="TrainingDate" class="form-label">Training Date</label>
+                                <div class="input-group input-group-sm" id="trainingDatePicker">
+                                    <input asp-for="TrainingDate" type="text" class="form-control"
+                                           value="@Model.TrainingDate.ToString("dd-MMM-yyyy")"
+                                           data-td-target="#trainingDatePicker" />
+                                    <span class="input-group-text" data-td-toggle="datetimepicker" data-td-target="#trainingDatePicker">
+                                        <i class="bi bi-calendar-date"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Start -->
+                            <div class="col-md-4">
+                                <label asp-for="StartDateTime" class="form-label">Start</label>
+                                <div class="input-group input-group-sm" id="startDateTimePicker">
+                                    <input asp-for="StartDateTime" type="text" class="form-control"
+                                           value="@Model.StartDateTime.ToString("dd-MMM-yyyy HH:mm")"
+                                           data-td-target="#startDateTimePicker" />
+                                    <span class="input-group-text" data-td-toggle="datetimepicker" data-td-target="#startDateTimePicker">
+                                        <i class="bi bi-clock"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- End -->
+                            <div class="col-md-4">
+                                <label asp-for="EndDateTime" class="form-label">End</label>
+                                <div class="input-group input-group-sm" id="endDateTimePicker">
+                                    <input asp-for="EndDateTime" type="text" class="form-control"
+                                           value="@Model.EndDateTime.ToString("dd-MMM-yyyy HH:mm")"
+                                           data-td-target="#endDateTimePicker" />
+                                    <span class="input-group-text" data-td-toggle="datetimepicker" data-td-target="#endDateTimePicker">
+                                        <i class="bi bi-clock"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Remark & Map -->
+                <div class="card shadow-sm mb-3">
+                    <div class="card-header fw-bold">Location & Remark</div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <!-- Remark -->
+                            <div class="col-md-4">
+                                <label asp-for="Remark" class="form-label">Remark</label>
+                                <textarea asp-for="Remark" class="form-control form-control-sm" style="height:250px;"></textarea>
+                            </div>
+
+                            <!-- Map -->
+                            <div class="col-md-8 d-flex flex-column">
+                                <label class="form-label">Location</label>
+                                <input type="text" id="locationSearch" class="form-control form-control-sm mb-2"
+                                       placeholder="Search location..." />
+                                <div id="map" style="flex:1; height:250px; border-radius:8px; border:1px solid #ddd;"></div>
+                                <input type="hidden" asp-for="Latitude" id="Latitude" />
+                                <input type="hidden" asp-for="Longitude" id="Longitude" />
+                                <small class="text-muted">Select location by searching or clicking on map</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="card shadow-sm mb-3">
+                    <div class="card-footer bg-light d-flex justify-content-between align-items-center">
+                        <small class="text-muted">Save changes before managing participants</small>
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-warning">
+                                <i class="bi bi-pencil-square me-1"></i> Update Session
+                            </button>
+
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                                    <i class="bi bi-file-earmark-text me-1"></i> Report
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                                    <li>
+                                        <a class="dropdown-item" target="_blank"
+                                           asp-controller="Report" asp-action="Export"
+                                           asp-route-reportName="AttendanceForm"
+                                           asp-route-id="@Model.AttendanceID"
+                                           asp-route-format="PDF"
+                                           asp-route-inline="true">
+                                            <i class="bi bi-eye me-1"></i> Preview
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="javascript:void(0);" onclick="printAttendance(@Model.AttendanceID)">
+                                            <i class="bi bi-printer me-1"></i> Print
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <a class="dropdown-item" target="_blank"
+                                           asp-controller="Report" asp-action="Export"
+                                           asp-route-reportName="AttendanceForm"
+                                           asp-route-id="@Model.AttendanceID"
+                                           asp-route-format="EXCELOPENXML">
+                                            <i class="bi bi-file-earmark-excel me-1"></i> Excel
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" target="_blank"
+                                           asp-controller="Report" asp-action="Export"
+                                           asp-route-reportName="AttendanceForm"
+                                           asp-route-id="@Model.AttendanceID"
+                                           asp-route-format="WORDOPENXML">
+                                            <i class="bi bi-file-earmark-word me-1"></i> Word
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Participants -->
+                <div class="card shadow-sm mb-3">
+                    <div class="card-header fw-bold">Participants</div>
+                    <div class="card-body" style="font-size:13px;">
+                        @if (ViewBag.AttendanceDetails != null && ViewBag.AttendanceDetails.Count > 0)
+                        {
+                            <table class="table table-sm table-bordered align-middle">
+                                <thead class="table-light text-center">
+                                    <tr>
+                                        <th style="width:5%">#</th>
+                                        <th style="width:20%">Name</th>
+                                        <th style="width:10%">Picture</th>
+                                        <th style="width:15%">Taken</th>
+                                        <th style="width:15%">Device</th>
+                                        <th style="width:15%">Position</th>
+                                        <th style="width:15%">Remark</th>
+                                        <th style="width:5%">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < ViewBag.AttendanceDetails.Count; i++)
+                                    {
+                                        var detail = ViewBag.AttendanceDetails[i];
+                                        <tr>
+                                            <td class="text-center">@(i + 1)</td>
+                                            <td>@detail.ParticipantName</td>
+                                            <td class="text-center">
+                                                @if (!string.IsNullOrEmpty(detail.PicturePath))
+                                                {
+                                                    <img src="@detail.PicturePath" alt="Picture" class="img-thumbnail" style="max-width:70px;" />
+                                                }
+                                            </td>
+                                            <td>@detail.PictureTakenDate.ToString("dd-MMM-yyyy HH:mm")</td>
+                                            <td>@detail.DeviceName</td>
+                                            <td>@detail.Position</td>
+                                            <td>@detail.Remark</td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-sm btn-danger"
+                                                        onclick="deleteParticipant(@detail.DetailID)">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <p class="text-muted">No participants added yet.</p>
+                        }
+                    </div>
+                </div>
+
+                
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999">
+    <div id="qrToast" class="toast align-items-center bg-success text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                ✅ QR link copied successfully!
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+
+
+
+    <script>
+    function printAttendance(attendanceId) {
+        var url = '/Eticket/Report/Print?reportName=AttendanceForm&id=' + attendanceId;
+        var printWindow = window.open(url, '_blank');
+        printWindow.focus();
+        printWindow.onload = function () {
+            printWindow.print();
+        };
+    }
+    </script>
+
+    <partial name="_ValidationScriptsPartial" />
+
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+
+
+
+    <script>
+
+       
+        function deleteParticipant(detailId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "This participant will be removed!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, remove!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/Eticket/Attendance/DeleteDetail/' + detailId;
+                }
+            });
+        }
+
+
+        $(document).ready(function () {
+
+            // Training Date (date only)
+            new tempusDominus.TempusDominus(document.getElementById('trainingDatePicker'), {
+                display: { components: { calendar: true, clock: false } },
+                useCurrent: true,
+                localization: { format: 'dd-MMM-yyyy' }
+            });
+
+            // Start DateTime (date + time)
+            new tempusDominus.TempusDominus(document.getElementById('startDateTimePicker'), {
+                display: { components: { calendar: true, clock: true } },
+                useCurrent: true,
+                localization: { format: 'dd-MMM-yyyy HH:mm' }
+            });
+
+            // End DateTime (date + time)
+            new tempusDominus.TempusDominus(document.getElementById('endDateTimePicker'), {
+                display: { components: { calendar: true, clock: true } },
+                useCurrent: true,
+                localization: { format: 'dd-MMM-yyyy HH:mm' }
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+
+           // ===== QR Copy Function with Bootstrap Toast =====
+            window.copyQrLink = function () {
+                navigator.clipboard.writeText("@Model.QrCodeLink")
+                    .then(() => {
+                        let toastEl = document.getElementById('qrToast');
+                        let toast = new bootstrap.Toast(toastEl);
+                        toast.show();
+                    })
+                    .catch(() => {
+                        alert("Failed to copy QR link");
+                    });
+            };
+
+            // ===== Leaflet Map Setup =====
+            var map = L.map('map').setView([11.5564, 104.9282], 7);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© OpenStreetMap'
+            }).addTo(map);
+
+            var marker;
+            function setMarker(latlng) {
+                if (marker) marker.setLatLng(latlng);
+                else marker = L.marker(latlng).addTo(map);
+
+                document.getElementById('Latitude').value = latlng.lat;
+                document.getElementById('Longitude').value = latlng.lng;
+            }
+
+            var latInput = document.getElementById('Latitude').value;
+            var lngInput = document.getElementById('Longitude').value;
+            if (latInput && lngInput) {
+                setMarker({ lat: parseFloat(latInput), lng: parseFloat(lngInput) });
+                map.setView([parseFloat(latInput), parseFloat(lngInput)], 15);
+            }
+
+            map.on('click', function (e) { setMarker(e.latlng); });
+
+            var input = document.getElementById('locationSearch');
+            var autocomplete = new google.maps.places.Autocomplete(input);
+            autocomplete.addListener('place_changed', function () {
+                var place = autocomplete.getPlace();
+                if (!place.geometry) return;
+                var latlng = { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() };
+                setMarker(latlng);
+                map.setView([latlng.lat, latlng.lng], 15);
+            });
+ 
+    });
+    </script>
+}
+
+
+
+

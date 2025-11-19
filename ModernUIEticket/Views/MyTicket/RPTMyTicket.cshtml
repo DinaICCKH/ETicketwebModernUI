@@ -1,0 +1,433 @@
+﻿@model IEnumerable<ETicketNewUI.Models.TaskTrackingByStaffSummaryDto>
+@using System.Globalization
+@{
+    ViewData["Title"] = "Task Tracking Summary";
+}
+
+<style>
+    .staff-card {
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        font-size: 0.8rem;
+        background: #fff;
+        border: 1px solid #e5e5e5;
+    }
+
+        .staff-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+    .staff-header {
+        background: linear-gradient(135deg, #f5f5f5, #ffffff);
+        color: #333;
+        font-weight: 600;
+        padding: 0.45rem 0.7rem;
+        font-size: 0.85rem;
+        border-bottom: 1px solid #e5e5e5;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .staff-pos {
+        font-size: 0.75rem;
+        color: #0d6efd; /* blue tone to stand out */
+        font-weight: 500;
+        margin-left: 0.4rem;
+    }
+
+    .staff-body {
+        padding: 0.6rem 0.7rem;
+    }
+
+    .status-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.15rem 0;
+        font-size: 0.75rem;
+    }
+
+    .status-label {
+        color: #555;
+    }
+
+    .badge-modern {
+        border-radius: 50px;
+        font-size: 0.7rem;
+        padding: 0.15rem 0.5rem;
+        background: #f8f9fa;
+        color: #333;
+        border: 1px solid #ddd;
+        min-width: 26px;
+        text-align: center;
+    }
+
+        .badge-modern.total {
+            background: #e9ecef;
+            font-weight: 600;
+        }
+</style>
+
+<div class="container mt-4">
+
+    <!-- Ticket History Tracking List (Filters & Preview) -->
+    <div class="card shadow-sm border-0 p-4 mb-4" style="border-radius:12px; background: #fdfdfd;">
+        <h6 class="fw-bold mb-4 text-primary">
+            <i class="bi bi-journal-text me-2"></i> Task Tracking Detail By Staff
+        </h6>
+
+        <!-- First Row (Date & Status) -->
+        <div class="row g-3 mb-4">
+            <!-- From Date -->
+            <div class="col-md-4 col-sm-12">
+                <label for="fromDate" class="form-label fw-semibold">
+                    <i class="bi bi-calendar-date me-1 text-secondary"></i> From Date
+                </label>
+                <input type="text" id="fromDate" name="fromDate"
+                       class="form-control shadow-sm date-picker"
+                       placeholder="dd-MMM-yy" required />
+            </div>
+
+            <!-- To Date -->
+            <div class="col-md-4 col-sm-12">
+                <label for="toDate" class="form-label fw-semibold">
+                    <i class="bi bi-calendar-date-fill me-1 text-secondary"></i> To Date
+                </label>
+                <input type="text" id="toDate" name="toDate"
+                       class="form-control shadow-sm date-picker"
+                       placeholder="dd-MMM-yy" required />
+            </div>
+
+            <!-- Status Dropdown -->
+            <div class="col-md-4 col-sm-12">
+                <label class="form-label fw-semibold">
+                    <i class="bi bi-flag me-1 text-secondary"></i> Status
+                </label>
+                <div class="dropdown">
+                    <button class="btn btn-outline-primary shadow-sm dropdown-toggle w-100"
+                            type="button" id="statusDropdownBtn"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-check2-square me-1"></i> Select Status
+                    </button>
+                    <ul class="dropdown-menu p-3 shadow-sm border-0 rounded-3"
+                        aria-labelledby="statusDropdownBtn"
+                        style="max-height: 220px; overflow-y: auto;">
+
+                        @* Status List *@
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input status-checkbox" type="checkbox" value="All" id="statusAll">
+                                <label class="form-check-label fw-semibold" for="statusAll">All</label>
+                            </div>
+                        </li>
+                        <li><div class="form-check"><input class="form-check-input status-checkbox" type="checkbox" value="Request" id="statusRequest"><label class="form-check-label" for="statusRequest">Request</label></div></li>
+                        <li><div class="form-check"><input class="form-check-input status-checkbox" type="checkbox" value="Pending" id="statusPending"><label class="form-check-label" for="statusPending">Pending</label></div></li>
+                        <li><div class="form-check"><input class="form-check-input status-checkbox" type="checkbox" value="Reject" id="statusReject"><label class="form-check-label" for="statusReject">Reject</label></div></li>
+                        <li><div class="form-check"><input class="form-check-input status-checkbox" type="checkbox" value="Progress" id="statusProgress"><label class="form-check-label" for="statusProgress">Progress</label></div></li>
+                        <li><div class="form-check"><input class="form-check-input status-checkbox" type="checkbox" value="Checking" id="statusChecking"><label class="form-check-label" for="statusChecking">Checking</label></div></li>
+                        <li><div class="form-check"><input class="form-check-input status-checkbox" type="checkbox" value="FeedBack" id="statusFeedback"><label class="form-check-label" for="statusFeedback">Feedback</label></div></li>
+                        <li><div class="form-check"><input class="form-check-input status-checkbox" type="checkbox" value="Done" id="statusDone"><label class="form-check-label" for="statusDone">Done</label></div></li>
+                        <li><div class="form-check"><input class="form-check-input status-checkbox" type="checkbox" value="Cancel" id="statusCancel"><label class="form-check-label" for="statusCancel">Cancel</label></div></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Row (Assign By, Company, Report) -->
+        <div class="row g-3">
+            <!-- Assign By -->
+            <div class="col-md-4 col-sm-12">
+                <label for="MAssignbyDropdown" class="form-label fw-semibold">
+                    <i class="bi bi-person-check me-1 text-secondary"></i> Assign By
+                </label>
+                <select id="MAssignbyDropdown" class="form-select shadow-sm">
+                    <option value="All">All</option>
+                    @if (ViewBag.Staff != null)
+                    {
+                        foreach (var module in ViewBag.Staff)
+                        {
+                            <option value="@module.ID">@module.FullStaffName</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <!-- Company -->
+            <div class="col-md-4 col-sm-12">
+                <label for="MbranchDropdown" class="form-label fw-semibold">
+                    <i class="bi bi-building me-1 text-secondary"></i> Company
+                </label>
+                <select id="MbranchDropdown" class="form-select shadow-sm">
+                    <option value="All">All</option>
+                    @if (ViewBag.Branch != null)
+                    {
+                        foreach (var module in ViewBag.Branch)
+                        {
+                            <option value="@module.CompanyId">@module.CompanyName</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <!-- Report Options -->
+            <div class="col-md-4 col-sm-12 text-end">
+                <label class="form-label fw-semibold d-block">
+                    <i class="bi bi-graph-up-arrow me-1 text-secondary"></i> Report
+                </label>
+                <div class="dropdown">
+                    <button class="btn btn-primary shadow-sm dropdown-toggle px-4 py-2 rounded-3"
+                            type="button" id="reportDropdown"
+                            data-bs-toggle="dropdown" aria-expanded="false"
+                            style="background: linear-gradient(45deg, #0099CC, #0077AA);">
+                        <i class="bi bi-bar-chart-line me-1"></i> Report Options
+                    </button>
+                    <ul class="dropdown-menu shadow-sm border-0 rounded-3" aria-labelledby="reportDropdown">
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)" onclick="previewReport()">
+                                <i class="bi bi-eye me-2 text-primary"></i> Preview
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)" onclick="exportReport('PDF')">
+                                <i class="bi bi-file-earmark-pdf me-2 text-danger"></i> Print to PDF
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)" onclick="exportReport('EXCELOPENXML')">
+                                <i class="bi bi-file-earmark-excel me-2 text-success"></i> Export to Excel
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)" onclick="exportReport('WORDOPENXML')">
+                                <i class="bi bi-file-earmark-word me-2 text-primary"></i> Export to Word
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+    <div class="d-flex align-items-end justify-content-between mb-4 flex-wrap gap-3">
+        <!-- Title -->
+        <h5 class="fw-bold text-dark mb-0 me-4 flex-shrink-0">
+            <i class="bi bi-clipboard-data me-2"></i> Task Tracking Summary
+        </h5>
+
+        <!-- Compact From & To Date Filters -->
+        <div class="d-flex gap-2 align-items-end flex-wrap" style="font-size:0.8rem;">
+            <div style="flex: 1 1 auto; min-width: 120px;">
+                <label for="fromDatesummary" class="form-label fw-semibold mb-1 text-secondary" style="font-size:0.75rem;">
+                    <i class="bi bi-calendar-date me-1"></i> From
+                </label>
+                <input type="text" id="fromDatesummary" name="fromDatesummary"
+                       class="form-control form-control-sm shadow-sm date-picker"
+                       placeholder="dd-MMM-yy"
+                       value="@ViewBag.FromDate" />
+            </div>
+
+            <div style="flex: 1 1 auto; min-width: 120px;">
+                <label for="toDatesummary" class="form-label fw-semibold mb-1 text-secondary" style="font-size:0.75rem;">
+                    <i class="bi bi-calendar-date-fill me-1"></i> To
+                </label>
+                <input type="text" id="toDatesummary" name="toDatesummary"
+                       class="form-control form-control-sm shadow-sm date-picker"
+                       placeholder="dd-MMM-yy"
+                       value="@ViewBag.ToDate" />
+            </div>
+
+
+            <div style="align-self: flex-end;">
+                <button type="button" class="btn btn-gradient btn-sm shadow-sm py-1 px-3" onclick="filterTickets()">
+                    <i class="bi bi-search me-1"></i> Filter
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    @if (!Model.Any())
+{
+    <div class="alert alert-light text-center border">
+        <i class="bi bi-exclamation-triangle me-2 text-warning"></i> No task summary found for this user.
+    </div>
+}
+else
+{
+    @foreach (var user in Model)
+    {
+        <div class="staff-card mx-auto mb-3" style="max-width: 480px;">
+            <!-- Header -->
+            <div class="staff-header">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-person-circle fs-6"></i>
+                    <strong>@user.AssignToName</strong>
+                </div>
+                <span class="staff-pos">@user.Position</span>
+            </div>
+
+            <!-- Status Badges -->
+            <div class="staff-body">
+                @{
+                    var staffStatuses = new List<(string Key, int Value, string Icon, string Color)>
+                    {
+                        ("Pending", user.Pending, "bi-hourglass-split", "#FFC107"),
+                        ("Progress", user.Progress, "bi-arrow-repeat", "#17A2B8"),
+                        ("Checking", user.Checking, "bi-search", "#6F42C1"),
+                        ("Feedback", user.Feedback, "bi-chat-dots", "#FD7E14"),
+                        ("Done", user.Done, "bi-check-circle", "#28A745"),
+                        ("Total", user.Total, "bi-collection", "#343A40")
+                    };
+
+                    // List of all statuses for "Total"
+                    var allStatuses = "Pending,Progress,Checking,Feedback,Done";
+                }
+
+                @foreach (var status in staffStatuses)
+                {
+                    var statusParam = status.Key == "Total" ? allStatuses : status.Key;
+
+                    var link = Url.Action("ExportWorkingStatusReportByStaff", "Report", new
+                    {
+                        reportName = "WorkingStatusReportByStaff",
+                        fromDate = ViewBag.FromDate,
+                        toDate = ViewBag.ToDate,
+                        staffId = user.AssignTo,
+                        assignBy = "All",
+                        company = "All",
+                        status = statusParam,
+                        format = "PDF",
+                        inline = true
+                    });
+
+                    <div class="status-row mb-1 d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center gap-1">
+                            <i class="bi @status.Icon text-dark fs-6"></i>
+                            <span class="status-label fw-semibold">@status.Key</span>
+                        </div>
+                        <a href="@link" target="_blank"
+                           class="badge-modern"
+                           style="background-color:@status.Color; color:white;">
+                            @status.Value <i class="bi bi-arrow-right-circle ms-1"></i>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+}
+
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+
+        function filterTickets() {
+            const fromDate = document.getElementById("fromDatesummary").value;
+            const toDate = document.getElementById("toDatesummary").value;
+
+            const url = `/Eticket/MyTicket/RPTMyTicket?fromDatesummary=${encodeURIComponent(fromDate)}&toDatesummary=${encodeURIComponent(toDate)}`;
+            window.location.href = url; // reload page with params
+        }
+
+
+        // --- Get selected statuses as comma-separated string ---
+        function getSelectedStatusesCSV() {
+            const selected = Array.from(document.querySelectorAll('.status-checkbox:checked'))
+                .map(cb => cb.value);
+            return selected.join(','); // e.g., "Pending,Progress,Done"
+        }
+
+        // --- Update dropdown button text dynamically ---
+        const statusDropdownBtn = document.getElementById('statusDropdownBtn');
+        const statusCheckboxes = document.querySelectorAll('.status-checkbox');
+
+        statusCheckboxes.forEach(cb => {
+            cb.addEventListener('change', () => {
+                const selected = Array.from(document.querySelectorAll('.status-checkbox:checked'))
+                    .map(cb => cb.value);
+                if (selected.length === 0) {
+                    statusDropdownBtn.textContent = "Select Status";
+                } else if (selected.includes("All")) {
+                    statusDropdownBtn.textContent = "All";
+                } else {
+                    statusDropdownBtn.textContent = selected.join(', ');
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            // Set FromDate to 01-Jan-2024
+            $('#fromDate').val("01-Jan-2024");
+            // Set ToDate to today's date in dd-MMM-yyyy
+            const today = new Date();
+            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            const formattedDate = String(today.getDate()).padStart(2, '0') + '-' +
+                monthNames[today.getMonth()] + '-' +
+                today.getFullYear();
+
+            $('#toDate').val(formattedDate);
+        });
+
+        // --- Tempus Dominus Datepickers ---
+        new tempusDominus.TempusDominus(document.getElementById('fromDate'), {
+            display: { components: { calendar: true, clock: false } },
+            useCurrent: false,
+            localization: { format: 'dd-MMM-yyyy' }
+        });
+        new tempusDominus.TempusDominus(document.getElementById('toDate'), {
+            display: { components: { calendar: true, clock: false } },
+            useCurrent: false,
+            localization: { format: 'dd-MMM-yyyy' }
+        });
+
+ // --- Tempus Dominus Datepickers ---
+        new tempusDominus.TempusDominus(document.getElementById('fromDatesummary'), {
+            display: { components: { calendar: true, clock: false } },
+            useCurrent: false,
+            localization: { format: 'dd-MMM-yyyy' }
+        });
+        new tempusDominus.TempusDominus(document.getElementById('toDatesummary'), {
+            display: { components: { calendar: true, clock: false } },
+            useCurrent: false,
+            localization: { format: 'dd-MMM-yyyy' }
+        });
+        // --- Preview report ---
+        function previewReport() {
+            const fromDate = $('#fromDate').val();
+            const toDate = $('#toDate').val();
+            const statusCSV = getSelectedStatusesCSV();
+            const staffId = '@ViewBag.CurrentUser' || 'All';
+            const assignBy = $('#MAssignbyDropdown').val() || 'All';
+            const company = $('#MbranchDropdown').val() || 'All';
+
+            const url = `/Eticket/Report/ExportWorkingStatusReportByStaff?reportName=WorkingStatusReportByStaff&fromDate=${fromDate}&toDate=${toDate}&staffId=${staffId}&assignBy=${assignBy}&company=${company}&status=${statusCSV}&format=PDF&inline=true`;
+
+            window.open(url, '_blank');
+        }
+
+        // --- Export report to selected format ---
+        function exportReport(format) {
+            const fromDate = $('#fromDate').val();
+            const toDate = $('#toDate').val();
+            const statusCSV = getSelectedStatusesCSV();
+            const staffId = '@ViewBag.CurrentUser' || 'All';
+            const assignBy = $('#MAssignbyDropdown').val() || 'All';
+            const company = $('#MbranchDropdown').val() || 'All';
+
+            const url = `/Eticket/Report/ExportWorkingStatusReportByStaff?reportName=WorkingStatusReportByStaff&fromDate=${fromDate}&toDate=${toDate}&staffId=${staffId}&assignBy=${assignBy}&company=${company}&status=${statusCSV}&format=${format}&inline=false`;
+
+            window.open(url, '_blank'); // triggers download
+        }
+
+    </script>
+}
+
+
+

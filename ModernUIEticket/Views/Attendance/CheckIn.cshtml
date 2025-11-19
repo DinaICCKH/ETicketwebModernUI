@@ -1,0 +1,203 @@
+﻿@{
+    Layout = null;
+    var header = ViewBag.Header as ETicketNewUI.Models.AttendanceHeader;
+    var existingDetail = ViewBag.ExistingDetail as ETicketNewUI.Models.AttendanceDetail;
+}
+
+<!-- CSS -->
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link rel="icon" type="image/png" href="~/Picture/Eticket.png" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+<!-- JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="container mt-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-primary text-white" style="background-color:#0099CC !important">
+            <h4 class="mb-0">Check-In Form</h4>
+        </div>
+        <div class="card-body">
+            <p><strong>Date:</strong> @header.TrainingDate.ToString("dd-MMM-yyyy")</p>
+            <p><strong>Status:</strong> @header.Status</p>
+            <p><strong>Remark:</strong> @header.Remark</p>
+
+            <form asp-action="CheckIn" method="post" enctype="multipart/form-data" id="checkInForm">
+                <input type="hidden" name="id" value="@header.AttendanceID" />
+                <input type="hidden" name="deviceName" id="deviceName" value="@Environment.MachineName" />
+                <input type="hidden" name="latitude" id="latitude" />
+                <input type="hidden" name="longitude" id="longitude" />
+                <input type="hidden" name="photoData" id="photoData" />
+
+                <div class="mb-3">
+                    <label class="form-label">Your Name</label>
+                    <input type="text" name="participantName" class="form-control" placeholder="Enter your name" value="@(existingDetail?.ParticipantName ?? "")" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Gender</label>
+                    <select name="gender" class="form-select" required>
+                        <option value="" selected disabled>Select gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Position</label>
+                    <textarea name="position" class="form-control" rows="1" placeholder="Position">@existingDetail?.Position</textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Remark</label>
+                    <textarea name="remark" class="form-control" rows="2" placeholder="Add remark if any">@existingDetail?.Remark</textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Take Photo</label>
+                    <div class="d-flex flex-column align-items-center">
+                        <video id="video" width="320" height="240" autoplay style="display:none; border-radius:8px; border:1px solid #ccc;"></video>
+                        <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
+
+                        <!-- Photo Preview -->
+                        <img id="photoPreview"
+                             style="width:320px; height:240px; border-radius:8px; border:1px solid #ccc; margin-top:10px; display:none;"
+                             src="@(existingDetail?.PicturePath ?? "")" />
+
+                        <div class="mt-2">
+                            <button type="button" id="openCamera" class="btn btn-outline-primary btn-sm me-2">
+                                <i class="bi bi-camera"></i> Open Camera
+                            </button>
+                            <button type="button" id="snap" class="btn btn-success btn-sm" style="display:none;">
+                                <i class="bi bi-check-circle"></i> Capture
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid mt-3">
+                    <button id="checkInBtn" type="submit" class="btn btn-primary btn-lg" style="background-color:#0099CC !important" disabled>
+                        <i class="bi bi-box-arrow-in-right"></i> Check In
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const snap = document.getElementById('snap');
+    const photoPreview = document.getElementById('photoPreview');
+    const photoDataInput = document.getElementById('photoData');
+    const openCameraBtn = document.getElementById('openCamera');
+    const checkInForm = document.getElementById('checkInForm');
+    const checkInBtn = document.getElementById("checkInBtn");
+
+    let stream = null;
+
+    // Enable/Disable Check In button
+    function toggleCheckInButton() {
+        if (photoPreview && photoPreview.src && photoPreview.style.display !== "none") {
+            checkInBtn.disabled = false;
+        } else {
+            checkInBtn.disabled = true;
+        }
+    }
+
+    // Run when page loads (if existing photo is already set)
+    window.addEventListener("load", toggleCheckInButton);
+
+    // Open Camera
+    openCameraBtn.addEventListener('click', async () => {
+        if (stream) stopCamera();
+        try {
+            stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: false });
+            video.srcObject = stream;
+            video.style.display = 'block';
+            snap.style.display = 'inline-block';
+            openCameraBtn.style.display = 'none';
+            photoPreview.style.display = 'none'; // hide old photo while camera open
+        } catch (err) {
+            console.error("Camera error: " + err);
+            Swal.fire({
+                icon: 'error',
+                title: 'Camera Error',
+                text: 'Unable to access the camera. Please check permissions.'
+            });
+        }
+    });
+
+    // Capture Photo
+    snap.addEventListener('click', () => {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        const dataURL = canvas.toDataURL('image/png');
+        photoPreview.src = dataURL;
+        photoPreview.style.display = 'block';
+        photoDataInput.value = dataURL;
+
+        stopCamera();
+        toggleCheckInButton();
+    });
+
+    // Stop camera
+    function stopCamera() {
+        if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+            stream = null;
+        }
+        video.style.display = 'none';
+        snap.style.display = 'none';
+        openCameraBtn.style.display = 'inline-block';
+    }
+
+    // Prevent submit if no photo
+    checkInForm.addEventListener('submit', e => {
+        const hasExistingPhoto = photoPreview.src && !photoPreview.src.includes("data:image/png");
+        if (!photoDataInput.value && !hasExistingPhoto) {
+            e.preventDefault();
+            Swal.fire({
+                icon: 'warning',
+                title: 'Warning',
+                text: 'Please take a photo before submitting.'
+            });
+        }
+    });
+
+    // SweetAlert for result
+    var result = @Html.Raw(System.Text.Json.JsonSerializer.Serialize((object)ViewBag.Result));
+    if (result) {
+        if (result.Success) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: result.Message,
+                timer: 2500,
+                showConfirmButton: false
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: result.Message,
+            });
+        }
+    }
+
+    // Geolocation
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            document.getElementById('latitude').value = position.coords.latitude.toFixed(6);
+            document.getElementById('longitude').value = position.coords.longitude.toFixed(6);
+        });
+    }
+</script>
+

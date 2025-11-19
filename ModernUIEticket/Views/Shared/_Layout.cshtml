@@ -1,0 +1,681 @@
+﻿@using Newtonsoft.Json
+@using System.Text
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    var currentAction = ViewContext.RouteData.Values["Action"]?.ToString();
+    var currentController = ViewContext.RouteData.Values["Controller"]?.ToString();
+    var tokenData = (LoginResultDto)null;
+    var tokenBase64 = HttpContextAccessor.HttpContext.Session.GetString("UserToken");
+
+    if (!string.IsNullOrEmpty(tokenBase64))
+    {
+        try
+        {
+            var tokenJson = Encoding.UTF8.GetString(Convert.FromBase64String(tokenBase64));
+            tokenData = JsonConvert.DeserializeObject<LoginResultDto>(tokenJson);
+        }
+        catch { }
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - eTicket</title>
+
+    <!-- Bootstrap & Custom CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="icon" type="image/png" href="~/Picture/Eticket.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+     <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Tempus Dominus CSS -->
+    <link href="~/css/dominus.min.css" rel="stylesheet" />
+    <!-- Popper.js (required for Tempus Dominus) -->
+    <script src="~/js/popper.min.js"></script>
+    <!-- Tempus Dominus JS -->
+    <script src="~/js/dominus.min.js"></script>
+    <script src="~/js/site.js"></script>
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom shadow-sm fixed-top">
+
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold d-flex align-items-center" asp-controller="Home" asp-action="Index">
+                    <img src="~/Picture/ETicket.png" alt="ETicket Logo" width="30" height="30" class="me-2">
+                    <span style="color: #0099CC;">eTicket</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+                        @*Full Authorization*@
+                        @if ((tokenData.FullAuthorization != null && tokenData.FullAuthorization.ToString() == "Y" && tokenData.Type.ToString() != "Client") || (tokenData.Type != null && (tokenData.Type.ToString() == "Admin" || tokenData.Type.ToString() == "Manager")))
+                        {
+                            <!-- Ticket Dropdown -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle @(currentController == "Ticket" || currentController == "ApprovalProcess" ? "active" : "")"
+                                   href="#" id="ticketDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-ticket-perforated me-1"></i> Ticket
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="ticketDropdown">
+                                    <li><a class="dropdown-item @(currentController == "Ticket" && currentAction == "AddTicket" ? "active" : "")" href="/Eticket/Ticket/AddTicket">New Ticket</a></li>
+                                    <li><a class="dropdown-item @(currentController == "Ticket" && currentAction == "TicketTracking" ? "active" : "")" href="/Eticket/Ticket/TicketTracking">Ticket Tracking</a></li>
+                                    <li><a class="dropdown-item @(currentController == "ApprovalProcess" ? "active" : "")" href="/Eticket/Ticket/ApproveTicket">Ticket Approval</a></li>
+                                    <li><a class="dropdown-item @(currentController == "Ticket" && currentAction == "ReportPreview" ? "active" : "")" href="/Eticket/Ticket/ReportPreview">Ticket Report</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle @(currentController == "AsignTicket" ? "active" : "")"
+                                   href="#" id="assignmentDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-person-badge me-1"></i> Ticket Assignment
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="assignmentDropdown">
+                                    <li>
+                                        <a class="dropdown-item @(currentController == "AsignTicket" && currentAction == "AsignTicketList" ? "active" : "")"
+                                           href="/Eticket/AsignTicket">
+                                            Tasks Assign
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item @(currentController == "AsignTicket" && currentAction == "TrackingTikcetAssing" ? "active" : "")"
+                                           href="/Eticket/AsignTicket/TrackingTikcetAssing">
+                                            Tasks Tracking
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item @(currentController == "AsignTicket" && currentAction == "RPTTicketAssign" ? "active" : "")"
+                                           href="/Eticket/AsignTicket/RPTTicketAssign">
+                                            Tasks Report
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+                            <!-- My Task Dropdown -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle @(currentController == "MyTicket" ? "active" : "")"
+                                   href="#" id="taskDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-list-task me-1"></i> My Task
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="taskDropdown">
+                                    <li><a class="dropdown-item @(currentController == "MyTicket" && currentAction == "" ? "active" : "")" href="/Eticket/MyTicket">Tasks Pending</a></li>
+                                    <li><a class="dropdown-item @(currentController == "MyTicket" && currentAction == "MyTicketTracking" ? "active" : "")" href="/Eticket/MyTicket/MyTicketTracking">Task Process</a></li>
+                                    <li><a class="dropdown-item @(currentController == "MyTicket" && currentAction == "RPTMyTicket" ? "active" : "")" href="/Eticket/MyTicket/RPTMyTicket">Task Report</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- Administrator Dropdown -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle @(new [] {"Attribute","Staff","Client","User","ProjectAssign","Advertise","Approval"}.Contains(currentController) ? "active" : "")"
+                                   href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear me-1"></i> Administrator
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+                                    <li><a class="dropdown-item @(currentController == "Approval" ? "active" : "")" href="/Eticket/Approval">Approval</a></li>
+                                    <li><a class="dropdown-item @(currentController == "Advertise" ? "active" : "")" href="/Eticket/Advertise">Advertisement</a></li>
+                                    <li><a class="dropdown-item @(currentController == "Attribute" ? "active" : "")" href="/Eticket/Attribute">Attribute</a></li>
+                                    <li><a class="dropdown-item @(currentController == "Attendance" && currentAction == "Index" ? "active" : "")" href="/Eticket/Attendance">E Attendance</a></li>
+                                    <li><a class="dropdown-item @(currentController == "Client" ? "active" : "")" href="/Eticket/Client">Client</a></li>
+                                    <li><a class="dropdown-item @(currentController == "ProjectAssign" ? "active" : "")" href="/Eticket/ProjectAssign">Project Assign</a></li>
+                                    <li><a class="dropdown-item @(currentController == "ProjectTracking" ? "active" : "")" href="/Eticket/ProjectTracking">Project Tracking</a></li>
+                                    <li><a class="dropdown-item @(currentController == "Recurring" && currentAction == "AddRecurring" ? "active" : "")" href="/Eticket/Recurring/AddRecurring">New Recurring Task</a></li>
+                                    <li><a class="dropdown-item @(currentController == "Recurring" && currentAction == "RecurringList" ? "active" : "")" href="/Eticket/Recurring">Recurring Task List</a></li>
+                                    <li><a class="dropdown-item @(currentController == "Staff" ? "active" : "")" href="/Eticket/Staff">Staff</a></li>
+                                    <li><a class="dropdown-item @(currentController == "User" ? "active" : "")" href="/Eticket/User">User</a></li>
+                                </ul>
+
+                            </li>
+
+                            <!-- Report Dropdown -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle @(currentController == "Ticket" || currentController == "AsignTicket" ? "active" : "")"
+                                   href="#" id="reportDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-question-circle me-1"></i> Report
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="reportDropdown">
+                                    <li><a class="dropdown-item @(currentController == "Ticket" && currentAction == "ReportPreview" ? "active" : "")" href="/Eticket/Ticket/ReportPreview">Ticket Report</a></li>
+                                    <li><a class="dropdown-item @(currentController == "AsignTicket" && currentAction == "RPTTicketAssign" ? "active" : "")" href="/Eticket/AsignTicket/RPTTicketAssign">Task Assign Tracking</a></li>
+                                    <li><a class="dropdown-item @(currentController == "AsignTicket" && currentAction == "RPTTicketTrackingbystaff" ? "active" : "")" href="/Eticket/AsignTicket/RPTTicketTrackingbystaff">Working Task Tracking</a></li>
+                                </ul>
+                            </li>
+                        }
+
+
+                        @*Supporter*@
+                        @if (tokenData.Type != null && tokenData.Type.ToString() == "Supporter" && tokenData.FullAuthorization != null && tokenData.FullAuthorization.ToString() == "N")
+                        {
+                            <!-- Ticket Dropdown -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle @(currentController == "Ticket" || currentController == "ApprovalProcess" ? "active" : "")"
+                                   href="#" id="ticketDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-ticket-perforated me-1"></i> Ticket
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="ticketDropdown">
+                                    <li><a class="dropdown-item @(currentController == "Ticket" && currentAction == "AddTicket" ? "active" : "")" href="/Eticket/Ticket/AddTicket">New Ticket</a></li>
+                                    <li><a class="dropdown-item @(currentController == "Ticket" && currentAction == "TicketTracking" ? "active" : "")" href="/Eticket/Ticket/TicketTracking">Ticket Tracking</a></li>
+                                    <li><a class="dropdown-item @(currentController == "ApprovalProcess" ? "active" : "")" href="/Eticket/Ticket/ApproveTicket">Ticket Approval</a></li>
+                                    <li><a class="dropdown-item @(currentController == "Ticket" && currentAction == "ReportPreview" ? "active" : "")" href="/Eticket/Ticket/ReportPreview">Ticket Report</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- My Task Dropdown -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle @(currentController == "MyTicket" ? "active" : "")"
+                                   href="#" id="taskDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-list-task me-1"></i> My Task
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="taskDropdown">
+                                    <li><a class="dropdown-item @(currentController == "MyTicket" && currentAction == "" ? "active" : "")" href="/Eticket/MyTicket">Tasks Pending</a></li>
+                                    <li><a class="dropdown-item @(currentController == "MyTicket" && currentAction == "MyTicketTracking" ? "active" : "")" href="/Eticket/MyTicket/MyTicketTracking">Task Process</a></li>
+                                    <li><a class="dropdown-item @(currentController == "MyTicket" && currentAction == "RPTMyTicket" ? "active" : "")" href="/Eticket/MyTicket/RPTMyTicket">Task Report</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- Administrator Dropdown -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle @(new [] {"User"}.Contains(currentController) ? "active" : "")"
+                                   href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear me-1"></i> Administrator
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+                                    <li><a class="dropdown-item @(currentController == "User" ? "active" : "")" href="/Eticket/User">User</a></li>
+                                </ul>
+                            </li>
+                        }
+
+                        @*Moderator*@
+                        @if (tokenData.Type != null && tokenData.Type.ToString() == "Moderator" && tokenData.FullAuthorization != null && tokenData.FullAuthorization.ToString() == "N")
+                        {
+                            <!-- Ticket Dropdown -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle @(currentController == "Ticket" || currentController == "ApprovalProcess" ? "active" : "")"
+                                   href="#" id="ticketDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-ticket-perforated me-1"></i> Ticket
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="ticketDropdown">
+                                    <li><a class="dropdown-item @(currentController == "Ticket" && currentAction == "AddTicket" ? "active" : "")" href="/Eticket/Ticket/AddTicket">New Ticket</a></li>
+                                    <li><a class="dropdown-item @(currentController == "Ticket" && currentAction == "TicketTracking" ? "active" : "")" href="/Eticket/Ticket/TicketTracking">Ticket Tracking</a></li>
+                                    <li><a class="dropdown-item @(currentController == "ApprovalProcess" ? "active" : "")" href="/Eticket/Ticket/ApproveTicket">Ticket Approval</a></li>
+                                    <li><a class="dropdown-item @(currentController == "Ticket" && currentAction == "ReportPreview" ? "active" : "")" href="/Eticket/Ticket/ReportPreview">Ticket Report</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle @(currentController == "AsignTicket" ? "active" : "")"
+                                   href="#" id="assignmentDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-person-badge me-1"></i> Ticket Assignment
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="assignmentDropdown">
+                                    <li>
+                                        <a class="dropdown-item @(currentController == "AsignTicket" && currentAction == "AsignTicketList" ? "active" : "")"
+                                           href="/Eticket/AsignTicket">
+                                            Tasks Assign
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item @(currentController == "AsignTicket" && currentAction == "TrackingTikcetAssing" ? "active" : "")"
+                                           href="/Eticket/AsignTicket/TrackingTikcetAssing">
+                                            Tasks Tracking
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item @(currentController == "AsignTicket" && currentAction == "RPTTicketAssign" ? "active" : "")"
+                                           href="/Eticket/AsignTicket/RPTTicketAssign">
+                                            Tasks Report
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+                            <!-- My Task Dropdown -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle @(currentController == "MyTicket" ? "active" : "")"
+                                   href="#" id="taskDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-list-task me-1"></i> My Task
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="taskDropdown">
+                                    <li><a class="dropdown-item @(currentController == "MyTicket" && currentAction == "" ? "active" : "")" href="/Eticket/MyTicket">Tasks Pending</a></li>
+                                    <li><a class="dropdown-item @(currentController == "MyTicket" && currentAction == "MyTicketTracking" ? "active" : "")" href="/Eticket/MyTicket/MyTicketTracking">Task Process</a></li>
+                                    <li><a class="dropdown-item @(currentController == "MyTicket" && currentAction == "RPTMyTicket" ? "active" : "")" href="/Eticket/MyTicket/RPTMyTicket">Task Report</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- Administrator Dropdown -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle @(new [] {"User"}.Contains(currentController) ? "active" : "")"
+                                   href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear me-1"></i> Administrator
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+                                    <li><a class="dropdown-item @(currentController == "User" ? "active" : "")" href="/Eticket/User">User</a></li>
+                                    <li>
+                                        <a class="dropdown-item @(currentController == "Attendance" && currentAction == "Index" ? "active" : "")"
+                                           href="/Eticket/Attendance">
+                                            E Attendance
+                                        </a>
+
+                                    </li>
+                                    <li><a class="dropdown-item @(currentController == "ProjectTracking" ? "active" : "")" href="/Eticket/ProjectTracking">Project Tracking</a></li>
+                                </ul>
+                                
+                            </li>
+
+            
+                            <!-- Recurring Dropdown -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle @(currentController == "Recurring" ? "active" : "")"
+                                   href="#" id="recurringDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-arrow-repeat me-1"></i> Recurring Task
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="recurringDropdown">
+                                    <li>
+                                        <a class="dropdown-item @(currentController == "Recurring" && currentAction == "AddRecurring" ? "active" : "")"
+                                           href="/Eticket/Recurring/AddRecurring">
+                                            <i class="bi bi-plus-circle me-1"></i> New Recurring Task
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item @(currentController == "Recurring" && currentAction == "RecurringList" ? "active" : "")"
+                                           href="/Eticket/Recurring/RecurringList">
+                                            <i class="bi bi-list-check me-1"></i> Recurring Task List
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        }
+
+                        @*Client*@
+                        @if (tokenData.Type != null && tokenData.Type.ToString() == "Client" && tokenData.FullAuthorization.ToString() == "N")
+                        {
+                            <!-- Ticket Dropdown -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle @(currentController == "Ticket" || currentController == "ApprovalProcess" ? "active" : "")"
+                                   href="#" id="ticketDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-ticket-perforated me-1"></i> Ticket
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="ticketDropdown">
+                                    <li><a class="dropdown-item @(currentController == "Ticket" && currentAction == "AddTicket" ? "active" : "")" href="/Eticket/Ticket/AddTicket">New Ticket</a></li>
+                                    <li><a class="dropdown-item @(currentController == "Ticket" && currentAction == "TicketTracking" ? "active" : "")" href="/Eticket/Ticket/TicketTracking">Ticket Tracking</a></li>
+                                    <li><a class="dropdown-item @(currentController == "Ticket" && currentAction == "ReportPreview" ? "active" : "")" href="/Eticket/Ticket/ReportPreview">Ticket Report</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- Administrator Dropdown -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle @(new [] {"User"}.Contains(currentController) ? "active" : "")"
+                                   href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear me-1"></i> Administrator
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+                                    <li><a class="dropdown-item @(currentController == "User" ? "active" : "")" href="/Eticket/User">User</a></li>
+                                </ul>
+                            </li>
+                        }
+
+                        @*Client Full Admin*@
+                        @if (tokenData.Type != null && tokenData.Type.ToString() == "Client" && tokenData.FullAuthorization.ToString() == "Y")
+                        {
+                            <!-- Ticket Dropdown -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle @(currentController == "Ticket" || currentController == "ApprovalProcess" ? "active" : "")"
+                                   href="#" id="ticketDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-ticket-perforated me-1"></i> Ticket
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="ticketDropdown">
+                                    <li><a class="dropdown-item @(currentController == "Ticket" && currentAction == "AddTicket" ? "active" : "")" href="/Eticket/Ticket/AddTicket">New Ticket</a></li>
+                                    <li><a class="dropdown-item @(currentController == "Ticket" && currentAction == "TicketTracking" ? "active" : "")" href="/Eticket/Ticket/TicketTracking">Ticket Tracking</a></li>
+                                    <li><a class="dropdown-item @(currentController == "ApprovalProcess" ? "active" : "")" href="/Eticket/Ticket/ApproveTicket">Ticket Approval</a></li>
+                                    <li><a class="dropdown-item @(currentController == "Ticket" && currentAction == "ReportPreview" ? "active" : "")" href="/Eticket/Ticket/ReportPreview">Ticket Report</a></li>
+                                </ul>
+                            </li>
+
+
+                            <!-- Administrator Dropdown -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle @(new [] {"User"}.Contains(currentController) ? "active" : "")"
+                                   href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear me-1"></i> Administrator
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+                                    <li><a class="dropdown-item @(currentController == "User" ? "active" : "")" href="/Eticket/User">User</a></li>
+                                </ul>
+                            </li>
+                        }
+
+
+                        <!-- Help Desk Dropdown -->
+                        <li class="nav-item dropdown">
+
+                            <a class="nav-link dropdown-toggle @(currentController == "HelpDesk" || currentController == "HelpDesk" ? "active" : "")"
+                               href="#" id="HelpDeskDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-question-circle"></i> Help Desk
+                            </a>
+
+                            <ul class="dropdown-menu" aria-labelledby="HelpDeskDropdown">
+                                <li><a class="dropdown-item" href="https://www.icckh.com" target="_blank">About Us</a></li>
+                                <li><a class="dropdown-item" href="https://www.facebook.com/profile.php?id=100076974609026" target="_blank">FAQ</a></li>
+                                <li><a class="dropdown-item" href="https://help.sap.com/docs/SAP_BUSINESS_ONE/68a2e87fb29941b5bf959a184d9c6727/44c4c1cd7ca22e17e10000000a114a6b.html" target="_blank">Knowledge</a></li>
+                            </ul>
+                        </li>
+
+
+                        @{
+                            bool showApprovalLink =
+                                (tokenData.Type != null && tokenData.Type.ToString() == "Client" && tokenData.FullAuthorization?.ToString() == "Y") ||
+                                (tokenData.Type != null && tokenData.Type.ToString() == "Moderator" && tokenData.FullAuthorization?.ToString() == "N") ||
+                                (tokenData.FullAuthorization?.ToString() == "Y" && tokenData.Type?.ToString() != "Client") ||
+                                (tokenData.Type?.ToString() == "Admin" || tokenData.Type?.ToString() == "Manager");
+                        }
+
+                        @if (showApprovalLink)
+                        {
+                            <li class="nav-item ms-3">
+                                <a class="nav-link position-relative" href="@Url.Action("ApproveTicket", "Ticket")" title="Approval">
+                                    <i class="bi bi-check2-square" style="font-size: 1.3rem;"></i>
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="approvalCount">
+                                        0
+                                        <span class="visually-hidden">pending approvals</span>
+                                    </span>
+                                </a>
+                            </li>
+                        }
+
+
+                        
+
+                       <!-- Notification Icon -->
+                        <li class="nav-item dropdown ms-3">
+                            <a class="nav-link position-relative" href="#" id="notificationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-bell" style="font-size: 1.2rem;"></i>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="notifCount">
+                                    0
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="notificationDropdown" style="min-width: 300px; max-height: 400px; overflow-y: auto;" id="notifList">
+                                <li class="dropdown-header bg-light text-center fw-bold">Notifications</li>
+                                <!-- Alerts will be appended here dynamically -->
+                            </ul>
+                        </li>
+
+
+
+                        <li class="nav-item dropdown ms-3">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle me-2" style="font-size: 1.4rem;"></i>
+                                @if (tokenData != null)
+                                {
+                                    <span class="fw-semibold">@tokenData.UserName</span>
+                                }
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="userDropdown">
+                                <!-- Profile section -->
+                                <li class="px-3 py-2 text-center">
+                                    <i class="bi bi-person-circle mb-2" style="font-size: 2.5rem; color:#6c757d;"></i>
+                                    <div class="fw-bold">@tokenData?.UserName</div>
+                                    <div class="text-muted small">@tokenData?.CompanyName</div>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+
+                                <!-- Menu items -->
+                                <li><a class="dropdown-item" href="javascript:void(0);" onclick="toggleTheme()"><i class="bi bi-moon-stars me-2"></i> Toggle Theme</a></li>
+                                <li class="dropdown-item px-3 py-2">
+                                    <div id="google_translate_element"></div>
+                                </li>
+
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a href="javascript:void(0);" class="dropdown-item text-danger" onclick="confirmLogout()"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
+                            </ul>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- 90% Width Content Wrapper -->
+    <div class="main-wrapper mt-4" style="min-width: 90% !important; margin: 0 auto;">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <script>
+        // ---------------- Approval Count ----------------
+        async function loadApprovalCount() {
+            try {
+                const response = await fetch('/Eticket/Ticket/ApproveTicket?isCountOnly=true');
+                const data = await response.json();
+
+                const badge = document.getElementById("approvalCount");
+                if (badge) {
+                    badge.innerText = data.count || 0; // fallback to 0 if undefined
+                }
+            } catch (error) {
+                console.error("Failed to load approval count:", error);
+            }
+        }
+
+        // ---------------- Notifications ----------------
+        async function loadNotifications() {
+            try {
+                const response = await fetch('/Eticket/Ticket/GetAlerts');
+                const result = await response.json();
+
+                if (!result.success) return;
+
+                const alerts = result.data || [];
+                const notifList = document.getElementById("notifList");
+                const notifCount = document.getElementById("notifCount");
+
+                // Header with "Read All"
+                notifList.innerHTML = `
+                    <li class="dropdown-header bg-light text-center fw-bold d-flex justify-content-between align-items-center">
+                        Notifications
+                        <button class="btn btn-sm btn-link p-0" onclick="readAllAlerts()">Read All</button>
+                    </li>
+                `;
+
+                // Update badge count
+                notifCount.innerText = alerts.length;
+
+                // If no alerts
+                if (alerts.length === 0) {
+                    notifList.innerHTML += `
+                        <li class="dropdown-item text-center text-muted small">
+                            No new notifications
+                        </li>
+                    `;
+                    return;
+                }
+
+                // Populate alerts
+                alerts.forEach(alert => {
+                    const li = document.createElement('li');
+                    li.classList.add('alert-item');
+                    li.innerHTML = `
+                        <a class="dropdown-item d-flex justify-content-between align-items-start" href="#"
+                           onclick="event.preventDefault(); readAlert('${alert.id}', '${alert.link}')">
+                            <div>
+                                <div class="fw-bold">${alert.type}</div>
+                                <div class="small" style="max-width: 350px; white-space: normal;" title="${alert.description}">
+                                    ${alert.description}
+                                </div>
+                            </div>
+                            <div class="text-muted small ms-2">${alert.createdDateTime}</div>
+                        </a>
+                    `;
+                    notifList.appendChild(li);
+                });
+            } catch (error) {
+                console.error("Failed to load notifications:", error);
+            }
+        }
+
+        // ---------------- Mark single alert as read ----------------
+        async function readAlert(alertId, redirectUrl) {
+            try {
+                await fetch('/Eticket/Ticket/MarkAlertRead', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `id=${alertId}`
+                });
+
+                // Redirect after marking as read
+                window.location.href = redirectUrl;
+            } catch (error) {
+                console.error("Failed to mark alert read:", error);
+            }
+        }
+
+        // ---------------- Mark all alerts as read ----------------
+        async function readAllAlerts() {
+            try {
+                await fetch('/Eticket/Ticket/MarkAllAlertsRead', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                });
+
+                // Refresh notifications
+                loadNotifications();
+            } catch (error) {
+                console.error("Failed to mark all alerts read:", error);
+            }
+        }
+
+        // ---------------- Init ----------------
+        document.addEventListener("DOMContentLoaded", () => {
+            loadApprovalCount();
+            loadNotifications();
+        });
+
+        // Refresh every 30s
+        setInterval(() => {
+            loadApprovalCount();
+            loadNotifications();
+        }, 30000);
+    </script>
+
+    <script type="text/javascript">
+        // Initialize Google Translate
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'km,zh-CN,ko,th,id,lo,fr,de',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+
+        // Hide the top Google translate bar
+        function hideGoogleTopBar() {
+            const banner = document.querySelector('.goog-te-banner-frame.skiptranslate');
+            if (banner) banner.style.display = 'none';
+            document.body.style.top = '0px';
+        }
+
+        // Observe DOM changes to remove top bar dynamically
+        const observer = new MutationObserver(hideGoogleTopBar);
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        // Hide immediately if already loaded
+        hideGoogleTopBar();
+    </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- jQuery, Bootstrap & site scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script type="text/javascript">
+        // Theme handling
+        function applyTheme(theme) {
+            document.body.classList.toggle('dark-mode', theme === 'dark');
+            document.querySelectorAll('.login-card').forEach(el => el.classList.toggle('dark-mode', theme === 'dark'));
+        }
+
+        function toggleTheme() {
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        }
+
+        // Language handling
+        function applyLanguage(lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('language', lang);
+        }
+
+        function switchLanguage(newLang) {
+            applyLanguage(newLang);
+        }
+
+        // Apply saved preferences on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            applyTheme(localStorage.getItem('theme') || 'light');
+            applyLanguage(localStorage.getItem('language') || 'kh');
+        });
+
+        // Logout confirmation
+        function confirmLogout() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You will be logged out!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, logout!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/Eticket/Login/Logout';
+                }
+            });
+        }
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

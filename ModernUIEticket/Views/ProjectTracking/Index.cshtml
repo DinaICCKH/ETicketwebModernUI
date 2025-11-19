@@ -1,0 +1,278 @@
+﻿@model IEnumerable<ETicketNewUI.Models.ProjectTrackingList>
+@using System.Globalization
+
+@{
+    ViewData["Title"] = "Project Tracking List";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+<link href="~/css/listreport.css" rel="stylesheet" />
+<link href="~/css/tableresponsiveprojecttracking.css" rel="stylesheet" />
+
+<style>
+    #tablePagination {
+        font-size: 0.7rem !important;
+    }
+
+        #tablePagination .page-item {
+            margin: 0 2px;
+        }
+
+        #tablePagination .page-link {
+            padding: 0.25rem 0.4rem !important;
+            font-size: 0.7rem !important;
+        }
+
+    .action-popup {
+        display: none;
+        z-index: 1050;
+        min-width: 140px;
+    }
+</style>
+
+<div class="container mt-4" style="min-width:90% !important">
+    <div class="card shadow-lg border-0">
+        <!-- Filters -->
+        <div class="card-body p-3 bg-light">
+            <div class="row g-2 align-items-end">
+                <div class="col-md-1">
+                    <label class="form-label small">Show Record</label>
+                    <select id="rowsPerPageSelect" class="form-select form-select-sm">
+                        <option value="10" selected>10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="60">60</option>
+                        <option value="80">80</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label small">Project Name</label>
+                    <select id="projectNameFilter" class="form-select form-select-sm">
+                        <option value="">All</option>
+                        @foreach (var pn in Model.Select(m => m.ProjectName).Distinct())
+                        {
+                            <option value="@pn">@pn</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label small">Project Manager</label>
+                    <select id="pmFilter" class="form-select form-select-sm">
+                        <option value="">All</option>
+                        @foreach (var pm in Model.Select(m => m.ProjectManager).Distinct())
+                        {
+                            <option value="@pm">@pm</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label small">Global Search</label>
+                    <input type="text" id="globalSearch" class="form-control form-control-sm" placeholder="Find anything in table..." />
+                </div>
+
+                <div class="col-md-1 d-flex align-items-end">
+                    <button type="button" class="btn btn-sm btn-success w-100" id="exportExcel">
+                        <i class="bi bi-file-earmark-excel me-1"></i> Export
+                    </button>
+                </div>
+
+                <div class="col-md-1 d-flex align-items-end">
+                    <a href="@Url.Action("AddProjectTracking", "ProjectTracking")" class="btn btn-sm btn-primary w-100">
+                        <i class="bi bi-plus-lg me-1"></i> New
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="card-body p-0">
+            <div class="table-responsive p-3" id="trackingTableContainer">
+                <table class="table table-hover table-sm-font align-middle mb-0" id="trackingTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th>No</th>
+                            <th>Project Code</th>
+                            <th>Project Name</th>
+                            <th>Project Manager</th>
+                            <th>Team</th>
+                            <th>Status</th>
+                            <th>Create Date</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr data-id="@item.ID">
+                                <td>@item.RowNo</td>
+                                <td>@item.ProjectCode</td>
+                                <td>@item.ProjectName</td>
+                                <td>@item.ProjectManager</td>
+                                <td>@item.ProjectTeam</td>
+                                <td>
+                                    @{
+                                        string statusClass = item.ProjectStatus switch
+                                        {
+                                            "In Progress" => "bg-info text-dark",
+                                            "Pending" => "bg-warning text-dark",
+                                            "Closed" => "bg-success",
+                                            "Hold" => "bg-secondary",
+                                            _ => "bg-light text-dark"
+                                        };
+                                    }
+                                    <span class="badge @statusClass">@item.ProjectStatus</span>
+                                </td>
+                                <td>@item.ProjectCreateDate</td>
+                                <td>@item.StartDate</td>
+                                <td>@item.EndDate</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary rounded-circle btn-actions"
+                                            data-id="@item.ID" title="Actions">
+                                        <i class="bi bi-gear"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <ul class="pagination" id="tablePagination"></ul>
+    </div>
+</div>
+
+<!-- Action Popups -->
+@foreach (var item in Model)
+{
+    <div id="popup-@item.ID" class="action-popup p-2 shadow rounded bg-white border" style="display:none; z-index:1000;">
+        <ul class="list-unstyled mb-0">
+            <li class="mb-1">
+                <a class="btn btn-sm btn-light w-100 text-start d-flex align-items-center"
+                   href="@Url.Action("EditProjectTracking", "ProjectTracking", new { id = item.ID })">
+                    <i class="bi bi-pencil-square me-2 text-primary"></i> Edit
+                </a>
+            </li>
+        </ul>
+    </div>
+}
+
+<div class="toast-container"></div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let rowsPerPage = 10;
+            const table = document.getElementById("trackingTable");
+            const tbody = table?.querySelector("tbody");
+            if (!tbody) return;
+
+            let rows = Array.from(tbody.querySelectorAll("tr"));
+            let filteredRows = [...rows];
+            let currentPage = 1;
+            const pagination = document.getElementById("tablePagination");
+            const rowsPerPageSelect = document.getElementById("rowsPerPageSelect");
+
+            rowsPerPageSelect.addEventListener("change", function () {
+                rowsPerPage = parseInt(this.value, 10);
+                currentPage = 1;
+                renderTablePage(currentPage, filteredRows);
+            });
+
+            function renderTablePage(page, displayRows = filteredRows) {
+                const totalPages = Math.ceil(displayRows.length / rowsPerPage) || 1;
+                const start = (page - 1) * rowsPerPage;
+                const end = start + rowsPerPage;
+
+                rows.forEach(r => r.style.display = "none");
+                displayRows.forEach((r, i) => { if (i >= start && i < end) r.style.display = ""; });
+
+                renderPagination(page, totalPages, displayRows);
+            }
+
+            function renderPagination(page, totalPages, displayRows) {
+                pagination.innerHTML = "";
+                const createPageItem = (label, disabled, callback, isActive = false) => {
+                    const li = document.createElement("li");
+                    li.className = "page-item" + (disabled ? " disabled" : "") + (isActive ? " active" : "");
+                    li.innerHTML = `<a class="page-link" href="#">${label}</a>`;
+                    li.addEventListener("click", e => { e.preventDefault(); if (!disabled) callback(); });
+                    return li;
+                };
+
+                pagination.appendChild(createPageItem("Previous", page === 1, () => { currentPage--; renderTablePage(currentPage, displayRows); }));
+
+                const maxVisible = 5;
+                let startPage = Math.max(1, page - Math.floor(maxVisible / 2));
+                let endPage = startPage + maxVisible - 1;
+                if (endPage > totalPages) { endPage = totalPages; startPage = Math.max(1, endPage - maxVisible + 1); }
+
+                for (let i = startPage; i <= endPage; i++) {
+                    pagination.appendChild(createPageItem(i, false, () => { currentPage = i; renderTablePage(currentPage, displayRows); }, i === page));
+                }
+
+                pagination.appendChild(createPageItem("Next", page === totalPages, () => { currentPage++; renderTablePage(currentPage, displayRows); }));
+            }
+
+            function filterRows() {
+                const keyword = document.getElementById("globalSearch").value.toLowerCase();
+                const pmVal = document.getElementById("pmFilter").value.toLowerCase();
+                const projectNameVal = document.getElementById("projectNameFilter").value.toLowerCase();
+
+                filteredRows = rows.filter(r => {
+                    const text = r.innerText.toLowerCase();
+                    const pm = r.cells[3].innerText.toLowerCase();
+                    const projectName = r.cells[2].innerText.toLowerCase();
+                    return text.includes(keyword)
+                        && (pmVal === "" || pm.includes(pmVal))
+                        && (projectNameVal === "" || projectName.includes(projectNameVal));
+                });
+
+                currentPage = 1;
+                renderTablePage(currentPage, filteredRows);
+            }
+
+            document.getElementById("globalSearch").addEventListener("input", filterRows);
+            document.getElementById("pmFilter").addEventListener("change", filterRows);
+            document.getElementById("projectNameFilter").addEventListener("change", filterRows);
+
+            renderTablePage(currentPage, filteredRows);
+
+            // Export Excel
+            document.getElementById("exportExcel").addEventListener("click", function () {
+                const wb = XLSX.utils.table_to_book(table, { sheet: "ProjectTracking" });
+                XLSX.writeFile(wb, `ProjectTracking_${new Date().toISOString().slice(0, 10)}.xlsx`);
+            });
+
+            // Action popups
+            document.querySelectorAll(".btn-actions").forEach(btn => {
+                btn.addEventListener("click", function (e) {
+                    e.stopPropagation();
+                    const id = this.dataset.id;
+                    const popup = document.getElementById("popup-" + id);
+
+                    if (popup.style.display === "block") { popup.style.display = "none"; }
+                    else {
+                        document.querySelectorAll(".action-popup").forEach(p => p.style.display = "none");
+                        popup.style.display = "block";
+                        const rect = this.getBoundingClientRect();
+                        popup.style.position = "absolute";
+                        popup.style.top = rect.bottom + window.scrollY + "px";
+                        popup.style.left = rect.left + window.scrollX + "px";
+                    }
+                });
+            });
+
+            document.addEventListener("click", () => document.querySelectorAll(".action-popup").forEach(p => p.style.display = "none"));
+            window.addEventListener("scroll", () => document.querySelectorAll(".action-popup").forEach(p => p.style.display = "none"));
+        });
+    </script>
+}

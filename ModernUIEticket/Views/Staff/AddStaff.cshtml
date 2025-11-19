@@ -1,0 +1,199 @@
+﻿@model ETicketNewUI.Models.Staff
+@{
+    ViewData["Title"] = "Add Staff";
+}
+
+<div class="container mt-4">
+    <form asp-action="Create" asp-controller="Staff" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+
+        <!-- Staff Information -->
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-primary text-white" style="background-color:#0099CC !important">
+                <h5 class="mb-0">Staff Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+
+                    <!-- First Name -->
+                    <div class="col-md-5">
+                        <label asp-for="FirstName" class="form-label">First Name</label>
+                        <input asp-for="FirstName" class="form-control" placeholder="First Name" />
+                        <span asp-validation-for="FirstName" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="col-md-5">
+                        <label asp-for="LastName" class="form-label">Last Name</label>
+                        <input asp-for="LastName" class="form-control" placeholder="Last Name" />
+                        <span asp-validation-for="LastName" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="col-md-2">
+                        <label asp-for="Gender" class="form-label">Gender</label>
+                        <select asp-for="Gender" class="form-select">
+                            <option value="">-- Select --</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+                        <span asp-validation-for="Gender" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="col-md-4">
+                        <label asp-for="Email" class="form-label">Email</label>
+                        <input asp-for="Email" type="email" class="form-control" placeholder="Email" />
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="col-md-4">
+                        <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+                        <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Hire Date -->
+                    <div class="col-md-4">
+                        <label asp-for="HireDate" class="form-label">Hire Date</label>
+                        <input type="text" class="form-control form-control-sm" id="HireDate" name="HireDate" placeholder="Select date" />
+                        <span class="text-danger small" data-valmsg-for="HireDate" data-valmsg-replace="true"></span>
+                    </div>
+
+                    <!-- Position -->
+                    <div class="col-md-4">
+                        <label asp-for="Position" class="form-label">Position</label>
+                        <select asp-for="Position" class="form-select">
+                            <option value="">-- Select Position --</option>
+                            @if (ViewBag.Role != null)
+                            {
+                                foreach (var role in ViewBag.Role as List<ETicketNewUI.Models.TicketAttribute>)
+                                {
+                                    <option value="@role.AttributeId">@role.Description</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="Position" class="text-danger small"></span>
+                    </div>
+
+                    <!-- User Login -->
+                    <div class="col-md-4">
+                        <label asp-for="UserID" class="form-label">User Login</label>
+                        <select asp-for="UserID" class="form-select">
+                            <option value="">-- Select User --</option>
+                            @if (ViewBag.UserList != null)
+                            {
+                                foreach (var user in ViewBag.UserList as List<ETicketNewUI.Models.UserStaff>)
+                                {
+                                    <option value="@user.UserId">@user.UserName</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="UserID" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Alert -->
+                    <div class="col-md-2">
+                        <label asp-for="Alert" class="form-label">Alert</label>
+                        <select asp-for="Alert" class="form-select">
+                            <option value="Full">Full</option>
+                            <option value="ByProject">By Project</option>
+                        </select>
+                        <span asp-validation-for="Alert" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Active -->
+                    <div class="col-md-2">
+                        <label asp-for="Active" class="form-label">Active</label>
+                        <select asp-for="Active" class="form-select">
+                            <option value="Y">Yes</option>
+                            <option value="N">No</option>
+                        </select>
+                        <span asp-validation-for="Active" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Work Experience -->
+                    <div class="col-md-12">
+                        <label asp-for="WorkExperience" class="form-label">Work Experience</label>
+                        <textarea asp-for="WorkExperience" class="form-control" rows="3" placeholder="Describe previous experiences..."></textarea>
+                        <span asp-validation-for="WorkExperience" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="col-12 mt-3 d-flex justify-content-end gap-2">
+                        <button type="button" id="btnSave" class="btn btn-primary">
+                            <i class="bi bi-save"></i> Save
+                        </button>
+                        <a href="@Url.Action("Index", "Staff")" class="btn btn-secondary">
+                            <i class="bi bi-x-circle"></i> Cancel
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- JS & Plugins -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script>
+        $(document).ready(function () {
+            flatpickr("#HireDate", { dateFormat: "d-M-Y", allowInput: true });
+
+            $("#btnSave").click(function (e) {
+                e.preventDefault();
+
+                var form = $("form")[0];
+                var formData = new FormData(form);
+
+                $.ajax({
+                    url: '@Url.Action("Create", "Staff")',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (res) {
+                        if (res.success) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success',
+                                text: res.message,
+                                showConfirmButton: false,
+                                timer: 5000,
+                                timerProgressBar: true,
+                                willClose: () => {
+                                    window.location.href = '@Url.Action("Index", "Staff")';
+                                }
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: res.message,
+                                showConfirmButton: true
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Something went wrong. Please try again later.'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}
+

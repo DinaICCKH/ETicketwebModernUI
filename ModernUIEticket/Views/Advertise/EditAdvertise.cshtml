@@ -1,0 +1,229 @@
+﻿@model ETicketNewUI.Models.Advertisement
+@{
+    ViewData["Title"] = Model.ID > 0 ? "Edit Advertisement" : "Create Advertisement";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white d-flex align-items-center" style="background-color:#0099CC !important">
+                    <i class="bi bi-image me-2 fs-5"></i>
+                    <h5 class="mb-0">@ViewData["Title"]</h5>
+                </div>
+                <div class="card-body">
+                    <form id="advertiseForm" asp-action="Create" method="post" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="ID" />
+
+                        <!-- Picture Upload -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold"><i class="bi bi-camera me-1"></i>Picture</label>
+                            <input asp-for="Picture" type="file" class="form-control form-control-sm" id="fileInput" name="Attachment" accept=".jpg,.jpeg,.png,.gif" />
+                            <div class="mt-2" id="filePreview">
+                                @if (!string.IsNullOrEmpty(Model.Picture))
+                                {
+                                    <img src="@Model.Picture" class="img-thumbnail" style="max-width:200px; max-height:200px;" />
+                                }
+                            </div>
+                            <div class="mt-2" id="fileDownload" style="@(string.IsNullOrEmpty(Model.Picture) ? "display:none;" : "display:block;")">
+                                <a href="@Model.Picture" class="btn btn-outline-secondary btn-sm" download>
+                                    <i class="bi bi-download me-1"></i> Download Current File
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Show Picture Status -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold"><i class="bi bi-eye me-1"></i> Show Picture</label>
+                            <select asp-for="ShowPictureStatus" class="form-select form-select-sm" required>
+                                <option value="Y" selected="@(Model.ShowPictureStatus == "Y")">Yes</option>
+                                <option value="N" selected="@(Model.ShowPictureStatus == "N")">No</option>
+                            </select>
+                        </div>
+
+                        <!-- Text Description -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold"><i class="bi bi-card-text me-1"></i> Text Description</label>
+                            <textarea asp-for="TextDes" class="form-control form-control-sm" rows="3" placeholder="Put your text description here">@Model.TextDes</textarea>
+                        </div>
+
+                        <!-- Show Text Status -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold"><i class="bi bi-eye me-1"></i> Show Text</label>
+                            <select asp-for="ShowTextDesStatus" class="form-select form-select-sm" required>
+                                <option value="Y" selected="@(Model.ShowTextDesStatus == "Y")">Yes</option>
+                                <option value="N" selected="@(Model.ShowTextDesStatus == "N")">No</option>
+                            </select>
+                        </div>
+
+                        <!-- FromDate & ToDate -->
+                        <div class="row mb-3">
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <label class="form-label fw-semibold"><i class="bi bi-calendar-event me-1"></i> From Date</label>
+                                <input asp-for="FromDate" type="text" id="FromDate" class="form-control form-control-sm"
+                                       value="@(Model.FromDate.ToString("dd-MMM-yyyy"))" placeholder="Select From Date" required />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold"><i class="bi bi-calendar-event me-1"></i> To Date</label>
+                                <input asp-for="ToDate" type="text" id="ToDate" class="form-control form-control-sm"
+                                       value="@(Model.ToDate.ToString("dd-MMM-yyyy"))" placeholder="Select To Date" required />
+                            </div>
+                        </div>
+
+                        <!-- Status -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold"><i class="bi bi-toggle-on me-1"></i> Status</label>
+                            <select asp-for="Status" class="form-select form-select-sm" required>
+                                <option value="A" selected="@(Model.Status=="A")">Active</option>
+                                <option value="I" selected="@(Model.Status=="I")">Inactive</option>
+                            </select>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="d-flex gap-2">
+                            <!-- Save Button -->
+                            <button type="submit" class="btn btn-primary btn-sm fw-semibold" style="background-color:#0099CC !important">
+                                <i class="bi bi-save me-1"></i> @(Model.ID > 0 ? "Update Advertisement" : "Save Advertisement")
+                            </button>
+
+                            @if (Model.ID > 0) // Show delete only when editing
+                            {
+                                <!-- Delete Button -->
+                                <button type="button" id="btnDelete" class="btn btn-danger btn-sm fw-semibold">
+                                    <i class="bi bi-trash me-1"></i> Delete Advertisement
+                                </button>
+                            }
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        // Initialize flatpickr
+        flatpickr("#FromDate", { dateFormat: "d-M-Y", allowInput: true });
+        flatpickr("#ToDate", { dateFormat: "d-M-Y", allowInput: true });
+
+        $(document).ready(function () {
+            const fileInput = document.getElementById('fileInput');
+            const filePreview = document.getElementById('filePreview');
+            const fileDownload = document.getElementById('fileDownload');
+            const downloadLink = fileDownload.querySelector('a');
+
+            fileInput.addEventListener('change', function () {
+                const file = this.files[0];
+                filePreview.innerHTML = '';
+                fileDownload.style.display = 'none';
+
+                if (!file) return;
+
+                if (file.type.startsWith('image/')) {
+                    const img = document.createElement('img');
+                    img.src = URL.createObjectURL(file);
+                    img.classList.add('img-thumbnail', 'mb-2');
+                    img.style.maxWidth = '200px';
+                    img.style.maxHeight = '200px';
+                    filePreview.appendChild(img);
+                } else {
+                    const div = document.createElement('div');
+                    div.classList.add('border', 'p-2', 'rounded', 'bg-light');
+                    div.textContent = file.name;
+                    filePreview.appendChild(div);
+                }
+
+                downloadLink.href = URL.createObjectURL(file);
+                downloadLink.download = file.name;
+                fileDownload.style.display = 'block';
+            });
+
+
+            // Handle Delete Button
+            $("#btnDelete").click(function () {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "This advertisement will be permanently deleted!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '@Url.Action("Delete", "Advertise")',
+                            type: 'POST',
+                            data: {
+                                __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
+                                ID: '@Model.ID'
+                            },
+                            success: function (response) {
+                                Swal.fire({
+                                    icon: response.success ? 'success' : 'error',
+                                    title: response.message,
+                                    timer: 2000,
+                                    showConfirmButton: false
+                                }).then(() => {
+                                    if (response.success) {
+                                        window.location.href = '/Eticket/Advertise';
+                                    }
+                                });
+                            },
+                            error: function () {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Unexpected error occurred.',
+                                    timer: 2000,
+                                    showConfirmButton: false
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+
+
+            // AJAX submit
+            $("#advertiseForm").submit(function (e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+
+                $.ajax({
+                    url: '@Url.Action("Update", "Advertise")',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        Swal.fire({
+                            icon: response.success ? 'success' : 'error',
+                            title: response.message,
+                            timer: 2000,
+                            showConfirmButton: true
+                        }).then(() => {
+                            if (response.success) window.location.href = '/Eticket/Advertise';
+                        });
+                    },
+                    error: function () {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Unexpected error occurred.',
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -1,0 +1,50 @@
+﻿.ticket-status {
+    font-weight: 600;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    display: inline-block;
+}
+.assign-card h5 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.assign-card .btn {
+    background-color: #0099cc;
+    color: white;
+}
+
+    .assign-card .btn:hover {
+        background-color: #0077aa;
+    }
+
+.multi-select-dropdown {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.table-sm-font td,
+.table-sm-font input,
+.table-sm-font button,
+.table-sm-font .input-group-text,
+.table-sm-font select {
+    font-size: 12px !important;
+}
+
+.ticket-info dt,
+.ticket-info dd {
+    border-bottom: 1px solid #dee2e6; /* light gray line */
+    padding: 0.25rem 0; /* spacing */
+    margin-bottom: 0;
+}
+
+.ticket-info dt {
+    font-weight: 500;
+}
+
+.ticket-info dd {
+    margin-left: 0; /* remove default margin */
+}
+
+

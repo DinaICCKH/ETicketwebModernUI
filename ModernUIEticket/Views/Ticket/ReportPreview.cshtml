@@ -1,0 +1,288 @@
+﻿@model ClientTicketSummaryDto
+@using System.Globalization
+@{
+    ViewData["Title"] = "Ticket Approve";
+}
+
+<div class="row mb-4">
+    <!-- Monthly Tickets Chart -->
+    <div class="col-lg-6 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white text-center">
+                <h5 class="mb-0">📊 Tickets By Month (@DateTime.Now.Year)</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="ticketMonthChart" height="250"></canvas>
+            </div>
+        </div>
+    </div>
+
+    @{
+        var defaultFromDate = new DateTime(2024, 1, 1).ToString("yyyy-MM-dd");
+        var defaultToDate = DateTime.Today.ToString("yyyy-MM-dd");
+        // Define "ALL" statuses for Total card
+        var allStatuses = "Request,Pending,Draf,Checking,Progress,Feedback,Done,Cancel,Reject,Draft";
+    }
+
+    <!-- Compact Status Summary Cards with Lighter Colors -->
+    <div class="col-lg-6 mb-3">
+        <!-- Compact Status Summary Cards with Lighter Colors -->
+        <div class="card shadow-sm p-3 mb-4" style="background-color:#f8f9fa; border-radius:8px;">
+            <h6 class="fw-bold mb-3">📊 Ticket Status Summary</h6>
+            <div class="row g-2 mb-0">
+                @if (Model != null)
+                {
+                    var statuses = new List<(string Key, int Value, string Color)>
+                {
+                ("Total", Model.TotalTicket, "#a3d2ff"),
+                ("Request", Model.Request, "#80ced6"),
+                ("Pending", Model.Pending, "#ffe699"),
+                ("Progress", Model.Progress, "#cdb4db"),
+                ("Checking", Model.Checking, "#d6d6d6"),
+                ("Feedback", Model.Feedback, "#b0b0b0"),
+                ("Done", Model.Done, "#a0e7a0"),
+                ("Cancel", Model.Cancel, "#ffcc99"),
+                ("Reject", Model.Reject, "#ff9999"),
+                ("Draft", Model.Draf, "#d1b3ff")
+                };
+
+                    @foreach (var status in statuses)
+                    {
+                        var statusValue = status.Key == "Total" ? allStatuses : status.Key;
+
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                            <a href="@Url.Action("TicketTracking", "Ticket", new {
+                                    status = statusValue,
+                                    dateFrom = defaultFromDate,
+                                    dateTo = defaultToDate,
+                                    priority = "ALL",
+                                    branchCompany = "ALL",
+                                    createBy = "ALL"
+                                })" style="text-decoration:none;">
+                                <div class="card text-dark shadow-sm hover-shadow"
+                                     style="cursor:pointer; background-color:@status.Color; border-radius:8px; padding:6px;">
+                                    <div class="card-body text-center py-1 px-1">
+                                        <h6 class="mb-0 fw-semibold" style="font-size:0.7rem;">@status.Key</h6>
+                                        <p class="mb-0 fw-bold" style="font-size:0.95rem;">@status.Value</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+
+        <!-- Ticket History Tracking List (Filters & Preview) -->
+        <div class="card shadow-sm p-3 mb-4" style="background-color:#f8f9fa; border-radius:8px;">
+            <h6 class="fw-bold mb-3">📄 Ticket History Tracking List</h6>
+            <div class="row g-3 mb-3">
+                <div class="col-md-6 col-sm-12">
+                    <label for="fromDate" class="form-label">From Date:</label>
+                    <input type="text" id="fromDate" name="fromDate" class="form-control date-picker" placeholder="dd-MMM-yy" required />
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <label for="toDate" class="form-label">To Date:</label>
+                    <input type="text" id="toDate" name="toDate" class="form-control date-picker" placeholder="dd-MMM-yy" required />
+                </div>
+            </div>
+
+            <div class="row g-3 mb-3">
+                <div class="col-md-4 col-sm-12">
+                    <label for="MmoduleDropdown" class="form-label">Module:</label>
+                    <select id="MmoduleDropdown" class="form-select">
+                        <option value="All">All</option>
+                        @if (ViewBag.Modules != null)
+                        {
+                            foreach (var module in ViewBag.Modules)
+                            {
+                                <option value="@module.AttributeId">@module.Description</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-4 col-sm-12">
+                    <label for="MproblemTypeDropdown" class="form-label">Problem Type:</label>
+                    <select id="MproblemTypeDropdown" class="form-select">
+                        <option value="All">All</option>
+                        @if (ViewBag.ProblemTypes != null)
+                        {
+                            foreach (var problemType in ViewBag.ProblemTypes)
+                            {
+                                <option value="@problemType.AttributeId">@problemType.Description</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-4 col-sm-12">
+                    <label for="MstatusDropdown" class="form-label">Status:</label>
+                    <select id="MstatusDropdown" class="form-select">
+                        <option value="All">All</option>
+                        <option value="Request">Request</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Reject">Reject</option>
+                        <option value="Progress">Progress</option>
+                        <option value="Checking">Checking</option>
+                        <option value="FeedBack">FeedBack</option>
+                        <option value="Done">Done</option>
+                        <option value="Cancel">Cancel</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="reportDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #0099CC;">
+                        <i class="bi bi-file-earmark-text me-2"></i> Report Options
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="reportDropdown">
+                        <li>
+                            <a class="dropdown-item" href="javascript:void(0)" onclick="previewReport()">
+                                <i class="bi bi-eye me-2 text-primary"></i> Preview
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="javascript:void(0)" onclick="exportReport('PDF')">
+                                <i class="bi bi-file-pdf me-2 text-danger"></i> Print to PDF
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="javascript:void(0)" onclick="exportReport('EXCELOPENXML')">
+                                <i class="bi bi-file-excel me-2 text-success"></i> Export to Excel
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="javascript:void(0)" onclick="exportReport('WORDOPENXML')">
+                                <i class="bi bi-file-word me-2 text-primary"></i> Export to Word
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<style>
+    .hover-shadow:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 0.75rem 1.5rem rgba(0,0,0,0.15) !important;
+        transition: all 0.3s ease-in-out;
+    }
+</style>
+
+@section Scripts {
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            // Always set FromDate to 01-Jan-2024
+            $('#fromDate').val("01-Jan-2024");
+
+            // Set ToDate as today's date in dd-MMM-yyyy
+            const today = new Date();
+            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            const formattedDate = String(today.getDate()).padStart(2, '0') + '-' +
+                monthNames[today.getMonth()] + '-' +
+                today.getFullYear();
+
+            $('#toDate').val(formattedDate);
+        });
+
+        // --- Tempus Dominus Datepickers ---
+        new tempusDominus.TempusDominus(document.getElementById('fromDate'), {
+            display: { components: { calendar: true, clock: false } },
+            useCurrent: false,
+            localization: { format: 'dd-MMM-yyyy' }
+        });
+        new tempusDominus.TempusDominus(document.getElementById('toDate'), {
+            display: { components: { calendar: true, clock: false } },
+            useCurrent: false,
+            localization: { format: 'dd-MMM-yyyy' }
+        });
+
+        // Monthly Tickets Chart with gradient
+        const ctx = document.getElementById('ticketMonthChart').getContext('2d');
+        const gradient = ctx.createLinearGradient(0, 0, 0, 250);
+        gradient.addColorStop(0, 'rgba(54, 162, 235, 0.7)');
+        gradient.addColorStop(1, 'rgba(54, 162, 235, 0.2)');
+
+        const ticketMonthChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Tickets',
+                    data: [
+                                @Model.Jan, @Model.Feb, @Model.Mar, @Model.Apr,
+                                @Model.May, @Model.Jun, @Model.Jul, @Model.Aug,
+                                @Model.Sep, @Model.Oct, @Model.Nov, @Model.Dec
+                            ],
+                    backgroundColor: gradient,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { enabled: true }
+                },
+                scales: {
+                    y: { beginAtZero: true, grid: { color: '#f0f0f0' } },
+                    x: { grid: { color: '#f0f0f0' } }
+                }
+            }
+        });
+
+        // Preview report by status using local RDLC
+        function previewReportByStatus(status) {
+            const fromDate = $('#fromDate').val();
+            const toDate = $('#toDate').val();
+            const module = $('#MmoduleDropdown').val();
+            const problemType = $('#MproblemTypeDropdown').val();
+            const createBy = '@ViewBag.CurrentUser';
+            const user = 'All';
+            const entryPrimary = 'All';
+
+            // Build the URL to call the ClientTicket report
+            const url = `/Eticket/Report/ExportClientTicket?reportName=ClientTicket&fromDate=${fromDate}&toDate=${toDate}&user=${user}&createBy=${createBy}&problemType=${problemType}&module=${module}&status=${status}&entryPrimary=${entryPrimary}&format=PDF`;
+
+            // Open the report in a new tab for preview or printing
+            const printWindow = window.open(url, '_blank');
+            printWindow.focus();
+        }
+
+        function exportReport(format) {
+            const fromDate = $('#fromDate').val();
+            const toDate = $('#toDate').val();
+            const module = $('#MmoduleDropdown').val();
+            const problemType = $('#MproblemTypeDropdown').val();
+            const status = $('#MstatusDropdown').val();
+            const createBy = '@ViewBag.CurrentUser';
+            const user = 'All';
+            const entryPrimary = 'All';
+
+            const url = `/Eticket/Report/ExportClientTicket?reportName=ClientTicket&fromDate=${fromDate}&toDate=${toDate}&user=${user}&createBy=${createBy}&problemType=${problemType}&module=${module}&status=${status}&entryPrimary=${entryPrimary}&format=${format}&inline=false`;
+
+            window.open(url, '_blank'); // download
+        }
+
+        // Preview button using the selected status from dropdown
+        function previewReport() {
+            previewReportByStatus($('#MstatusDropdown').val());
+        }
+
+    </script>
+}

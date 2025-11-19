@@ -1,0 +1,362 @@
+﻿@model ETicketNewUI.Models.Ticket
+@{
+    ViewData["Title"] = "Edit Ticket";
+}
+<style>
+    /* SweetAlert2 custom font size */
+    .swal2-title {
+        font-size: 15px !important;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white d-flex align-items-center" style="background-color:#0099CC !important">
+                    <i class="bi bi-pencil-square me-2" style="font-size: 1.3rem;"></i>
+                    <h5 class="mb-0">Edit Ticket</h5>
+                </div>
+                <div class="card-body">
+                    <form id="ticketEditForm" asp-action="EditTicket" method="post" enctype="multipart/form-data">
+
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="TicketId" />
+
+                        <!-- Company -->
+                        <div class="row mb-3">
+                            <div class="col-12 col-md-6 mb-2 mb-md-0">
+                                <label class="form-label"><i class="bi bi-building me-1"></i> Company</label>
+                                <select name="Branch" class="form-select form-select-sm" required>
+                                    @foreach (var branch in ViewBag.BranchList ?? new List<dynamic>())
+                                    {
+                                        <option value="@branch.CompanyId" selected="@(branch.CompanyId.ToString() == Model.Branch ? "selected" : null)">
+                                            @branch.CompanyName (@branch.ShortName)
+                                        </option>
+                                    }
+
+                                </select>
+                            </div>
+
+                            @if (!(ViewBag.IsClientType ?? false))
+                            {
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label"><i class="bi bi-person-workspace me-1"></i> Client Project</label>
+                                    <select asp-for="Project" class="form-select form-select-sm">
+                                        <option value="">-- Select client Project --</option>
+                                        @foreach (var client in ViewBag.BranchClientList ?? new List<dynamic>())
+                                        {
+
+                                            <option value="@client.CompanyId" selected="@(client.CompanyId.ToString() == Model.Project ? "selected" : null)">
+                                                @client.CompanyName (@client.ShortName)
+                                            </option>
+                                        }
+                                    </select>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label">
+                                        <i class="bi bi-calendar-event me-1 text-danger"></i> Date :
+                                        <span id="currentDateTime" class="text-danger fw-bold"></span>
+                                    </label>
+                                </div>
+                            }
+                        </div>
+
+                        <!-- Priority & Module -->
+                        <div class="row mb-3">
+                            <div class="col-12 col-md-6 mb-2 mb-md-0">
+                                <label class="form-label"><i class="bi bi-flag me-1"></i> Priority</label>
+                                <select asp-for="Priority" class="form-select form-select-sm" required>
+                                    @foreach (var item in ViewBag.Priorities ?? new List<dynamic>())
+                                    {
+                                        <option value="@item.AttributeId" selected="@(item.AttributeId.ToString() == Model.Priority)">
+                                            @item.Description
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label"><i class="bi bi-gear me-1"></i> Module</label>
+                                <select asp-for="Module" class="form-select form-select-sm" required>
+                                    @foreach (var item in ViewBag.Modules ?? new List<dynamic>())
+                                    {
+                                        <option value="@item.AttributeId" selected="@(item.AttributeId.ToString() == Model.Module)">
+                                            @item.Description
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Problem Type & SubProblemType -->
+                        <div class="row mb-3">
+                            <div class="col-12 col-md-6 mb-2 mb-md-0">
+                                <label class="form-label"><i class="bi bi-question-circle me-1"></i> Problem Type</label>
+                                <select asp-for="ProblemType" class="form-select form-select-sm" required>
+                                    @foreach (var item in ViewBag.ProblemTypes ?? new List<dynamic>())
+                                    {
+                                        <option value="@item.AttributeId" selected="@(item.AttributeId.ToString() == Model.ProblemType)">
+                                            @item.Description
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label"><i class="bi bi-file-earmark-plus me-1"></i> Type</label>
+                                <select asp-for="SubProblemType" class="form-select form-select-sm" required>
+                                    @foreach (var item in ViewBag.SubProblemTypes ?? new List<dynamic>())
+                                    {
+                                        <option value="@item.AttributeId" selected="@(item.AttributeId.ToString() == Model.SubProblemType)">
+                                            @item.Description
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Title -->
+                        <div class="mb-3">
+                            <label class="form-label"><i class="bi bi-pencil-square me-1"></i> Title</label>
+                            <textarea asp-for="Title" class="form-control form-control-sm" rows="2">@Model.Title</textarea>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-3">
+                            <label class="form-label"><i class="bi bi-card-text me-1"></i> Description</label>
+                            <textarea asp-for="Description" class="form-control form-control-sm" rows="5">@Model.Description</textarea>
+                        </div>
+
+                        <!-- File Upload -->
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <i class="bi bi-paperclip me-1"></i> File (Max 5MB)
+                            </label>
+                            <input asp-for="Attachment" type="file" class="form-control form-control-sm" id="fileInput" name="Attachment"
+                                   accept=".jpg,.jpeg,.png,.gif,.xlsx,.xls,.csv,.pdf" />
+
+                            <!-- Existing File Preview -->
+                            <div class="mt-2" id="filePreview">
+                                @if (!string.IsNullOrEmpty(Model.Attachment))
+                                {
+                                    var fileName = System.IO.Path.GetFileName(Model.Attachment);
+                                    var ext = System.IO.Path.GetExtension(Model.Attachment).ToLower();
+
+                                    if (ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext == ".gif")
+                                    {
+                                        <!-- Show image preview -->
+                                        <div class="mb-2">
+                                            <img src="@Url.Content(Model.Attachment)" alt="Preview" class="img-thumbnail" style="max-height:150px;" />
+                                        </div>
+                                    }
+
+                                    <!-- Always show download link -->
+                                    <a href="@Url.Content(Model.Attachment)" target="_blank" download class="btn btn-outline-secondary btn-sm">
+                                        <i class="bi bi-download me-1"></i> Download (@fileName)
+                                    </a>
+                                }
+                            </div>
+
+                            <!-- New Selected File Preview + Download -->
+                            <div class="mt-2" id="newFilePreview" style="display:none;"></div>
+                        </div>
+
+
+                        <!-- Save & Reject Buttons -->
+                        <div class="d-flex justify-content-end gap-2 mt-3">
+
+                            <!-- Update Ticket -->
+                            <button type="submit"
+                                    class="btn btn-sm text-white fw-semibold"
+                                    style="background-color: #0099CC;"
+                            @(Model.Status != "Request" && Model.Status != "Draft" ? "disabled" : "")>
+                                <i class="bi bi-pencil-square me-1"></i> Update Ticket
+                            </button>
+
+                            <!-- Reject Ticket -->
+                            <button type="button"
+                                    class="btn btn-sm fw-semibold text-white"
+                                    style="background-color: #dc3545;"
+                                    onclick="rejectSession(@Model.TicketId)"
+                            @(Model.Status != "Request" && Model.Status != "Draft" ? "disabled" : "")>
+                                <i class="bi bi-x-circle me-1"></i> Reject
+                            </button>
+
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+
+        function rejectSession(ticketId) {
+            Swal.fire({
+                title: 'Reject Ticket',
+                input: 'textarea',
+                inputLabel: 'Reason for rejection',
+                inputPlaceholder: 'Enter your reason here...',
+                inputAttributes: {
+                    'aria-label': 'Reason for rejection',
+                    'style': 'font-size:13px;'
+                },
+                showCancelButton: true,
+                confirmButtonText: 'Reject',
+                confirmButtonColor: '#dc3545',
+                cancelButtonText: 'Cancel',
+                preConfirm: (reason) => {
+                    if (!reason) {
+                        Swal.showValidationMessage('Reason is required');
+                    }
+                    return reason;
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const reason = result.value;
+
+                    // Use URLSearchParams to send parameters as form data
+                    const formData = new URLSearchParams();
+                    formData.append('TicketId', ticketId);
+                    formData.append('Reason', reason);
+
+                    fetch('@Url.Action("RejectTicket", "Ticket")', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: formData.toString()
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.success) {
+                                Swal.fire({
+                                    title: 'Rejected',
+                                    text: data.message,
+                                    icon: 'success',
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                    didOpen: () => Swal.showLoading()
+                                }).then(() => {
+                                    window.location.href = '@Url.Action("TicketTracking", "Ticket")';
+                                });
+                            } else {
+                                Swal.fire('Error', data.message, 'error');
+                            }
+                        })
+                        .catch(() => Swal.fire('Error', 'Unexpected error occurred.', 'error'));
+                }
+            });
+        }
+
+        $(document).ready(function () {
+
+            var disableForm = @(!(Model.Status == "Request" || Model.Status == "Draft") ? "true" : "false");
+            if (disableForm === "true") {
+                $("#ticketEditForm :input").prop("disabled", true); // disables all input, select, textarea, button
+            }
+
+            // -----------------------------
+            // 1. Show current date & time
+            // -----------------------------
+            function updateDateTime() {
+                let now = new Date();
+                let formatted = now.toLocaleString("en-GB", {
+                    day: "2-digit", month: "2-digit", year: "numeric",
+                    hour: "2-digit", minute: "2-digit", second: "2-digit"
+                });
+                $("#currentDateTime").text(formatted);
+            }
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+
+            // -----------------------------
+            // 2. File Preview & Download
+            // -----------------------------
+            const fileInput = document.getElementById('fileInput');
+            const filePreview = document.getElementById('filePreview');
+            const fileDownload = document.getElementById('fileDownload');
+
+            fileInput?.addEventListener('change', function () {
+                const file = this.files[0];
+                filePreview.innerHTML = '';
+
+                if (fileDownload) fileDownload.style.display = 'none';
+
+                if (!file) return;
+
+                const ext = file.name.split('.').pop().toLowerCase();
+
+                // If image, show thumbnail
+                if (['jpg', 'jpeg', 'png', 'gif'].includes(ext)) {
+                    const img = document.createElement('img');
+                    img.src = URL.createObjectURL(file);
+                    img.style.maxWidth = '200px';
+                    img.style.maxHeight = '200px';
+                    img.classList.add('img-thumbnail', 'me-2');
+                    filePreview.appendChild(img);
+                }
+
+                // Always show download link if container exists
+                if (fileDownload) {
+                    let downloadLink = fileDownload.querySelector('a');
+                    if (!downloadLink) {
+                        downloadLink = document.createElement('a');
+                        fileDownload.appendChild(downloadLink);
+                    }
+
+                    downloadLink.href = URL.createObjectURL(file);
+                    downloadLink.download = file.name;
+                    downloadLink.innerHTML = '<i class="bi bi-download me-1"></i> Download';
+                    downloadLink.className = 'btn btn-outline-secondary btn-sm';
+                    fileDownload.style.display = 'inline-block';
+                }
+            });
+
+            // -----------------------------
+            // 3. AJAX form submit
+            // -----------------------------
+            $("#ticketEditForm").submit(function (e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+
+                $.ajax({
+                    url: '@Url.Action("EditTicket", "Ticket")',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        Swal.fire({
+                            title: response.message,
+                            icon: response.success ? 'success' : 'error',
+                            confirmButtonText: 'OK',
+                            customClass: { title: 'swal2-title' }
+                        }).then(() => {
+                            if (response.success) location.reload();
+                        });
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: "Unexpected error occurred.",
+                            icon: 'error',
+                            confirmButtonText: 'OK',
+                            customClass: { title: 'swal2-title' }
+                        });
+                    }
+                });
+            });
+
+        });
+    </script>
+}
+

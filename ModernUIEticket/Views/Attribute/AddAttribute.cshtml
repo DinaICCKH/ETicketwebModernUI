@@ -1,0 +1,134 @@
+﻿@model ETicketNewUI.Models.AttributeRule
+@{
+    ViewData["Title"] = "Add Attribute";
+}
+
+<div class="container mt-4">
+    <form id="attrForm" asp-action="AddAttribute" asp-controller="Attribute" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-primary text-white" style="background-color:#0099CC !important">
+                <h5 class="mb-0"><i class="bi bi-plus-circle me-2"></i>Add New Attribute</h5>
+            </div>
+
+            <div class="card-body">
+                <div class="row g-3">
+
+                    <!-- Code -->
+                    <div class="col-md-4">
+                        <label asp-for="Code" class="form-label">Code</label>
+                        <input asp-for="Code" class="form-control" placeholder="Enter code" />
+                        <span asp-validation-for="Code" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="col-md-8">
+                        <label asp-for="Description" class="form-label">Description</label>
+                        <input asp-for="Description" class="form-control" placeholder="Enter description" />
+                        <span asp-validation-for="Description" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Type -->
+                    <div class="col-md-4">
+                        <label asp-for="Type" class="form-label">Type</label>
+                        <select asp-for="Type" class="form-select">
+                            <option value="">-- Select Type --</option>
+                            <option value="Position">Position</option>
+                            <option value="ProblemType">Problem Type</option>
+                            <option value="Priority">Priority</option>
+                            <option value="SubProblemType">SubProblem Type</option>
+                            <option value="Module">Module</option>
+                            <option value="ClientGroup">Client Group</option>
+                            <option value="Role">Role</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <span asp-validation-for="Type" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Status -->
+                    <div class="col-md-4">
+                        <label asp-for="Active" class="form-label">Status</label>
+                        <select asp-for="Active" class="form-select">
+                            <option value="A">Active</option>
+                            <option value="I">Inactive</option>
+                        </select>
+                        <span asp-validation-for="Active" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="col-12 mt-3 d-flex justify-content-end gap-2">
+                        <button type="button" id="btnSave" class="btn btn-primary">
+                            <i class="bi bi-save"></i> Save
+                        </button>
+                        <a href="@Url.Action("Index", "Attribute")" class="btn btn-secondary">
+                            <i class="bi bi-x-circle"></i> Cancel
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        $(document).ready(function () {
+
+            $("#btnSave").click(function (e) {
+                e.preventDefault();
+                
+
+                var form = $("#attrForm")[0]; // select the correct form
+                var formData = new FormData(form);
+
+
+                console.log(formData); // ✅ check in console
+
+
+                $.ajax({
+                    url: '@Url.Action("Create", "Attribute")', // must match your controller
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (res) {
+                        if (res.success) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success',
+                                text: res.message,
+                                showConfirmButton: false,
+                                timer: 2000,
+                                timerProgressBar: true
+                            }).then(() => {
+                                window.location.href = '@Url.Action("Index", "Attribute")';
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: res.message,
+                                showConfirmButton: true
+                            });
+                        }
+                    },
+                    error: function (xhr) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: xhr.responseText || 'Something went wrong. Please try again later.'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -1,0 +1,242 @@
+﻿@model ETicketNewUI.Models.Ticket
+@{
+    ViewData["Title"] = "Create Ticket";
+}
+<style>
+    /* SweetAlert2 custom font size */
+    .swal2-title {
+        font-size: 15px !important;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white d-flex align-items-center" style="background-color:#0099CC !important">
+                    <i class="bi bi-ticket-perforated me-2" style="font-size: 1.3rem;"></i>
+                    <h5 class="mb-0">Create New Ticket</h5>
+                </div>
+                <div class="card-body">
+                    <form id="ticketForm" asp-action="Create" method="post" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+
+                        <!-- Company -->
+                        <div class="row mb-3">
+                            <div class="col-12 col-md-6 mb-2 mb-md-0">
+                                <label class="form-label"><i class="bi bi-building me-1"></i> Company</label>
+                                <select asp-for="Branch" class="form-select form-select-sm" required>
+                                    @if (ViewBag.BranchList != null)
+                                    {
+                                        foreach (var branch in ViewBag.BranchList)
+                                        {
+                                            <option value="@branch.CompanyId">@branch.CompanyName (@branch.ShortName)</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            @if (!(ViewBag.IsClientType ?? false))
+                            {
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label"><i class="bi bi-person-workspace me-1"></i> Client Project</label>
+                                    <select asp-for="Project" class="form-select form-select-sm">
+                                        <option value="">-- Select client Project --</option>
+                                        @if (ViewBag.BranchClientList != null)
+                                        {
+                                            foreach (var client in ViewBag.BranchClientList)
+                                            {
+                                                <option value="@client.CompanyId">@client.CompanyName</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label">
+                                        <i class="bi bi-calendar-event me-1" style="color:red !important"></i> Date :
+                                        <span id="currentDateTime" class="text-danger fw-bold"></span>
+                                    </label>
+                                </div>
+                            }
+                        </div>
+
+                        <!-- Priority & Module -->
+                        <div class="row mb-3">
+                            <div class="col-12 col-md-6 mb-2 mb-md-0">
+                                <label class="form-label"><i class="bi bi-flag me-1"></i> Priority</label>
+                                <select asp-for="Priority" class="form-select form-select-sm" required>
+                                    @if (ViewBag.Priorities != null)
+                                    {
+                                        foreach (var item in ViewBag.Priorities)
+                                        {
+                                            <option value="@item.AttributeId">@item.Description</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label"><i class="bi bi-gear me-1"></i> Module</label>
+                                <select asp-for="Module" class="form-select form-select-sm" required>
+                                    @if (ViewBag.Modules != null)
+                                    {
+                                        foreach (var item in ViewBag.Modules)
+                                        {
+                                            <option value="@item.AttributeId">@item.Description</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Problem Type & Type -->
+                        <div class="row mb-3">
+                            <div class="col-12 col-md-6 mb-2 mb-md-0">
+                                <label class="form-label"><i class="bi bi-question-circle me-1"></i> Problem Type</label>
+                                <select asp-for="ProblemType" class="form-select form-select-sm" required>
+                                    @if (ViewBag.ProblemTypes != null)
+                                    {
+                                        foreach (var item in ViewBag.ProblemTypes)
+                                        {
+                                            <option value="@item.AttributeId">@item.Description</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label"><i class="bi bi-file-earmark-plus me-1"></i> Type</label>
+                                <select asp-for="SubProblemType" class="form-select form-select-sm" required>
+                                    @if (ViewBag.SubProblemTypes != null)
+                                    {
+                                        foreach (var item in ViewBag.SubProblemTypes)
+                                        {
+                                            <option value="@item.AttributeId">@item.Description</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Title -->
+                        <div class="mb-3">
+                            <label class="form-label"><i class="bi bi-pencil-square me-1"></i> Title</label>
+                            <textarea asp-for="Title" class="form-control form-control-sm" rows="2" placeholder="Put your problem title here"></textarea>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-3">
+                            <label class="form-label"><i class="bi bi-card-text me-1"></i> Description</label>
+                            <textarea asp-for="Description" class="form-control form-control-sm" rows="4" placeholder="Put your description here"></textarea>
+                        </div>
+
+                        <!-- File Upload -->
+                        <div class="mb-3">
+                            <label class="form-label"><i class="bi bi-paperclip me-1"></i> File (Max 5MB)</label>
+                            <input asp-for="Attachment" type="file" class="form-control form-control-sm" id="fileInput" name="Attachment" accept=".jpg,.jpeg,.png,.gif,.xlsx,.xls,.csv,.pdf" />
+                            <div class="mt-2" id="filePreview"></div>
+                            <div class="mt-1" id="fileDownload" style="display:none;">
+                                <a href="#" class="btn btn-outline-secondary btn-sm" download>Download Selected File</a>
+                            </div>
+                        </div>
+
+                       
+
+                        <!-- Save Button -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-sm text-white fw-semibold" style="background-color: #0099CC;">
+                                <i class="bi bi-plus-circle me-1"></i> Save Ticket
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Show current date & time
+            function updateDateTime() {
+                let now = new Date();
+                let formatted = now.toLocaleString("en-GB", {
+                    day: "2-digit", month: "2-digit", year: "numeric",
+                    hour: "2-digit", minute: "2-digit", second: "2-digit"
+                });
+                $("#currentDateTime").text(formatted);
+            }
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+
+            // File Preview
+            const fileInput = document.getElementById('fileInput');
+            const filePreview = document.getElementById('filePreview');
+            const fileDownload = document.getElementById('fileDownload');
+            const downloadLink = fileDownload.querySelector('a');
+
+            fileInput.addEventListener('change', function () {
+                const file = this.files[0];
+                filePreview.innerHTML = '';
+                fileDownload.style.display = 'none';
+
+                if (!file) return;
+
+                if (file.type.startsWith('image/')) {
+                    const img = document.createElement('img');
+                    img.src = URL.createObjectURL(file);
+                    img.style.maxWidth = '200px';
+                    img.style.maxHeight = '200px';
+                    img.classList.add('img-thumbnail');
+                    filePreview.appendChild(img);
+                } else {
+                    const div = document.createElement('div');
+                    div.classList.add('border', 'p-2', 'rounded', 'bg-light');
+                    div.textContent = file.name;
+                    filePreview.appendChild(div);
+                }
+
+                downloadLink.href = URL.createObjectURL(file);
+                downloadLink.download = file.name;
+                fileDownload.style.display = 'block';
+            });
+
+            // Form submit with AJAX
+            $("#ticketForm").submit(function (e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+
+                $.ajax({
+                    url: '@Url.Action("Create", "Ticket")',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        Swal.fire({
+                            icon: response.success ? 'success' : 'error',
+                            title: response.message,
+                            timer: 2000,
+                            showConfirmButton: false
+                        }).then(() => {
+                            if (response.success) location.reload();
+                        });
+                    },
+                    error: function () {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Unexpected error occurred.',
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -1,0 +1,105 @@
+﻿/* Keep table compact on smaller screens */
+@media (max-width: 992px) {
+    #adTable th,
+    #adTable td {
+        font-size: 0.75rem !important;
+        padding: 0.4rem !important;
+        white-space: nowrap;
+    }
+
+        #adTable td .badge {
+            font-size: 0.65rem !important;
+            padding: 0.25em 0.4em !important;
+        }
+}
+
+/* Mobile card layout with label/value side by side */
+@media (max-width: 768px) {
+    /* Hide table headers */
+    #adTable thead {
+        display: none;
+    }
+
+    /* Make table elements block-level */
+    #adTable,
+    #adTable tbody,
+    #adTable tr,
+    #adTable td {
+        display: block;
+        width: 100%;
+    }
+
+        /* Style table rows as cards */
+        #adTable tr {
+            margin-bottom: 1rem;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* Style each cell */
+        #adTable td {
+            display: flex;
+            padding: 0.3rem 0.5rem;
+            border: none;
+            border-bottom: 1px dashed #eee;
+            font-size: 0.8rem;
+            align-items: center;
+        }
+
+            /* Remove bottom border for last cell */
+            #adTable td:last-child {
+                border-bottom: none;
+            }
+
+            /* Labels before values using data-label (optional) */
+            #adTable td:before {
+                flex: 0 0 35%;
+                font-weight: 600;
+                color: #555;
+                text-align: left;
+                padding-right: 0.5rem;
+                white-space: nowrap;
+            }
+
+            /* Values */
+            #adTable td span,
+            #adTable td div {
+                flex: 1;
+                white-space: normal;
+                word-break: break-word;
+                overflow-wrap: break-word;
+                text-align: left;
+            }
+
+            /* Fallback labels using nth-child if no data-label */
+            #adTable td:nth-child(1):before {
+                content: "No:";
+            }
+
+            #adTable td:nth-child(2):before {
+                content: "Description:";
+            }
+
+            #adTable td:nth-child(3):before {
+                content: "From Date:";
+            }
+
+            #adTable td:nth-child(4):before {
+                content: "To Date:";
+            }
+
+            #adTable td:nth-child(5):before {
+                content: "Status:";
+            }
+
+            #adTable td:nth-child(6):before {
+                content: "Create Date:";
+            }
+
+            #adTable td:nth-child(7):before {
+                content: "Action:";
+            }
+}

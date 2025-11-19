@@ -1,0 +1,243 @@
+﻿@model ETicketNewUI.Models.Staff
+@{
+    ViewData["Title"] = "Edit Staff";
+}
+
+<div class="container mt-4">
+    <form id="editStaffForm" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="StaffId" />
+        <input type="hidden" asp-for="CreateBy" />
+        <input type="hidden" asp-for="CreatedDate" />
+
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-primary text-white" style="background-color:#0099CC !important">
+                <h5 class="mb-0">Update Staff Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+
+                    <!-- First Name -->
+                    <div class="col-md-5">
+                        <label asp-for="FirstName" class="form-label">First Name</label>
+                        <input asp-for="FirstName" class="form-control" placeholder="First Name" />
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="col-md-5">
+                        <label asp-for="LastName" class="form-label">Last Name</label>
+                        <input asp-for="LastName" class="form-control" placeholder="Last Name" />
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="col-md-2">
+                        <label asp-for="Gender" class="form-label">Gender</label>
+                        <select asp-for="Gender" class="form-select">
+                            <option value="">-- Select --</option>
+                            <option value="M" selected="@(Model.Gender == "M" ? "selected" : null)">Male</option>
+                            <option value="F" selected="@(Model.Gender == "F" ? "selected" : null)">Female</option>
+                        </select>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="col-md-4">
+                        <label asp-for="Email" class="form-label">Email</label>
+                        <input asp-for="Email" class="form-control" placeholder="Email" />
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="col-md-4">
+                        <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+                        <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number" />
+                    </div>
+
+                    <!-- Hire Date -->
+                    <div class="col-md-4">
+                        <label asp-for="HireDate" class="form-label">Hire Date</label>
+                        <input type="text"
+                               id="HireDate"
+                               name="HireDate"
+                               class="form-control form-control-sm"
+                               value="@Model.HireDate?.ToString("dd-MMM-yyyy")"
+                               placeholder="Select date" />
+                    </div>
+
+                    <!-- Position -->
+                    <div class="col-md-4">
+                        <label asp-for="Position" class="form-label">Position</label>
+                        <select asp-for="Position" class="form-select">
+                            <option value="">-- Select Position --</option>
+                            @foreach (var role in ViewBag.Role as List<ETicketNewUI.Models.TicketAttribute>)
+                            {
+                                <option value="@role.AttributeId"
+                                        selected="@(Model.Position.ToString() == role.AttributeId.ToString() ? "selected" : null)">
+                                    @role.Description
+                                </option>
+                            }
+                        </select>
+                    </div>
+
+                    <!-- User Login -->
+                    <div class="col-md-4">
+                        <label asp-for="UserID" class="form-label">User Login</label>
+                        <select asp-for="UserID" class="form-select">
+                            <option value="">-- Select User --</option>
+                            @foreach (var user in ViewBag.UserList as List<ETicketNewUI.Models.UserStaff>)
+                            {
+                                <option value="@user.UserId"
+                                        selected="@(Model.UserID == user.UserId ? "selected" : null)">
+                                    @user.UserName
+                                </option>
+                            }
+                        </select>
+                    </div>
+
+                    <!-- Alert -->
+                    <div class="col-md-2">
+                        <label asp-for="Alert" class="form-label">Alert</label>
+                        <select asp-for="Alert" class="form-select">
+                            <option value="Full" selected="@(Model.Alert == "Full" ? "selected" : null)">Full</option>
+                            <option value="ByProject" selected="@(Model.Alert == "ByProject" ? "selected" : null)">By Project</option>
+                        </select>
+                    </div>
+
+                    <!-- Active -->
+                    <div class="col-md-2">
+                        <label asp-for="Active" class="form-label">Active</label>
+                        <select asp-for="Active" class="form-select">
+                            <option value="A" selected="@(Model.Active == "A" ? "selected" : null)">Yes</option>
+                            <option value="I" selected="@(Model.Active == "I" ? "selected" : null)">No</option>
+                        </select>
+                    </div>
+
+                    <!-- Work Experience -->
+                    <div class="col-md-12">
+                        <label asp-for="WorkExperience" class="form-label">Work Experience</label>
+                        <textarea asp-for="WorkExperience" class="form-control" rows="3"
+                                  placeholder="Describe previous experiences..."></textarea>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="col-12 mt-3 d-flex justify-content-end gap-2">
+                        <button type="button" id="btnSave" class="btn btn-primary">
+                            <i class="bi bi-save"></i> Save
+                        </button>
+
+                        <button type="button" id="btnDelete" class="btn btn-danger">
+                            <i class="bi bi-trash"></i> Delete
+                        </button>
+
+                        <a href="@Url.Action("Index", "Staff")" class="btn btn-secondary">
+                            <i class="bi bi-x-circle"></i> Cancel
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            // Correct date format: 01-Jan-2025
+            flatpickr("#HireDate", {
+                dateFormat: "d-M-Y",
+                allowInput: true
+            });
+
+            // Save button
+            $("#btnSave").click(function (e) {
+                e.preventDefault();
+                var form = $("#editStaffForm")[0];
+                var formData = new FormData(form);
+
+                $.ajax({
+                    url: '@Url.Action("EditStaff", "Staff")',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (res) {
+                        if (res.success) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success',
+                                text: res.message,
+                                confirmButtonText: 'OK'
+                            }).then((r) => {
+                                if (r.isConfirmed) {
+                                    window.location.href = '@Url.Action("Index", "Staff")';
+                                }
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: res.message
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Unexpected error occurred.'
+                        });
+                    }
+                });
+            });
+
+            // Delete button
+            $("#btnDelete").click(function () {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        var form = $("#editStaffForm")[0];
+                        var formData = new FormData(form);
+
+                        $.ajax({
+                            url: '@Url.Action("DeleteStaff", "Staff")',
+                            type: 'POST',
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function (res) {
+                                if (res.success) {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Deleted!',
+                                        text: res.message
+                                    }).then(() => {
+                                        window.location.href = '@Url.Action("Index", "Staff")';
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Error',
+                                        text: res.message
+                                    });
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+
+        });
+    </script>
+}

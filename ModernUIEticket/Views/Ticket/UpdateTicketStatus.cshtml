@@ -1,0 +1,215 @@
+﻿@model ETicketNewUI.Models.TicketTrackingDto
+@{
+    ViewData["Title"] = "Ticket Info";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+<link href="~/css/forticketassign.css" rel="stylesheet" />
+
+<div class="container mt-5" style="min-width:100% !important">
+    <div class="row">
+
+        <!-- Left Column: Ticket Info -->
+        <div class="col-md-4">
+            <div class="ticket-card bg-light p-3">
+                <h5 class="mb-3"><i class="bi bi-ticket-fill me-2"></i> Ticket Info</h5>
+                <dl class="row g-2 ticket-info">
+                    <dt class="col-sm-4"><i class="bi bi-hash me-1"></i> Ref ID</dt>
+                    <dd class="col-sm-8 text-primary">@Model.RefID</dd>
+
+                    <dt class="col-sm-4"><i class="bi bi-card-text me-1"></i> Title</dt>
+                    <dd class="col-sm-8 text-primary">@Model.Title</dd>
+
+                    <dt class="col-sm-4"><i class="bi bi-file-text me-1"></i> Description</dt>
+                    <dd class="col-sm-8 text-primary">@Model.Description</dd>
+
+                    <dt class="col-sm-4"><i class="bi bi-person-fill me-1"></i> Created By</dt>
+                    <dd class="col-sm-8 text-primary">@Model.CreateByName</dd>
+
+                    <dt class="col-sm-4"><i class="bi bi-geo-alt me-1"></i> Branch</dt>
+                    <dd class="col-sm-8 text-primary">@Model.Branch</dd>
+
+                    <dt class="col-sm-4"><i class="bi bi-diagram-3 me-1"></i> Module</dt>
+                    <dd class="col-sm-8 text-primary">@Model.Module</dd>
+
+                    <dt class="col-sm-4"><i class="bi bi-flag me-1"></i> Priority</dt>
+                    <dd class="col-sm-8 text-primary">@Model.Priority</dd>
+
+                    <dt class="col-sm-4"><i class="bi bi-exclamation-circle me-1"></i> Problem Type</dt>
+                    <dd class="col-sm-8 text-primary">@Model.ProblemType</dd>
+
+                    <dt class="col-sm-4"><i class="bi bi-exclamation-triangle me-1"></i> Sub Problem Type</dt>
+                    <dd class="col-sm-8 text-primary">@Model.SubProblemType</dd>
+
+                    <dt class="col-sm-4"><i class="bi bi-clipboard-check me-1"></i> Status</dt>
+                    <dd class="col-sm-8 text-primary">
+                        <span class="ticket-status" style="background-color:@(
+                            Model.Status == "Request" ? "blue" :
+                            Model.Status == "Reject" ? "red" :
+                            Model.Status == "Pending" ? "orange" :
+                            Model.Status == "Progress" ? "lime" :
+                            Model.Status == "Done" ? "green" :
+                            Model.Status == "Feedback" ? "purple" :
+                            Model.Status == "Update" ? "teal" :
+                            Model.Status == "Closed" ? "gray" :
+                            Model.Status == "Cancel" ? "darkred" :
+                            "black"
+                        );">@Model.Status</span>
+                    </dd>
+
+                    <dt class="col-sm-4"><i class="bi bi-paperclip me-1"></i> Attachment</dt>
+                    <dd class="col-sm-8 text-primary">
+                        @if (!string.IsNullOrEmpty(Model.Attachment))
+                        {
+                            var fileName = System.IO.Path.GetFileName(Model.Attachment);
+                            <a href="@Url.Content(Model.Attachment)" target="_blank" download class="btn btn-outline-secondary btn-sm">
+                                <i class="bi bi-download me-1"></i> Download (@fileName)
+                            </a>
+                        }
+                        else
+                        {
+                            <span class="text-muted">No attachment</span>
+                        }
+                    </dd>
+                </dl>
+            </div>
+        </div>
+
+        <!-- Right Column: Assignment -->
+        <div class="col-md-8">
+            <div class="assign-card bg-white p-3 rounded shadow-sm">
+                <h5 class="mb-3"><i class="bi bi-arrow-repeat me-2"></i> Update Ticket Status</h5>
+
+                <table class="table table-bordered table-sm mt-2" id="assignTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width: 3%;">No</th>
+                            <th style="width: 12%;">HandleBy</th>
+                            <th style="display:none;">AssignID</th>
+                            <th style="display:none;">AssignIDLine</th>
+                            <th style="width: 30%;">FeedBack Comment</th>
+                            <th style="width: 17%;">FeedBack Date</th>
+                            <th style="width: 3%;">#</th>
+                            <th style="width: 10%;">Confirm</th>
+                            <th style="width: 25%;">Comment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.Rows != null && ((List<TicketCompleteFeedBack>)ViewBag.rows).Any())
+                        {
+                            int rowNum = 1;
+                            foreach (var row in (List<TicketCompleteFeedBack>)ViewBag.rows)
+                            {
+                                <tr data-assignid="@row.AssignID" data-assignidline="@row.AssignIDLine">
+                                    <td style="text-align:center">@rowNum</td>
+                                    <td>@row.HandleBy</td>
+                                    <td style="display:none">@row.AssignID</td>
+                                    <td style="display:none">@row.AssignIDLine</td>
+                                    <td>@row.DevRemark</td>
+                                    <td>@row.DevCreateDate</td>
+                                    <td style="text-align:center">
+                                        @if (!string.IsNullOrEmpty(row.DevAttachment))
+                                        {
+                                            var fileName = System.IO.Path.GetFileName(row.DevAttachment);
+                                            <a href="@Url.Content(row.DevAttachment)" target="_blank" download class="btn btn-outline-primary btn-sm ms-2">
+                                                <i class="bi bi-download"></i>
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">-</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <select class="form-select form-select-sm confirmSelect">
+                                            <option value="Done">Done</option>
+                                            <option value="FeedBack">FeedBack</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <textarea class="form-control form-control-sm commentInput" rows="1" style="font-size:12px !important"></textarea>
+                                    </td>
+                                </tr>
+                                rowNum++;
+                            }
+                        }
+                    </tbody>
+                </table>
+
+                <div class="row mt-2">
+                    @if (Model.Status == "Checking")
+                    {
+                        <div class="col-3">
+                            <button type="button" class="btn btn-primary w-100" onclick="submitClient()">
+                                <i class="bi bi-check-circle me-1"></i> Update
+                            </button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+function submitClient() {
+    const rows = Array.from(document.querySelectorAll('#assignTable tbody tr'));
+    if (rows.length === 0) {
+        Swal.fire('Warning', 'Please add at least one staff.', 'warning');
+        return;
+    }
+
+    const entryPrimary = '@User.Identity.Name';
+
+    const rowList = rows.map(r => ({
+        AssignID: parseInt(r.dataset.assignid) || 0,
+        AssignIDLine: parseInt(r.dataset.assignidline) || 0,
+        Status: r.querySelector('.confirmSelect')?.value || "Request",
+        Remark: r.querySelector('.commentInput')?.value || "",
+        Hide: "N",
+        CreateBy: entryPrimary,
+        CreatedDate: new Date().toISOString()
+    }));
+
+    const payload = {
+        SecretCode: "",
+        Mode: "Add",
+        RefID: '@Model.RefID',
+        RowList: rowList
+    };
+
+    fetch('@Url.Action("SaveTicketClient", "Ticket")', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: data.message,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            showConfirmButton: false
+                        }).then(() => {
+                            window.location.href = '@Url.Action("TicketTracking", "Ticket")';
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: data.message
+                        });
+                    }
+                })
+
+    .catch(err => Swal.fire('Error', 'Unexpected error occurred.', 'error'));
+}
+</script>
+}

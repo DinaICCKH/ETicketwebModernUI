@@ -1,0 +1,394 @@
+﻿
+@model IEnumerable<ETicketNewUI.Models.AdvertisementListDto>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+
+
+    /* General */
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f4f7fc;
+        color: #333;
+    }
+
+    h1, h2, h5 {
+        font-weight: 700;
+    }
+
+    .hero-section {
+        position: relative;
+        min-height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #fff;
+        border-radius: 15px;
+        background: url('/Eticket/Picture/Banner.png') center center / cover no-repeat;
+        overflow: hidden;
+    }
+
+        .hero-section::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            /* reduce overlay opacity for clearer image */
+            background: linear-gradient(135deg, rgba(30,60,114,0.4), rgba(42,82,152,0.4));
+        }
+
+        .hero-section > div {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 20px;
+            /* optional: remove semi-transparent background for full image clarity */
+            background: rgba(0,0,0,0.15);
+            border-radius: 10px;
+        }
+
+
+    .hero-section h1 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+
+    .hero-section p {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        opacity: 0.9;
+    }
+
+    .hero-section .btn {
+        font-size: 1rem;
+        padding: 12px 30px;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+    }
+
+    .hero-section .btn:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    /* Advertisement Section */
+    .ad-section {
+        position: relative;
+        margin: 60px 0;
+    }
+
+    .ad-section img {
+        width: 100%;
+        max-height: 420px;
+        object-fit: cover;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .ad-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0,0,0,0.6);
+        padding: 30px 40px;
+        border-radius: 15px;
+        color: #fff;
+        text-align: center;
+        max-width: 70%;
+    }
+
+    .ad-overlay h2 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    /* Products Section */
+    .info-section {
+        padding: 80px 15px;
+    }
+
+    .section-title {
+        font-weight: 700;
+        margin-bottom: 50px;
+        color: #224abe;
+        text-align: center;
+        font-size: 2rem;
+        position: relative;
+    }
+
+    .section-title::after {
+        content: "";
+        display: block;
+        width: 80px;
+        height: 4px;
+        background: #00BFFF;
+        margin: 15px auto 0;
+        border-radius: 2px;
+    }
+
+    .product-card {
+        background-color: #fff;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        transition: transform 0.3s, box-shadow 0.3s;
+        text-align: center;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .product-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+    }
+
+    .product-card img {
+        border-radius: 12px;
+        margin-bottom: 20px;
+        transition: transform 0.3s;
+        max-height: 200px;
+        object-fit: cover;
+    }
+
+    .product-card img:hover {
+        transform: scale(1.05);
+    }
+
+    .product-card h5 {
+        margin-bottom: 15px;
+        color: #224abe;
+    }
+
+    .product-card p {
+        flex-grow: 1;
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+    }
+
+    .product-card a {
+        align-self: center;
+    }
+
+    /* Contact Section */
+    .contact-box {
+        background-color: #fff;
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        text-align: center;
+    }
+
+    .contact-box p {
+        margin-bottom: 10px;
+        font-size: 1rem;
+    }
+
+    .contact-box a.btn {
+        margin: 5px;
+        border-radius: 25px;
+        transition: all 0.3s;
+    }
+
+    .contact-box a.btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    /* Map Section */
+    .responsive-map {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+
+    .responsive-map iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    .map-label {
+        text-align: center;
+        margin-top: 15px;
+        font-weight: 600;
+        color: #224abe;
+        font-size: 1.2rem;
+    }
+
+    /* Footer */
+    footer {
+        background-color: #222;
+        color: #fff;
+        padding: 30px 0;
+        font-size: 0.95rem;
+        text-align: center;
+        margin-top: 60px;
+        border-top: 4px solid #00BFFF;
+    }
+
+    footer a {
+        color: #00BFFF;
+        text-decoration: none;
+        margin: 0 6px;
+        transition: color 0.3s;
+    }
+
+    footer a:hover {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+
+</style>
+
+<div class="container">
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div>
+            <h1>Welcome to <span class="text-warning">ICCKH eTicket</span></h1>
+            <p>Create eTickets and explore smart business solutions with ease.</p>
+            <a href="/ETicket/Ticket/AddTicket" class="btn btn-warning fw-bold shadow-lg">
+                🚀 Create Your eTicket
+            </a>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <h5 class="fw-bold mb-4 border-bottom pb-2">📰 Latest News from Us</h5>
+
+        <div class="row">
+            @foreach (var ad in Model)
+            {
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-lg border-0 rounded-3 overflow-hidden position-relative">
+
+                        @* "NEW" Badge if ad is less than 30 days old *@
+                        @if (ad.DayAgo < 30)
+                        {
+                            <span class="badge bg-danger position-absolute top-0 end-0 m-2 shadow-sm" style="font-size: 0.8rem;">
+                                NEW
+                            </span>
+                        }
+
+                        @* Show picture only if exists *@
+                        @if (!string.IsNullOrEmpty(ad.Picture))
+                        {
+                            <img src="@ad.Picture"
+                                 class="card-img-top"
+                                 alt="Advertisement Image"
+                                 style="max-height: 250px; object-fit: cover;" />
+                        }
+
+                        <div class="card-body d-flex flex-column">
+                            @if (!string.IsNullOrEmpty(ad.TextDes))
+                            {
+                                <p class="card-text" style="white-space: pre-wrap;">@ad.TextDes</p>
+                            }
+
+                            <div class="mt-auto">
+                                <p class="text-muted small mb-0">
+                                    @ad.DayAgo days ago
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="info-section">
+        <h2 class="section-title">Our Main Products</h2>
+        <div class="row g-4">
+            <!-- SAP Business One -->
+            <div class="col-md-6 col-lg-3">
+                <div class="product-card">
+                    <img src="~/Picture/SAP-Business-One.jpg" alt="SAP Business One">
+                    <h5>SAP Business One</h5>
+                    <p>Define thresholds for credit and commitment limits at company and customer level to manage risks effectively.</p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">Learn More</a>
+                </div>
+            </div>
+
+            <!-- Kubera -->
+            <div class="col-md-6 col-lg-3">
+                <div class="product-card">
+                    <img src="~/Picture/Kubera.png" alt="Kubera">
+                    <h5>Vishnu</h5>
+                    <p>Manage your company efficiently with modern technology, streamlining operations and improving productivity.</p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">Learn More</a>
+                </div>
+            </div>
+
+            <!-- DMS -->
+            <div class="col-md-6 col-lg-3">
+                <div class="product-card">
+                    <img src="~/Picture/DMS.png" alt="DMS">
+                    <h5>DMS</h5>
+                    <p>Empower sales teams with customer checklists, GPS tracking, and route optimization for better productivity.</p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">Learn More</a>
+                </div>
+            </div>
+
+            <!-- Customization & Integration -->
+            <div class="col-md-6 col-lg-3">
+                <div class="product-card">
+                    <img src="~/Picture/Customization.jpg" alt="Customization & Integration">
+                    <h5>Customization & Integration</h5>
+                    <p>Synchronize all your systems in one place for seamless management and better access to information.</p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="info-section text-center">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-6 contact-box">
+                <p><strong>📞 Phone:</strong> +855 86 566 668</p>
+                <p><strong>📧 Email:</strong> chamnan.heng@icckh.com</p>
+                <p><strong>📍 Location:</strong> Kubera building, Street 1980, Phnom Penh, Cambodia</p>
+                <div class="d-flex justify-content-center gap-2 mt-3 flex-wrap">
+                    <a href="https://t.me/chamnan_sap" target="_blank" class="btn btn-outline-primary btn-sm">Telegram</a>
+                    <a href="https://www.facebook.com/profile.php?id=100076974609026" target="_blank" class="btn btn-outline-primary btn-sm">Facebook</a>
+                    <a href="https://www.youtube.com/%40ICCKH" target="_blank" class="btn btn-outline-primary btn-sm">YouTube</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Map Section -->
+    <div class="info-section text-center">
+        <h2 class="section-title">Find Us</h2>
+        <div class="responsive-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.424622246058!2d104.8839718!3d11.5767476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109510064fde7e1%3A0x82129d19aaab47c!2sICCKH%20SAP%20Business%20One%20Cambodia!5e0!3m2!1sen!2skh!4v1691967123456!5m2!1sen!2skh" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="map-label">ICCKH SAP Business One Cambodia</div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    &copy; 2025 - ICCKH eTicket | Make Strategy Work
+    <br>
+    <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+</footer>
+
+
+

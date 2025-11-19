@@ -1,0 +1,316 @@
+﻿@model IEnumerable<ETicketNewUI.Models.AssignTicketSummaryDto>
+
+@{
+    ViewData["Title"] = "Ticket Assignment Summary";
+    var data = Model.FirstOrDefault();
+    var currentUser = ViewBag.CurrentUser;
+    var supporterSummary = ViewBag.SupporterSummary as List<ETicketNewUI.Models.AssignTicketBySupporterSummaryDto> ?? new List<ETicketNewUI.Models.AssignTicketBySupporterSummaryDto>();
+    var companySummary = ViewBag.CompanySummary as List<ETicketNewUI.Models.AssignTicketByCompanySummaryDto> ?? new List<ETicketNewUI.Models.AssignTicketByCompanySummaryDto>();
+}
+
+<div class="container my-4">
+    <h5 class="fw-bold mb-4 text-dark">
+        <i class="bi bi-ticket-perforated me-2 text-primary"></i> Ticket Assignment Summary
+    </h5>
+
+    <!-- Ticket Assignment Cards -->
+    @if (data == null)
+    {
+        <div class="alert alert-light border text-center">
+            <i class="bi bi-exclamation-triangle text-warning me-2"></i>
+            No summary data found.
+        </div>
+    }
+    else
+    {
+        <div class="row g-3 mb-5">
+            @* Total *@
+            <div class="col-6 col-md-2">
+                <a href="@Url.Action("TrackingTikcetAssing", new { status = "All", createBy = currentUser })" class="text-decoration-none">
+                    <div class="card border-0 shadow-sm rounded-3 text-center hover-card" style="background: #E3F2FD;">
+                        <div class="card-body py-3">
+                            <i class="bi bi-list-task fs-4 text-primary"></i>
+                            <h6 class="fw-semibold mt-2 mb-1 text-dark small">Total</h6>
+                            <span class="fw-bold text-dark fs-6">@data.TotalTicket</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            @* Progress *@
+            <div class="col-6 col-md-2">
+                <a href="@Url.Action("TrackingTikcetAssing", new { status = "Progress", createBy = currentUser })" class="text-decoration-none">
+                    <div class="card border-0 shadow-sm rounded-3 text-center hover-card" style="background: #E0F7FA;">
+                        <div class="card-body py-3">
+                            <i class="bi bi-hourglass-split fs-4 text-info"></i>
+                            <h6 class="fw-semibold mt-2 mb-1 text-dark small">Progress</h6>
+                            <span class="fw-bold text-dark fs-6">@data.Progress</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            @* Done *@
+            <div class="col-6 col-md-2">
+                <a href="@Url.Action("TrackingTikcetAssing", new { status = "Done", createBy = currentUser })" class="text-decoration-none">
+                    <div class="card border-0 shadow-sm rounded-3 text-center hover-card" style="background: #E8F5E9;">
+                        <div class="card-body py-3">
+                            <i class="bi bi-check-circle fs-4 text-success"></i>
+                            <h6 class="fw-semibold mt-2 mb-1 text-dark small">Done</h6>
+                            <span class="fw-bold text-dark fs-6">@data.Done</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            @* Feedback *@
+            <div class="col-6 col-md-2">
+                <a href="@Url.Action("TrackingTikcetAssing", new { status = "FeedBack", createBy = currentUser })" class="text-decoration-none">
+                    <div class="card border-0 shadow-sm rounded-3 text-center hover-card" style="background: #FFF8E1;">
+                        <div class="card-body py-3">
+                            <i class="bi bi-chat-dots fs-4 text-warning"></i>
+                            <h6 class="fw-semibold mt-2 mb-1 text-dark small">Feedback</h6>
+                            <span class="fw-bold text-dark fs-6">@data.FeedBack</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            @* Checking *@
+            <div class="col-6 col-md-2">
+                <a href="@Url.Action("TrackingTikcetAssing", new { status = "Checking", createBy = currentUser })" class="text-decoration-none">
+                    <div class="card border-0 shadow-sm rounded-3 text-center hover-card" style="background: #F3E5F5;">
+                        <div class="card-body py-3">
+                            <i class="bi bi-search fs-4 text-secondary"></i>
+                            <h6 class="fw-semibold mt-2 mb-1 text-dark small">Checking</h6>
+                            <span class="fw-bold text-dark fs-6">@data.Checking</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            @* Reject *@
+            <div class="col-6 col-md-2">
+                <a href="@Url.Action("TrackingTikcetAssing", new { status = "Reject", createBy = currentUser })" class="text-decoration-none">
+                    <div class="card border-0 shadow-sm rounded-3 text-center hover-card" style="background: #FFEBEE;">
+                        <div class="card-body py-3">
+                            <i class="bi bi-x-circle fs-4 text-danger"></i>
+                            <h6 class="fw-semibold mt-2 mb-1 text-dark small">Reject</h6>
+                            <span class="fw-bold text-dark fs-6">@data.Reject</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    }
+
+    <div class="container my-4">
+        <!-- Company Summary -->
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="fw-bold mb-3 text-dark">
+                <i class="bi bi-building me-2 text-primary"></i> Ticket Assignment by Company
+            </h5>
+            <button class="btn btn-sm btn-outline-primary" onclick="exportTableToExcel('companySummaryTable', 'Ticket_Assignment_By_Company')">
+                <i class="bi bi-file-earmark-excel me-1"></i> Export to Excel
+            </button>
+        </div>
+
+        @if (!companySummary.Any())
+        {
+            <div class="alert alert-light border text-center">
+                <i class="bi bi-exclamation-triangle text-warning me-2"></i> No company summary found.
+            </div>
+        }
+        else
+        {
+            <div class="table-responsive shadow-sm rounded-4 mb-4">
+                <table id="companySummaryTable" class="table table-striped table-hover align-middle mb-0">
+                    <thead class="table-light text-start">
+                        <tr class="text-center small text-uppercase">
+                            <th style="width: 50px;">#</th>
+                            <th class="text-start">Company</th>
+                            <th style="width: 120px;">Total Tickets</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int rowIndex = 0;
+                            foreach (var item in companySummary)
+                            {
+                                rowIndex++;
+                                <tr class="align-middle">
+                                    <td class="text-end">@rowIndex</td>
+                                    <td class="text-start">@item.CompanyName</td>
+                                    <td class="text-end">@item.TotalTicket</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+
+        <!-- Supporter Summary -->
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="fw-bold mb-3 text-dark">
+                <i class="bi bi-people me-2 text-primary"></i> Ticket Assignment by Supporter
+            </h5>
+            <button class="btn btn-sm btn-outline-primary" onclick="exportTableToExcel('supporterSummaryTable', 'Ticket_Assignment_By_Supporter')">
+                <i class="bi bi-file-earmark-excel me-1"></i> Export to Excel
+            </button>
+        </div>
+
+        @if (!supporterSummary.Any())
+        {
+            <div class="alert alert-light border text-center">
+                <i class="bi bi-exclamation-triangle text-warning me-2"></i> No supporter summary found.
+            </div>
+        }
+        else
+        {
+            var lastType = "";
+            var lastCompany = "";
+            var lastFullName = "";
+            var lastAssignBy = "";
+            <div class="table-responsive">
+                <table id="supporterSummaryTable" class="table table-bordered table-hover align-middle">
+                    <thead class="table-light text-start">
+                        <tr class="text-center">
+                            <th>Type</th>
+                            <th>Company</th>
+                            <th>Assign By</th>
+                            <th>Staff Name</th>
+                            <th>START</th>
+                            <th>PROGRESS</th>
+                            <th>CHECKING</th>
+                            <th>FEEDBACK</th>
+                            <th>DONE</th>
+                            <th>NON</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in supporterSummary)
+                        {
+                            <tr>
+                                <td>@(item.Type != lastType ? item.Type : "")</td>
+                                <td>@(item.CompanyName != lastCompany ? item.CompanyName : "")</td>
+                                <td>@(item.AssignBy != lastAssignBy ? item.AssignBy : "")</td>
+                                <td>@(item.FullName != lastFullName ? item.FullName : "")</td>
+                                <td class="text-end">@item.START</td>
+                                <td class="text-end">@item.PROGRESS</td>
+                                <td class="text-end">@item.CHECKING</td>
+                                <td class="text-end">@item.FEEDBACK</td>
+                                <td class="text-end">@item.DONE</td>
+                                <td class="text-end">@item.NON</td>
+                                <td class="text-end">@item.Total</td>
+                            </tr>
+                            lastType = item.Type;
+                            lastCompany = item.CompanyName;
+                            lastFullName = item.FullName;
+                            lastAssignBy = item.AssignBy;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <script>
+        function exportTableToExcel(tableId, fileName) {
+            var table = document.getElementById(tableId);
+            var wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+            XLSX.writeFile(wb, fileName + ".xlsx");
+        }
+    </script>
+
+
+<style>
+    .hover-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+    }
+
+    table.table {
+        font-size: 0.75rem;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        background-color: #fff;
+    }
+
+        table.table th, table.table td {
+            vertical-align: middle;
+            padding: 0.35rem 0.5rem;
+        }
+
+        table.table th {
+            font-weight: 600;
+            color: #495057;
+        }
+
+        table.table td {
+            color: #343a40;
+        }
+
+    table.table-striped tbody tr:nth-of-type(odd) {
+        background-color: #f8f9fa;
+    }
+
+    table.table-hover tbody tr:hover {
+        background-color: #e9ecef;
+    }
+
+    .badge {
+        font-size: 0.7rem;
+        padding: 0.25em 0.4em;
+        border-radius: 0.35rem;
+    }
+
+    /* Table Styling */
+    .table {
+        font-size: 0.8rem;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+    }
+
+        .table th, .table td {
+            padding: 0.5rem 0.75rem;
+        }
+
+        .table th {
+            font-weight: 600;
+            color: #495057;
+            background-color: #f8f9fa;
+        }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #fdfdfd;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f1f5f9;
+        transition: background 0.3s ease;
+    }
+
+    /* Badge Styling */
+    .badge.bg-tickets {
+        font-size: 0.75rem;
+        padding: 0.25em 0.5em;
+        border-radius: 0.35rem;
+        background-color: #e7f1ff;
+        color: #084298;
+    }
+
+    /* Responsive improvements */
+    .table-responsive {
+        border-radius: 0.5rem;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+
+</style>

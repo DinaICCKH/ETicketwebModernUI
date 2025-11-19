@@ -1,0 +1,202 @@
+﻿@model ETicketNewUI.Models.AttendanceHeader
+
+@{
+    ViewData["Title"] = "Create Attendance Session";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+
+<div class="container mt-4">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-primary text-white" style="background-color:#0099CC !important">
+            <h6><i class="bi bi-plus-circle me-2"></i> Create Attendance Session</h6>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" method="post">
+
+                <!-- Project & Status -->
+                <div class="card shadow-sm mb-3">
+                    <div class="card-header fw-bold">Project & Status</div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-8">
+                                <label asp-for="ProjectID" class="form-label">Project / Branch</label>
+                                <select asp-for="ProjectID" class="form-select form-select-sm">
+                                    <option value="">-- Select Project / Branch --</option>
+                                    @if (ViewBag.BranchClientList != null)
+                                    {
+                                        foreach (var branch in ViewBag.BranchClientList)
+                                        {
+                                            <option value="@branch.CompanyId">@branch.CompanyName</option>
+                                        }
+                                    }
+                                </select>
+                                <span asp-validation-for="ProjectID" class="text-danger small"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="Status" class="form-label">Status</label>
+                                <select asp-for="Status" class="form-select form-select-sm">
+                                    <option>Planned</option>
+                                    <option>Ongoing</option>
+                                    <option>Closed</option>
+                                    <option>Cancelled</option>
+                                </select>
+                                <span asp-validation-for="Status" class="text-danger small"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+               <div class="card shadow-sm mb-3">
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label asp-for="TrainingDate" class="form-label">Training Date</label>
+                                <input asp-for="TrainingDate" class="form-control form-control-sm" id="TrainingDate" placeholder="Select date" />
+                                <span asp-validation-for="TrainingDate" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label asp-for="StartDateTime" class="form-label">Start DateTime</label>
+                                <input asp-for="StartDateTime" class="form-control form-control-sm" id="StartDateTime" placeholder="Select start datetime" />
+                                <span asp-validation-for="StartDateTime" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label asp-for="EndDateTime" class="form-label">End DateTime</label>
+                                <input asp-for="EndDateTime" class="form-control form-control-sm" id="EndDateTime" placeholder="Select end datetime" />
+                                <span asp-validation-for="EndDateTime" class="text-danger small"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <!-- Remark & Map -->
+                <div class="card shadow-sm mb-3">
+                    <div class="card-header fw-bold">Location & Remark</div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label asp-for="Remark" class="form-label">Remark</label>
+                                <textarea asp-for="Remark" class="form-control" rows="14" placeholder="Enter any remarks here"></textarea>
+                            </div>
+                            <div class="col-md-8 d-flex flex-column">
+                                <label class="form-label">Location</label>
+                                <input type="text" id="locationSearch" class="form-control form-control-sm mb-2" placeholder="Search location..." />
+                                <div id="map" style="flex:1; height:300px; border-radius:8px; border:1px solid #ddd;" title="Click map to select location"></div>
+                                <input type="hidden" asp-for="Latitude" id="Latitude" />
+                                <input type="hidden" asp-for="Longitude" id="Longitude" />
+                                <small class="text-muted">Select location by searching or clicking on map</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Button -->
+                <div class="card shadow-sm">
+                    <div class="card-footer d-flex justify-content-end">
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-plus-circle me-1"></i> Create Session
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        flatpickr("#TrainingDate", {
+            dateFormat: "d-M-Y", // dd-MMM-yyyy
+            allowInput: true
+        });
+
+        flatpickr("#StartDateTime", {
+            enableTime: true,
+            dateFormat: "d-M-Y H:i", // dd-MMM-yyyy HH:mm
+            allowInput: true
+        });
+
+        flatpickr("#EndDateTime", {
+            enableTime: true,
+            dateFormat: "d-M-Y H:i",
+            allowInput: true
+        });
+    </script>
+
+    <script>
+      
+
+        // SweetAlert success message
+        var created = @Html.Raw(Json.Serialize(TempData["Created"] ?? false));
+        if (created) {
+            Swal.fire({
+                title: 'Session Created!',
+                text: 'Do you want to create another attendance session?',
+                icon: 'success',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, create another',
+                cancelButtonText: 'No, go to list'
+            }).then((result) => {
+                if (!result.isConfirmed) {
+                    window.location.href = '@Url.Action("Index", "Attendance")';
+                } else {
+                    document.querySelector("form").reset();
+                    if (marker) { map.removeLayer(marker); marker = null; }
+                    document.getElementById("Latitude").value = "";
+                    document.getElementById("Longitude").value = "";
+                    document.getElementById("locationSearch").value = "";
+                    map.setView([11.5564, 104.9282], 7);
+                }
+            });
+        }
+    </script>
+
+    <!-- Leaflet Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Google Maps Places API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+
+    <script>
+        var map = L.map('map').setView([11.5564, 104.9282], 7); // Cambodia
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        var marker;
+        function setMarker(latlng) {
+            if (marker) marker.setLatLng(latlng);
+            else marker = L.marker(latlng).addTo(map);
+            document.getElementById('Latitude').value = latlng.lat;
+            document.getElementById('Longitude').value = latlng.lng;
+        }
+
+        map.on('click', function(e) { setMarker(e.latlng); });
+
+        var input = document.getElementById('locationSearch');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.addListener('place_changed', function() {
+            var place = autocomplete.getPlace();
+            if (!place.geometry) return;
+            var latlng = { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() };
+            setMarker(latlng);
+            map.setView([latlng.lat, latlng.lng], 15);
+        });
+    </script>
+}

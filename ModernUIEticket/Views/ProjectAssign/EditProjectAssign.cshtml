@@ -1,0 +1,440 @@
+﻿@model ETicketNewUI.Models.ProjectAssignHeader
+@{
+    ViewData["Title"] = "Project Assignment";
+    var isEdit = Model != null && Model.ID > 0;
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+<link href="~/css/forticketassign.css" rel="stylesheet" />
+@Html.AntiForgeryToken()
+
+<div class="container mt-5" style="min-width:100% !important">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="ticket-card bg-light p-3">
+                <h5 class="mb-3"><i class="bi bi-briefcase-fill me-2"></i> Project Info</h5>
+                <dl class="row g-2 ticket-info">
+                    <!-- Company -->
+                    <dt class="col-sm-4"><i class="bi bi-building me-1"></i> Company</dt>
+                    <dd class="col-sm-8 text-primary">
+                        <p class="form-control-plaintext">@ViewBag.MainCompanyName</p>
+                    </dd>
+
+                    <!-- Period -->
+                    <dt class="col-sm-4"><i class="bi bi-calendar-date me-1"></i> Period</dt>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control form-control-sm" id="fromDate"
+                               value="@(isEdit ? Model.FromDate?.ToString("dd-MMM-yyyy") : "")" />
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control form-control-sm" id="toDate"
+                               value="@(isEdit ? Model.ToDate?.ToString("dd-MMM-yyyy") : "")" />
+                    </div>
+
+                    <!-- Remark -->
+                    <dt class="col-sm-4"><i class="bi bi-card-text me-1"></i> Remark</dt>
+                    <dd class="col-sm-8 text-primary">
+                        <textarea class="form-control form-control-sm" id="remarkInput" rows="2">@Model?.Remark</textarea>
+                    </dd>
+
+                    <!-- Status -->
+                    <dt class="col-sm-4"><i class="bi bi-check2-circle me-1"></i> Status</dt>
+                    <dd class="col-sm-8">
+                        <select id="headerStatus" class="form-select form-select-sm">
+                            @if (Model?.Status == "A")
+                            {
+                                <option value="A" selected>Active</option>
+                                <option value="I">Inactive</option>
+                            }
+                            else if (Model?.Status == "I")
+                            {
+                                <option value="A">Active</option>
+                                <option value="I" selected>Inactive</option>
+                            }
+                            else
+                            {
+                                <option value="A">Active</option>
+                                <option value="I">Inactive</option>
+                            }
+                        </select>
+                    </dd>
+
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Assign Staff Section -->
+<div class="row mt-3">
+    <div class="col-md-12">
+        <div class="assign-card bg-white p-3 rounded shadow-sm">
+            <h5 class="mb-3"><i class="bi bi-people-fill me-2"></i> Assign Staff</h5>
+
+            <!-- Staff add controls -->
+            <div class="mb-3 d-flex gap-2">
+                <select class="form-select form-select-sm flex-grow-1" id="staffSelect">
+                    <option value="">-- Choose Staff --</option>
+                    @foreach (var staff in (IEnumerable<ETicketNewUI.Models.StaffListAssign>)ViewBag.SupporterList)
+                    {
+                        <option value="@staff.StaffID" data-name="@staff.FullStaffName">@staff.FullStaffName</option>
+                    }
+                </select>
+                <button id="addSelectedBtn" class="btn btn-sm btn-primary" type="button">Add</button>
+                <button id="clearAllBtn" class="btn btn-sm btn-outline-danger" type="button">Clear</button>
+            </div>
+
+            <!-- Assignment Table -->
+            <table class="table table-bordered table-sm mt-2" id="assignTable">
+                <thead class="table-light">
+                    <tr>
+                        <th style="width:4%">#</th>
+                        <th style="width:15%">Staff</th>
+                        <th style="width:15%">Branch</th>
+                        <th style="width:14%">Role</th>
+                        <th style="width:10%">From</th>
+                        <th style="width:10%">To</th>
+                        <th style="width:10%">Status</th>
+                        <th style="width:16%">Remark</th>
+                        <th style="width:6%">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (isEdit && ViewBag.RowLists != null)
+                    {
+                        int i = 1;
+                        foreach (var row in ViewBag.RowLists)
+                        {
+                            <tr data-staffid="@row.StaffID" data-id="@row.ID">
+                                <td class="rowIndex">@i</td>
+                                <td>@row.StaffName</td>
+
+                                <!-- Branch Dropdown -->
+                                <td>
+                                    <select class="form-select form-select-sm clientSelect">
+                                        @foreach (var b in (IEnumerable<dynamic>)ViewBag.subbranchList)
+                                        {
+                                            if (Convert.ToInt16(b.CompanyId) == Convert.ToInt16(row.ClientID))
+                                            {
+                                                <option value="@b.CompanyId" selected="selected">@b.CompanyName</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@b.CompanyId">@b.CompanyName</option>
+                                            }
+                                        }
+                                    </select>
+
+                                </td>
+
+                                <!-- Role Dropdown -->
+                                <td>
+                                    <select class="form-select form-select-sm roleSelect">
+                                        @foreach (var r in (IEnumerable<dynamic>)ViewBag.Role)
+                                        {
+                                            var roleId = Convert.ToInt32(r.AttributeId);
+                                            var rowRole = Convert.ToInt32(row.Role);
+                                            <option value="@roleId" selected="@(roleId == rowRole)">
+                                                @r.Description
+                                            </option>
+                                        }
+                                    </select>
+                                </td>
+
+
+                                <!-- Editable From/To Date -->
+                                <td>
+                                    <input type="text" class="form-control form-control-sm fromDateInput" 
+                                           value="@(row.FromDate?.ToString("dd-MMM-yyyy"))" placeholder="Select date" />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm toDateInput" 
+                                           value="@(row.ToDate?.ToString("dd-MMM-yyyy"))" placeholder="Select date" />
+                                </td>
+
+                                <td>
+                                    <select class="form-select form-select-sm statusSelect">
+                                        <option value="A" selected="@(row.Status == "A")">Active</option>
+                                        <option value="I" selected="@(row.Status == "I")">Inactive</option>
+                                    </select>
+                                </td>
+
+                                <!-- Remark Editable -->
+                                <td>
+                                    <input type="text"
+                                           class="form-control form-control-sm remarkInput"
+                                           value="@row.Remark" />
+                                </td>
+
+
+                                <!-- Action -->
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-danger removeRowBtn">
+                                        <i class="bi bi-x-circle"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            i++;
+                        }
+                    }
+                </tbody>
+            </table>
+
+            <div class="row mt-3 align-items-center gx-2">
+                <div class="col-auto">
+                    <button type="button" class="btn btn-primary" onclick="submitProjectAssign()">
+                        <i class="bi bi-check-circle me-1"></i> Save
+                    </button>
+                </div>
+                <div class="col-auto">
+                    <span id="rowCount" class="text-muted">0 rows</span>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script>
+
+        /* ============================================
+           🟩 Convert "05-Feb-2025" → "2025-02-05T00:00:00"
+        ============================================== */
+        function toIsoNoTimezone(dateString) {
+            if (!dateString || dateString.trim() === "") return null;
+
+            const months = {
+                Jan: "01", Feb: "02", Mar: "03", Apr: "04",
+                May: "05", Jun: "06", Jul: "07", Aug: "08",
+                Sep: "09", Oct: "10", Nov: "11", Dec: "12"
+            };
+
+            const parts = dateString.split("-");
+            if (parts.length !== 3) return null;
+
+            const day = parts[0];
+            const mon = months[parts[1]];
+            const year = parts[2];
+
+            if (!mon) return null;
+
+            return `${year}-${mon}-${day}T00:00:00`;
+        }
+
+        const isEdit = @((isEdit).ToString().ToLower());
+
+        $(document).ready(function () {
+
+            // ---------------------
+            // Initialize flatpickr
+            // ---------------------
+            flatpickr("#fromDate", { dateFormat: "d-M-Y" });
+            flatpickr("#toDate", { dateFormat: "d-M-Y" });
+
+            flatpickr(".fromDateInput", { dateFormat: "d-M-Y" });
+            flatpickr(".toDateInput", { dateFormat: "d-M-Y" });
+
+            reindexRows();
+
+            // ==========================
+            // Load dropdown list items
+            // ==========================
+            const subBranches = @Html.Raw(Json.Serialize(ViewBag.subbranchList ?? new List<object>()));
+            const roleList = @Html.Raw(Json.Serialize(ViewBag.Role ?? new List<object>()));
+
+            function buildBranchOptions(selectedValue) {
+                let options = ['<option value="">-- Select Branch --</option>'];
+                subBranches.forEach(b => {
+                    const selected = b.companyId == selectedValue ? 'selected' : '';
+                    options.push(`<option value="${b.companyId}" ${selected}>${b.companyName}</option>`);
+                });
+                return options.join('');
+            }
+
+            function buildRoleOptions(selectedValue) {
+                let options = ['<option value="">-- Select Role --</option>'];
+                roleList.forEach(r => {
+                    const selected = r.attributeId == selectedValue ? 'selected' : '';
+                    options.push(`<option value="${r.attributeId}" ${selected}>${r.description}</option>`);
+                });
+                return options.join('');
+            }
+
+            // ==========================
+            // Add Staff Row
+            // ==========================
+            $("#addSelectedBtn").click(function () {
+
+                const staffId = $("#staffSelect").val();
+                const staffName = $("#staffSelect option:selected").data("name");
+
+                if (!staffId) {
+                    Swal.fire("Warning", "Please select staff first.", "warning");
+                    return;
+                }
+
+                const rowHtml = `
+                        <tr data-staffid="${staffId}" data-id="0">
+                            <td class="rowIndex"></td>
+                            <td>${staffName}</td>
+
+                            <td>
+                                <select class="form-select form-select-sm clientSelect">${buildBranchOptions()}</select>
+                            </td>
+
+                            <td>
+                                <select class="form-select form-select-sm roleSelect">${buildRoleOptions()}</select>
+                            </td>
+
+                            <td>
+                                <input type="text" class="form-control form-control-sm fromDateInput" />
+                            </td>
+
+                            <td>
+                                <input type="text" class="form-control form-control-sm toDateInput" />
+                            </td>
+
+                            <td>
+                                <select class="form-select form-select-sm statusSelect">
+                                    <option value="A" selected>Active</option>
+                                    <option value="I">Inactive</option>
+                                </select>
+                            </td>
+
+                            <td>
+                                <input type="text" class="form-control form-control-sm remarkInput" />
+                            </td>
+
+                            <td>
+                                <button type="button" class="btn btn-sm btn-danger removeRowBtn">
+                                    <i class="bi bi-x-circle"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+
+                $("#assignTable tbody").append(rowHtml);
+
+                flatpickr($("#assignTable tbody tr:last .fromDateInput"), { dateFormat: "d-M-Y" });
+                flatpickr($("#assignTable tbody tr:last .toDateInput"), { dateFormat: "d-M-Y" });
+
+                reindexRows();
+            });
+
+            // ==========================
+            // Delete Row
+            // ==========================
+            $(document).on("click", ".removeRowBtn", function () {
+                $(this).closest("tr").remove();
+                reindexRows();
+            });
+
+            // ==========================
+            // Clear All Rows
+            // ==========================
+            $("#clearAllBtn").click(function () {
+                $("#assignTable tbody").empty();
+                reindexRows();
+            });
+
+        });
+
+        function reindexRows() {
+            $("#assignTable tbody tr").each((i, r) => {
+                $(r).find(".rowIndex").text(i + 1);
+            });
+            $("#rowCount").text($("#assignTable tbody tr").length + " row(s)");
+        }
+
+        // =============================================
+        // 🔥 Submit Project Assign (FINAL VERSION)
+        // =============================================
+        function submitProjectAssign() {
+
+            let payload = {
+                Mode: isEdit ? "Update" : "Add",
+                ID: isEdit ? @Model?.ID : 0,
+                ClientID: @Model?.ClientID ?? 0,
+
+                FromDate: toIsoNoTimezone($("#fromDate").val()),
+                ToDate: toIsoNoTimezone($("#toDate").val()),
+
+                Remark: $("#remarkInput").val(),
+                Status: $("#headerStatus").val(),
+                RowList: []
+            };
+
+            $("#assignTable tbody tr").each((i, r) => {
+
+                let clientId = $(r).find(".clientSelect").val();
+                let role = $(r).find(".roleSelect").val();
+                let fromDate = $(r).find(".fromDateInput").val();
+                let toDate = $(r).find(".toDateInput").val();
+
+                // Validation only for new rows
+                if ($(r).data("id") == 0) {
+                    if (!clientId) {
+                        Swal.fire("Validation", `Please select Branch for row ${i + 1}.`, "warning");
+                        throw 'ValidationError';
+                    }
+                    if (!role) {
+                        Swal.fire("Validation", `Please select Role for row ${i + 1}.`, "warning");
+                        throw 'ValidationError';
+                    }
+                }
+
+                payload.RowList.push({
+                    ID: $(r).data("id"),
+                    RowNo: i + 1,
+                    StaffID: $(r).data("staffid"),
+
+                    ClientID: clientId,
+                    Role: role,
+
+                    FromDate: toIsoNoTimezone(fromDate),
+                    ToDate: toIsoNoTimezone(toDate),
+
+                    Status: $(r).find(".statusSelect").val(),
+                    Remark: $(r).find(".remarkInput").val()
+                });
+            });
+
+            const token = $('input[name="__RequestVerificationToken"]').val();
+
+            fetch('@Url.Action("EditProjectAssign", "ProjectAssign")', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "RequestVerificationToken": token
+                },
+                body: JSON.stringify(payload)
+            })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            icon: "success",
+                            title: "Success",
+                            text: data.message,
+                        }).then(() => window.location.href = '@Url.Action("Index", "ProjectAssign")');
+                    } else {
+                        Swal.fire({ icon: "error", title: "Error", text: data.message });
+                    }
+                })
+                .catch(err => {
+                    if (err !== "ValidationError") console.error(err);
+                });
+        }
+
+    </script>
+}
+
+
+

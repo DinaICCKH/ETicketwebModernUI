@@ -1,0 +1,114 @@
+﻿/* Keep table compact on smaller screens */
+@media (max-width: 992px) {
+    #taskTable th,
+    #taskTable td {
+        font-size: 0.75rem !important;
+        padding: 0.4rem !important;
+        white-space: nowrap;
+    }
+
+        #taskTable td .badge {
+            font-size: 0.65rem !important;
+            padding: 0.25em 0.4em !important;
+        }
+}
+
+/* Mobile card layout with label/value side by side */
+@media (max-width: 768px) {
+    #taskTable thead {
+        display: none; /* hide headers */
+    }
+
+    #taskTable,
+    #taskTable tbody,
+    #taskTable tr,
+    #taskTable td {
+        display: block;
+        width: 100%;
+    }
+
+        #taskTable tr {
+            margin-bottom: 1rem;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        #taskTable td {
+            display: flex;
+            padding: 0.3rem 0.5rem;
+            border: none;
+            border-bottom: 1px dashed #eee;
+            font-size: 0.8rem;
+            align-items: center;
+        }
+
+            #taskTable td:last-child {
+                border-bottom: none;
+            }
+
+            #taskTable td:before {
+                content: attr(data-label) ":";
+                flex: 0 0 30%; /* label width ~30% */
+                font-weight: 600;
+                color: #555;
+                text-align: left;
+                padding-right: 0.5rem;
+                white-space: nowrap;
+            }
+
+            #taskTable td span.value {
+                flex: 1; /* value width ~70% */
+                white-space: normal;
+                word-break: break-word;
+                overflow-wrap: break-word;
+                text-align: left;
+            }
+
+            /* Fallback labels via nth-child for 11 columns */
+            #taskTable td:nth-child(1):before {
+                content: "No:";
+            }
+
+            #taskTable td:nth-child(2):before {
+                content: "Task ID:";
+            }
+
+            #taskTable td:nth-child(3):before {
+                content: "Company:";
+            }
+
+            #taskTable td:nth-child(4):before {
+                content: "Assign To:";
+            }
+
+            #taskTable td:nth-child(5):before {
+                content: "Handle By:";
+            }
+
+            #taskTable td:nth-child(6):before {
+                content: "Frequency:";
+            }
+
+            #taskTable td:nth-child(7):before {
+                content: "Exec Time:";
+            }
+
+            #taskTable td:nth-child(8):before {
+                content: "Status:";
+            }
+
+            #taskTable td:nth-child(9):before {
+                content: "Created Date:";
+            }
+
+            #taskTable td:nth-child(10):before {
+                content: "Remark:";
+            }
+
+            #taskTable td:nth-child(11):before {
+                content: "Action:";
+            }
+}

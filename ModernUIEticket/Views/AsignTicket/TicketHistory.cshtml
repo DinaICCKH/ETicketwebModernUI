@@ -1,0 +1,222 @@
+﻿@model List<ETicketNewUI.Models.TicketChatHistoryModerator>
+@{
+    ViewData["Title"] = "Ticket Info";
+    var currentUserId = ViewBag.CurrentUserId?.ToString();
+    var ticket = ViewBag.Ticket as ETicketNewUI.Models.TicketTrackingDto;
+}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+<style>
+    body {
+        background-color: #f5f5f5;
+    }
+
+    .ticket-card {
+        border-radius: 15px;
+        border: 1px solid #ddd;
+        background: #fff;
+        padding: 15px;
+    }
+
+    .chat-container {
+        max-height: 600px;
+        overflow-y: auto;
+        padding: 15px;
+        background-color: #fff;
+        border-radius: 15px;
+        border: 1px solid #ddd;
+    }
+
+    .chat-message {
+        max-width: 70%;
+        margin-bottom: 10px;
+        padding: 10px 15px;
+        border-radius: 20px;
+        position: relative;
+        word-wrap: break-word;
+    }
+
+        .chat-message.left {
+            background-color: #e4e6eb;
+            color: #000;
+            float: left;
+            clear: both;
+        }
+
+        .chat-message.right {
+            background-color: #0099cc;
+            color: #fff;
+            float: right;
+            clear: both;
+        }
+
+    .message-header {
+        font-weight: bold;
+        margin-bottom: 5px;
+        font-size: 0.9rem;
+    }
+
+    .message-time {
+        font-size: 0.7rem;
+        margin-top: 3px;
+        opacity: 0.7;
+        text-align: right;
+    }
+
+    .clearfix {
+        clear: both;
+    }
+
+    #messageInputContainer {
+        display: flex;
+        padding: 10px !important ;
+        background-color: #fff;
+        border-top: 1px solid #ccc;
+        border-radius: 0 0 15px 15px;
+    }
+
+    #messageInput {
+        flex: 1;
+        border-radius: 30px;
+        border: 1px solid #ccc;
+        padding: 10px 15px;
+        font-size: 1rem;
+        margin-right: 10px;
+    }
+
+    #sendMessageBtn {
+        border-radius: 50%;
+        background-color: #0099cc;
+        border: none;
+        color: #fff;
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        #sendMessageBtn:hover {
+            background-color: #007999;
+        }
+</style>
+
+<div class="container mt-4" style="min-width:100% !important">
+    <div class="row g-3">
+        <!-- Left: Ticket Info -->
+        <div class="col-md-3">
+            <div class="ticket-card">
+                <h5 class="mb-3"><i class="bi bi-ticket-fill me-2"></i> Ticket Info</h5>
+                <dl class="row g-2 ticket-info">
+                    <dt class="col-sm-4">Ref ID</dt>
+                    <dd class="col-sm-8 text-primary">@ticket?.RefID</dd>
+                    <dt class="col-sm-4">Title</dt>
+                    <dd class="col-sm-8 text-primary">@ticket?.Title</dd>
+                    <dt class="col-sm-4">Description</dt>
+                    <dd class="col-sm-8 text-primary">@ticket?.Description</dd>
+                    <dt class="col-sm-4">Created By</dt>
+                    <dd class="col-sm-8 text-primary">@ticket?.CreateByName</dd>
+                    <dt class="col-sm-4">Branch</dt>
+                    <dd class="col-sm-8 text-primary">@ticket?.Branch</dd>
+                    <dt class="col-sm-4">Module</dt>
+                    <dd class="col-sm-8 text-primary">@ticket?.Module</dd>
+                    <dt class="col-sm-4">Priority</dt>
+                    <dd class="col-sm-8 text-primary">@ticket?.Priority</dd>
+                    <dt class="col-sm-4">Status</dt>
+                    <dd class="col-sm-8">
+                        <span class="badge" style="background-color:@(ticket?.Status=="Request"?"blue":ticket?.Status=="Reject"?"red":ticket?.Status=="Pending"?"orange":ticket?.Status=="Progress"?"lime":ticket?.Status=="Done"?"green":ticket?.Status=="Feedback"?"purple":ticket?.Status=="Update"?"teal":ticket?.Status=="Closed"?"gray":ticket?.Status=="Cancel"?"darkred":"black");">
+                            @ticket?.Status
+                        </span>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+
+        <!-- Right: Chat -->
+        <div class="col-md-9 d-flex flex-column">
+            <h5 class="mb-2">Chat History</h5>
+            <div class="chat-container" id="chatContainer">
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var msg in Model)
+                    {
+                        var messageClass = msg.CreateBy == currentUserId ? "right" : "left";
+                        <div class="chat-message @messageClass">
+                            <div class="message-header">@msg.UserFullName (@msg.UserType)</div>
+                            <div class="message-content">@msg.Description</div>
+                            <div class="message-time">@msg.CreatedDateTime</div>
+                        </div>
+                        <div class="clearfix"></div>
+                    }
+                }
+                else
+                {
+                    <div>No messages found.</div>
+                }
+            </div>
+
+            <!-- Input -->
+            <div id="messageInputContainer" class="mt-auto">
+                <input type="text" id="messageInput" placeholder="Type a message..." />
+                <button id="sendMessageBtn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var currentUserId = '@currentUserId';
+        var ticketId = '@ticket?.TicketId';
+
+        function scrollChat() {
+            var chat = $('#chatContainer');
+            chat.scrollTop(chat[0].scrollHeight);
+        }
+        scrollChat();
+
+        function appendMessage(userName, userType, message, createBy, createdDate) {
+            var messageClass = createBy === currentUserId ? 'right' : 'left';
+            var messageHtml = `
+                    <div class="chat-message ${messageClass}">
+                        <div class="message-header">${userName} (${userType})</div>
+                        <div class="message-content">${message}</div>
+                        <div class="message-time">${createdDate}</div>
+                    </div>
+                    <div class="clearfix"></div>
+                `;
+            $('#chatContainer').append(messageHtml);
+            scrollChat();
+        }
+
+        $('#sendMessageBtn').click(function () {
+            var message = $('#messageInput').val().trim();
+            if (message === '') return;
+
+            $.ajax({
+                url: '@Url.Action("Comment", "AsignTicket")',
+                type: 'POST',
+                data: { TicketRef: ticketId, FeedbackText: message },
+                success: function (data) {
+                    if (data.success) {
+                        appendMessage('You', 'Moderator', message, currentUserId, new Date().toLocaleString());
+                        $('#messageInput').val('');
+                    } else {
+                        Swal.fire('Error', data.message, 'error');
+                    }
+                },
+                error: function () {
+                    Swal.fire('Error', 'Failed to send message', 'error');
+                }
+            });
+
+        });
+
+        $('#messageInput').keypress(function (e) {
+            if (e.which === 13) {
+                $('#sendMessageBtn').click();
+            }
+        });
+    });
+</script>

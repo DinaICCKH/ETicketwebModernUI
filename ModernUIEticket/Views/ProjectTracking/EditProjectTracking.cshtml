@@ -1,0 +1,546 @@
+﻿@model ETicketNewUI.Models.ProjectTracking
+@{
+    ViewData["Title"] = "Project Tracking";
+    var header = ViewBag.Header as ETicketNewUI.Models.ProjectTracking;
+    var rows = ViewBag.RowList as List<ETicketNewUI.Models.ProjectTracking1> ?? new();
+    bool isEdit = header != null && header.ID > 0;
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+<link href="~/css/forticketassign.css" rel="stylesheet" />
+@Html.AntiForgeryToken()
+
+<div class="container mt-4" style="min-width:100% !important">
+
+    <!-- Header Section -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card bg-light rounded shadow-sm p-2">
+                <h5 class="mb-2 text-primary"><i class="bi bi-kanban-fill me-2"></i> Project Information</h5>
+
+                <!-- Project Code & Remark -->
+                <div class="row g-1 align-items-center mb-1">
+                    <label class="col-sm-2 col-form-label form-label-sm"><i class="bi bi-box-seam me-1"></i> Project Code</label>
+                    <div class="col-sm-4">
+                        <select class="form-select form-select-sm" id="projectCode" @(isEdit ? "disabled" : "")>
+                            <option value="">-- Select --</option>
+                            @foreach (var project in (IEnumerable<ETicketNewUI.Models.ProjectAvailable>)ViewBag.MainCompany)
+                            {
+                                if (header?.ProjectCode == project.CompanyId.ToString())
+                                {
+                                    <option value="@project.CompanyId" selected>@project.CompanyName</option>
+                                }
+                                else
+                                {
+                                    <option value="@project.CompanyId">@project.CompanyName</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+
+                    <label class="col-sm-2 col-form-label form-label-sm"><i class="bi bi-chat-left-dots me-1"></i> Remark</label>
+                    <div class="col-sm-4">
+                        <textarea class="form-control form-control-sm" id="remark" rows="1" placeholder="Enter remark">@header?.Remark</textarea>
+                    </div>
+                </div>
+
+                <!-- Project Manager & Team -->
+                <div class="row g-1 align-items-center mb-1">
+                    <label class="col-sm-2 col-form-label form-label-sm"><i class="bi bi-person-badge me-1"></i> Manager</label>
+                    <div class="col-sm-4">
+                        <textarea class="form-control form-control-sm" id="projectManager" rows="1" placeholder="Enter manager name">@header?.ProjectManager</textarea>
+                    </div>
+
+                    <label class="col-sm-2 col-form-label form-label-sm"><i class="bi bi-people me-1"></i> Team</label>
+                    <div class="col-sm-4">
+                        <textarea class="form-control form-control-sm" id="projectTeam" rows="1" placeholder="Enter team names or IDs">@header?.ProjectTeam</textarea>
+                    </div>
+                </div>
+
+                <!-- Start & End Date & Status -->
+                <div class="row g-1 align-items-center mb-1">
+                    <label class="col-sm-2 col-form-label form-label-sm">
+                        <i class="bi bi-calendar-date me-1"></i> Start Date
+                    </label>
+                    <div class="col-sm-2">
+                        <input type="text"
+                               id="startDate"
+                               class="form-control form-control-sm"
+                               value="@header?.StartDate?.ToString("dd-MMM-yyyy")"
+                               placeholder="Select start date" />
+                    </div>
+
+                    <label class="col-sm-2 col-form-label form-label-sm">
+                        <i class="bi bi-calendar2-week me-1"></i> End Date
+                    </label>
+                    <div class="col-sm-2">
+                        <input type="text"
+                               id="endDate"
+                               class="form-control form-control-sm"
+                               value="@header?.EndDate?.ToString("dd-MMM-yyyy")"
+                               placeholder="Select end date" />
+                    </div>
+
+
+                    <label class="col-sm-2 col-form-label form-label-sm">
+                        <i class="bi bi-bar-chart-fill me-1"></i> Status
+                    </label>
+                    <div class="col-sm-2">
+                        <select id="projectStatus" class="form-select form-select-sm">
+                            @if (header?.ProjectStatus == "Planned")
+                            {
+                                <option value="Planned" selected>Planned</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Completed">Completed</option>
+                                <option value="On Hold">On Hold</option>
+                            }
+                            else if (header?.ProjectStatus == "In Progress")
+                            {
+                                <option value="Planned">Planned</option>
+                                <option value="In Progress" selected>In Progress</option>
+                                <option value="Completed">Completed</option>
+                                <option value="On Hold">On Hold</option>
+                            }
+                            else if (header?.ProjectStatus == "Completed")
+                            {
+                                <option value="Planned">Planned</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Completed" selected>Completed</option>
+                                <option value="On Hold">On Hold</option>
+                            }
+                            else if (header?.ProjectStatus == "On Hold")
+                            {
+                                <option value="Planned">Planned</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Completed">Completed</option>
+                                <option value="On Hold" selected>On Hold</option>
+                            }
+                            else
+                            {
+                                <option value="Planned">Planned</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Completed">Completed</option>
+                                <option value="On Hold">On Hold</option>
+                            }
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail Rows -->
+    <div class="row mt-3">
+        <div class="col-12">
+            <div class="card bg-white p-2 rounded shadow-sm">
+                <h5 class="mb-2"><i class="bi bi-activity me-2"></i> Tracking Stages</h5>
+
+                <div class="mb-2 d-flex gap-1">
+                    <button class="btn btn-sm btn-primary" id="addStageBtn" type="button"><i class="bi bi-plus-circle"></i> Add Task</button>
+                    <button class="btn btn-sm btn-outline-danger" id="clearStageBtn" type="button"><i class="bi bi-trash"></i> Clear All</button>
+                </div>
+
+                <table class="table table-bordered table-sm mb-0" id="stageTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width:4%">#</th>
+                            <th style="width:20%">Task</th>
+                            <th style="width:15%">Handle By</th>
+                            <th style="width:15%">Status</th>
+                            <th style="width:12%">From</th>
+                            <th style="width:12%">To</th>
+                            <th style="width:17%">Remark</th>
+                            <th style="width:5%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stageTableBody">
+                        @if (rows.Any())
+                        {
+                            int i = 1;
+                            foreach (var r in rows)
+                            {
+                                <tr>
+                                    <td class="rowIndex text-center">@i</td>
+                                    <td><textarea class="form-control form-control-sm stageNo" rows="1">@r.StageNo</textarea></td>
+                                    <td>
+                                        <select class="form-select form-select-sm handleBy">
+                                            <option value="">-- Select --</option>
+                                            @foreach (var s in (IEnumerable<ETicketNewUI.Models.StaffListAssign>)ViewBag.SupporterList)
+                                            {
+                                                if (r.HandleBy == s.StaffID.ToString())
+                                                {
+                                                    <option value="@s.StaffID" selected>@s.FullStaffName</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@s.StaffID">@s.FullStaffName</option>
+                                                }
+                                            }
+                                        </select>
+                                    </td>
+
+                                    <td>
+                                        <select class="form-select form-select-sm rowStatus">
+                                            @if (r.RowStatus == "Start")
+                                            {
+                                                <option value="Start" selected>Start</option>
+                                                <option value="Processing">Processing</option>
+                                                <option value="Pending">Pending</option>
+                                                <option value="Reject">Reject</option>
+                                                <option value="Hold">Hold</option>
+                                                <option value="Done">Done</option>
+                                            }
+                                            else if (r.RowStatus == "Processing")
+                                            {
+                                                <option value="Start">Start</option>
+                                                <option value="Processing" selected>Processing</option>
+                                                <option value="Pending">Pending</option>
+                                                <option value="Reject">Reject</option>
+                                                <option value="Hold">Hold</option>
+                                                <option value="Done">Done</option>
+                                            }
+                                            else if (r.RowStatus == "Pending")
+                                            {
+                                                <option value="Start">Start</option>
+                                                <option value="Processing">Processing</option>
+                                                <option value="Pending" selected>Pending</option>
+                                                <option value="Reject">Reject</option>
+                                                <option value="Hold">Hold</option>
+                                                <option value="Done">Done</option>
+                                            }
+                                            else if (r.RowStatus == "Reject")
+                                            {
+                                                <option value="Start">Start</option>
+                                                <option value="Processing">Processing</option>
+                                                <option value="Pending">Pending</option>
+                                                <option value="Reject" selected>Reject</option>
+                                                <option value="Hold">Hold</option>
+                                                <option value="Done">Done</option>
+                                            }
+                                            else if (r.RowStatus == "Hold")
+                                            {
+                                                <option value="Start">Start</option>
+                                                <option value="Processing">Processing</option>
+                                                <option value="Pending">Pending</option>
+                                                <option value="Reject">Reject</option>
+                                                <option value="Hold" selected>Hold</option>
+                                                <option value="Done">Done</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="Start">Start</option>
+                                                <option value="Processing">Processing</option>
+                                                <option value="Pending">Pending</option>
+                                                <option value="Reject">Reject</option>
+                                                <option value="Hold">Hold</option>
+                                                <option value="Done">Done</option>
+                                            }
+                                        </select>
+                                    </td>
+
+                                    <td>
+                                        <input type="text"
+                                               class="form-control form-control-sm fromDate"
+                                               value="@r.FromDate?.ToString("dd-MMM-yyyy")"
+                                               placeholder="Select date" />
+                                    </td>
+
+                                    <td>
+                                        <input type="text"
+                                               class="form-control form-control-sm toDate"
+                                               value="@r.ToDate?.ToString("dd-MMM-yyyy")"
+                                               placeholder="Select date" />
+                                    </td>
+
+                                    <td><textarea class="form-control form-control-sm remarkInput" rows="1">@r.Remark</textarea></td>
+                                    <td class="text-center"><button type="button" class="btn btn-sm btn-danger removeRow"><i class="bi bi-x-circle"></i></button></td>
+                                </tr>
+                                i++;
+                            }
+                        }
+                    </tbody>
+                </table>
+
+                <div class="row mt-2 align-items-center gx-1">
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-success btn-sm" onclick="submitProjectTracking()">
+                            <i class="bi bi-check2-circle me-1"></i> @(isEdit ? "Update" : "Save")
+                        </button>
+                    </div>
+                    <div class="col-auto">
+                        <span id="rowCount" class="text-muted">@(rows.Count) row(s)</span>
+                    </div>
+
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-danger" id="deleteProjectBtn">
+                            <i class="bi bi-trash me-1"></i> Delete
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            // ==========================================================
+            //  FLATPICKR INITIALIZER - USES 01-Jan-2025 FORMAT
+            // ==========================================================
+            function initFlatpickr(selector) {
+                flatpickr(selector, {
+                    dateFormat: "d-M-Y",   // matches dd-MMM-yyyy
+                    allowInput: true
+                });
+            }
+
+            // Header date pickers
+            initFlatpickr("#startDate");
+            initFlatpickr("#endDate");
+
+            // Existing row date pickers
+            initFlatpickr(".fromDate");
+            initFlatpickr(".toDate");
+
+            // Convert dd-MMM-yyyy -> ISO 8601
+            function toIso(val) {
+                if (!val) return null;
+                const d = new Date(val);
+                return isNaN(d.getTime()) ? null : d.toISOString();
+            }
+
+
+            // ==========================================================
+            //  DELETE PROJECT
+            // ==========================================================
+            $("#deleteProjectBtn").click(function () {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "This will permanently delete the project tracking!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        const payload = {
+                            ID: @Model?.ID ?? 0,
+                            Mode: "Delete",
+                        };
+
+                        fetch('@Url.Action("DeleteProjectTracking", "ProjectTracking")', {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val()
+                            },
+                            body: JSON.stringify(payload)
+                        })
+                            .then(r => r.json())
+                            .then(data => {
+                                if (data.success) {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Deleted!',
+                                        text: data.message,
+                                        timer: 2500,
+                                        timerProgressBar: true
+                                    }).then(() => window.location.href = '@Url.Action("Index", "ProjectTracking")');
+                                } else {
+                                    Swal.fire({ icon: 'error', title: 'Error', text: data.message });
+                                }
+                            })
+                            .catch(err => console.error(err));
+                    }
+                });
+            });
+
+            // ==========================================================
+            //  REINDEX ROWS
+            // ==========================================================
+            function reindexRows() {
+                const rows = $('#stageTableBody tr');
+                rows.each((i, tr) => $(tr).find('.rowIndex').text(i + 1));
+                $('#rowCount').text(`${rows.length} row(s)`);
+            }
+            reindexRows();
+
+
+            // ==========================================================
+            //  ADD NEW ROW
+            // ==========================================================
+            $('#addStageBtn').on('click', function () {
+
+                const supporterList = @Html.Raw(Json.Serialize(
+                (ViewBag.SupporterList as List<ETicketNewUI.Models.StaffListAssign> ?? new())
+                .Select(s => new { s.StaffID, s.FullStaffName })
+                ));
+
+                const supporterOptions =
+                    supporterList.map(s => `<option value="${s.staffID}">${s.fullStaffName}</option>`).join('');
+
+                const rowStatusOptions = ['Start', 'Processing', 'Pending', 'Reject', 'Hold']
+                    .map(x => `<option value="${x}">${x}</option>`).join('');
+
+                const row = `
+                    <tr>
+                        <td class="rowIndex text-center"></td>
+                        <td><textarea class="form-control form-control-sm stageNo" rows="1"></textarea></td>
+                        <td><select class="form-select form-select-sm handleBy"><option value="">-- Select --</option>${supporterOptions}</select></td>
+                        <td><select class="form-select form-select-sm rowStatus"><option value="">-- Select Status --</option>${rowStatusOptions}</select></td>
+                        <td><input type="text" class="form-control form-control-sm fromDate" placeholder="From date" /></td>
+                        <td><input type="text" class="form-control form-control-sm toDate" placeholder="To date" /></td>
+                        <td><textarea class="form-control form-control-sm remarkInput" rows="1"></textarea></td>
+                        <td class="text-center"><button type="button" class="btn btn-sm btn-danger removeRow"><i class="bi bi-x-circle"></i></button></td>
+                    </tr>`;
+
+                $('#stageTableBody').append(row);
+
+                // Initialize flatpickr for new row
+                initFlatpickr(".fromDate");
+                initFlatpickr(".toDate");
+
+                reindexRows();
+            });
+
+
+            // ==========================================================
+            //  REMOVE ROW
+            // ==========================================================
+            $('#stageTableBody').on('click', '.removeRow', function () {
+                $(this).closest('tr').remove();
+                reindexRows();
+            });
+
+
+            // ==========================================================
+            //  CLEAR ALL ROWS
+            // ==========================================================
+            $('#clearStageBtn').on('click', function () {
+                $('#stageTableBody').empty();
+                reindexRows();
+            });
+
+
+            // ==========================================================
+            //  SUBMIT PROJECT TRACKING
+            // ==========================================================
+            function submitProjectTracking() {
+
+                const isEdit = @((isEdit).ToString().ToLower());
+                const rows = $('#stageTableBody tr');
+
+                if ($('#projectCode').val().trim() === '') {
+                    Swal.fire("Warning", "Please select project code.", "warning");
+                    return;
+                }
+
+                if (rows.length === 0) {
+                    Swal.fire("Warning", "Please add at least one task.", "warning");
+                    return;
+                }
+
+                const header = {
+                    Mode: isEdit ? "Update" : "Add",
+                    ID: @header?.ID ?? 0,
+                    ProjectCode: $('#projectCode').val(),
+                    ProjectManager: $('#projectManager').val(),
+                    ProjectTeam: $('#projectTeam').val(),
+                    ProjectStatus: $('#projectStatus').val(),
+                    StartDate: toIsoNoTimezone($('#startDate').val()),
+                    EndDate: toIsoNoTimezone($('#endDate').val()),
+                    Remark: $('#remark').val(),
+                    Status: "A"
+                };
+
+                const rowList = [];
+                rows.each((i, tr) => {
+                    rowList.push({
+                        ID: 0,
+                        RowNo: i + 1,
+                        StageNo: $(tr).find('.stageNo').val(),
+                        HandleBy: $(tr).find('.handleBy').val(),
+                        RowStatus: $(tr).find('.rowStatus').val(),
+                        FromDate: toIsoNoTimezone($(tr).find('.fromDate').val()),
+                        ToDate: toIsoNoTimezone($(tr).find('.toDate').val()),
+                        Remark: $(tr).find('.remarkInput').val()
+                    });
+                });
+
+                console.log("this header", header)
+                // console.log()
+
+                const payload = { ...header, RowList: rowList };
+
+                const actionUrl = isEdit
+                    ? '@Url.Action("EditProjectTracking", "ProjectTracking")'
+                    : '@Url.Action("AddProjectTracking", "ProjectTracking")';
+
+                fetch(actionUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val()
+                    },
+                    body: JSON.stringify(payload)
+                })
+                    .then(r => r.json())
+                    .then(data => {
+                        if (data.success) {
+                            Swal.fire("Success", data.message, "success")
+                                .then(() => window.location.href = '@Url.Action("Index", "ProjectTracking")');
+                        } else {
+                            Swal.fire("Error", data.message || "Save failed.", "error");
+                        }
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        Swal.fire("Error", "Unexpected error occurred.", "error");
+                    });
+            }
+
+            // Expose for onclick
+            window.submitProjectTracking = submitProjectTracking;
+
+        });
+        function conDate(dateString) {
+            if (!dateString) return null;
+
+            return new Date(dateString).toISOString();
+        }
+        function toIsoNoTimezone(dateString) {
+            if (!dateString) return null;
+
+            const months = {
+                Jan: "01", Feb: "02", Mar: "03", Apr: "04",
+                May: "05", Jun: "06", Jul: "07", Aug: "08",
+                Sep: "09", Oct: "10", Nov: "11", Dec: "12"
+            };
+
+            const parts = dateString.split("-");
+            const day = parts[0];
+            const monthName = parts[1];
+            const year = parts[2];
+
+            const month = months[monthName]; // convert "Sep" → "09"
+
+            return `${year}-${month}-${day}T00:00:00`;
+        }
+    </script>
+}
+
+

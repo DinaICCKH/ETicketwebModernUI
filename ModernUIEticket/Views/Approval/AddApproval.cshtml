@@ -1,0 +1,301 @@
+﻿@model ETicketNewUI.Models.ApprovalHeader
+@{
+    ViewData["Title"] = "Approval Setup";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+<link href="~/css/forticketassign.css" rel="stylesheet" />
+
+@Html.AntiForgeryToken()
+
+<div class="container mt-5" style="min-width:100% !important">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="ticket-card bg-light p-3">
+                <h5 class="mb-3"><i class="bi bi-check2-circle me-2"></i> Approval Setup</h5>
+                <dl class="row g-2 ticket-info">
+                    <dt class="col-sm-4"><i class="bi bi-building me-1"></i> Company</dt>
+                    <dd class="col-sm-8 text-primary">
+                        <select class="form-select form-select-sm" id="companySelect">
+                            <option value="">-- Select Company --</option>
+                            @foreach (var company in (IEnumerable<ETicketNewUI.Models.ProjectAvailable>)ViewBag.MainCompany)
+                            {
+                                <option value="@company.CompanyId">@company.CompanyName (@company.ShortName)</option>
+                            }
+                        </select>
+                        <div class="form-text small text-muted">Choose company to load available approvers and branches.</div>
+                    </dd>
+
+                    <dt class="col-sm-4"><i class="bi bi-card-text me-1"></i> Remark</dt>
+                    <dd class="col-sm-8 text-primary">
+                        <textarea class="form-control form-control-sm" id="remarkInput" rows="2" placeholder="Enter remark"></textarea>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <div class="assign-card bg-white p-3 rounded shadow-sm">
+                <h5 class="mb-3"><i class="bi bi-people-fill me-2"></i> Approvers</h5>
+
+                <div class="mb-3 d-flex gap-2">
+                    <select class="form-select form-select-sm flex-grow-1" id="userSelect">
+                        <option value="">-- Choose Approver --</option>
+                    </select>
+                    <button id="clearAllBtn" class="btn btn-sm btn-outline-danger" type="button">
+                        <i class="bi bi-x-circle"></i>
+                    </button>
+                </div>
+
+                <table class="table table-bordered table-sm mt-2" id="approvalTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width:4%">#</th>
+                            <th style="width:25%">Approver</th>
+                            <th style="width:20%">Branch</th>
+                            <th style="width:12%">From</th>
+                            <th style="width:12%">To</th>
+                            <th style="width:27%">Remark</th>
+                            <th style="width:6%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+                <div class="row mt-3 align-items-center gx-2">
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-primary" onclick="submitApproval()">
+                            <i class="bi bi-check-circle me-1"></i> Save
+                        </button>
+                    </div>
+                    <div class="col-auto">
+                        <span id="rowCount" class="text-muted">0 rows</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+@section Scripts {
+    <script>
+        let subBranches = [];
+        let userAssignList = [];
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const token = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
+            const companySelect = document.getElementById('companySelect');
+            const userSelect = document.getElementById('userSelect');
+            const tableBody = document.querySelector('#approvalTable tbody');
+
+            // Load branches & approvers when company changes
+            companySelect.addEventListener('change', async function () {
+                const companyId = this.value;
+                tableBody.innerHTML = '';
+                subBranches = [];
+                userAssignList = [];
+                userSelect.innerHTML = `<option value="">-- Choose Approver --</option>`;
+                if (!companyId) return;
+
+                try {
+                    // Load branches
+                    const branchRes = await fetch('@Url.Action("GetBranches", "Approval")', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'RequestVerificationToken': token },
+                        body: new URLSearchParams({ companyId }).toString()
+                    });
+                    subBranches = await branchRes.json();
+
+                    // Load approvers
+                    const userRes = await fetch('@Url.Action("GetUserAssign", "Approval")', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'RequestVerificationToken': token },
+                        body: new URLSearchParams({ companyId }).toString()
+                    });
+                    userAssignList = await userRes.json();
+
+
+                    // Populate dropdown
+                    userAssignList.forEach(u => {
+                        const option = document.createElement('option');
+                        option.value = u.id;
+                        option.textContent = u.fullStaffName;
+                        userSelect.appendChild(option);
+                    });
+                } catch (err) {
+                    console.error(err);
+                    Swal.fire('Error', 'Failed to load branches or approvers.', 'error');
+                }
+            });
+
+            // Auto add approver when selected (no duplicate check)
+            userSelect.addEventListener('change', () => {
+                const staffId = userSelect.value;
+                const staffName = userSelect.selectedOptions[0]?.text;
+                if (!staffId) return;
+                addApprovalRow(staffId, staffName);
+                userSelect.value = '';
+            });
+
+
+            // Clear all rows
+            document.getElementById('clearAllBtn').addEventListener('click', () => {
+                tableBody.innerHTML = '';
+                reindexRows();
+            });
+
+            function buildBranchOptions(selected = '') {
+                if (!subBranches.length) return '<option value="">-- No branch --</option>';
+                return ['<option value="">-- Select Branch --</option>']
+                    .concat(subBranches.map(b =>
+                        `<option value="${b.companyId}" ${selected == b.companyId ? 'selected' : ''}>${b.companyName}</option>`))
+                    .join('');
+            }
+
+            function addApprovalRow(staffId, staffName) {
+                const tr = document.createElement('tr');
+
+                console.log("MyTr", tr);
+                tr.dataset.staffId = staffId;
+                const branchOptions = buildBranchOptions();
+
+                tr.innerHTML = `
+                    <td class="rowIndex text-center"></td>
+                    <td>
+                        ${staffName}
+                        <input type="hidden" class="staffIdInput" value="${staffId}" />
+                    </td>
+                    <td>
+                        <select class="form-select form-select-sm branchSelect">
+                            ${branchOptions}
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control form-control-sm fromDateInput" placeholder="Select date" />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control form-control-sm toDateInput" placeholder="Select date" />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control form-control-sm remarkInput" placeholder="Enter remark" />
+                    </td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-sm btn-danger removeRowBtn">
+                            <i class="bi bi-x-circle"></i>
+                        </button>
+                    </td>
+                `;
+
+
+                tr.querySelector('.removeRowBtn').addEventListener('click', () => {
+                    tr.remove();
+                    reindexRows();
+                });
+
+                tableBody.appendChild(tr);
+                flatpickr(tr.querySelector(".fromDateInput"), { dateFormat: "d-M-Y", allowInput: true });
+                flatpickr(tr.querySelector(".toDateInput"), { dateFormat: "d-M-Y", allowInput: true });
+                reindexRows();
+            }
+
+            function reindexRows() {
+                document.querySelectorAll('#approvalTable tbody tr').forEach((r, i) => {
+                    r.querySelector('.rowIndex').innerText = i + 1;
+                });
+                document.getElementById('rowCount').innerText = `${document.querySelectorAll('#approvalTable tbody tr').length} row(s)`;
+            }
+        });
+
+        function submitApproval() {
+            const rows = Array.from(document.querySelectorAll('#approvalTable tbody tr'));
+            if (rows.length === 0) {
+                Swal.fire('Warning', 'Please add at least one approver.', 'warning');
+                return;
+            }
+
+            const companyId = parseInt(document.getElementById('companySelect').value);
+            const remark = document.getElementById('remarkInput').value;
+            const token = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
+
+           
+
+            if (!companyId) {
+                Swal.fire('Validation', 'Please select a Company.', 'warning');
+                return;
+            }
+
+            let rowList = [];
+            try {
+                rowList = rows.map((r, i) => {
+                    const staffId = parseInt(r.querySelector('.staffIdInput')?.value || 0);
+                    const subCompanyId = parseInt(r.querySelector('.branchSelect')?.value || 0);
+                    const fromDate = r.querySelector('.fromDateInput')._flatpickr?.selectedDates[0]?.toISOString() || null;
+                    const toDate = r.querySelector('.toDateInput')._flatpickr?.selectedDates[0]?.toISOString() || null;
+                    const remark = r.querySelector('.remarkInput')?.value || '';
+
+                    return {
+                        ID: null,
+                        LineNum: i + 1,
+                        UserId: staffId,
+                        SubcompanyId: subCompanyId,
+                        Status: 'A',
+                        FromDate: fromDate,
+                        ToDate: toDate,
+                        Remark: remark
+                    };
+                });
+            } catch (err) {
+                Swal.fire('Validation', err.message || 'Error reading row data', 'warning');
+                return;
+            }
+
+
+            const payload = {
+                Mode: 'Add',
+                CompanyId: companyId,
+                CreateBy: '@User?.Identity?.Name',
+                UpdateBy: '@User?.Identity?.Name',
+                CreateDate: new Date().toISOString(),
+                UpdateDate: new Date().toISOString(),
+                Status: 'A',
+                Remark: remark,
+                RowList: rowList
+            };
+
+            fetch('@Url.Action("AddApproval", "Approval")', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': token
+                },
+                body: JSON.stringify(payload)
+            })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: data.message,
+                            timer: 15000,
+                            timerProgressBar: true,
+                            willClose: () => window.location.href = '@Url.Action("Index", "Approval")'
+                        });
+                    } else {
+                        Swal.fire('Error', data.message || 'Save failed', 'error');
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    Swal.fire('Error', 'Unexpected error while saving approval.', 'error');
+                });
+        }
+    </script>
+}

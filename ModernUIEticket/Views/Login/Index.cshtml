@@ -1,0 +1,121 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Login";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"]</title>
+    <link rel="icon" type="image/png" href="~/Picture/Eticket.png" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-..." crossorigin="anonymous">
+
+    <!-- SweetAlert2 CSS (optional) -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: url('/images/login-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .login-wrapper {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 380px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .login-title {
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 0.75rem;
+        }
+
+        .btn-login {
+            border-radius: 10px;
+            padding: 0.75rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-card">
+            <h3 class="login-title">Login to System</h3>
+
+            <!-- Error message -->
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger">@ViewBag.Error</div>
+            }
+
+            <!-- Success message (TempData from controller) -->
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+            }
+
+            <form method="post" asp-action="Index">
+                <div class="mb-3">
+                    <label for="Username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="Username" name="username" placeholder="Enter username" required />
+                </div>
+
+                <div class="mb-3">
+                    <label for="Password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="Password" name="password" placeholder="Enter password" required />
+                </div>
+
+                <div class="form-check mb-3">
+                    <input type="checkbox" class="form-check-input" id="RememberMe" name="rememberMe" />
+                    <label for="RememberMe" class="form-check-label">Remember me</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 btn-login">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
+
+    <!-- SweetAlert2 JS (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        // Optional: show SweetAlert2 on success
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <text>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: '@TempData["SuccessMessage"]',
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            </text>
+        }
+    </script>
+</body>
+</html>

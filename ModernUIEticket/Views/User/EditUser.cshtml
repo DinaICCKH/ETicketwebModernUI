@@ -1,0 +1,383 @@
+﻿@model user
+@{
+    ViewData["Title"] = "Edit User";
+    var branchList = ViewBag.Branch as List<CompanyBranch>;
+    var assignedBranches = ViewBag.AssignedBranches as List<CompanyBranch>; // Pass from controller
+}
+
+<div class="container mt-4">
+
+    <!-- Main Information -->
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-primary text-white" style="background-color:#0099CC !important">
+            <h5 class="mb-0">Edit User</h5>
+        </div>
+        <div class="card-body">
+            <div class="row g-3">
+
+                @if (ViewBag.UserType != "Client" && ViewBag.FullAuthorize == "Y")
+                {
+                    <!-- User Type -->
+                    <div class="col-md-2">
+                        <label class="form-label">User Type</label>
+                        <select asp-for="Type" class="form-select" asp-items="ViewBag.TypeList"></select>
+                    </div>
+
+                    <!-- Super User -->
+                    <div class="col-md-2">
+                        <label class="form-label">Super User</label>
+                        <select asp-for="FullAuthorization" class="form-select" asp-items="ViewBag.SuperUserList"></select>
+                    </div>
+                }
+                else
+                {
+                    <!-- User Type (Disabled) -->
+                    <div class="col-md-2">
+                        <label class="form-label">User Type</label>
+                        <select asp-for="Type" class="form-select" asp-items="ViewBag.TypeList" disabled></select>
+                    </div>
+
+                    <!-- Super User (Disabled) -->
+                    <div class="col-md-2">
+                        <label class="form-label">Super User</label>
+                        <select asp-for="FullAuthorization" class="form-select" asp-items="ViewBag.SuperUserList" disabled></select>
+                    </div>
+                }
+
+
+                <!-- Main Branch (Fixed in Edit Mode) -->
+                <div class="col-md-2">
+                    <label class="form-label">Main Branch</label>
+                    <!-- Show the branch name as readonly text -->
+                    <input type="text" class="form-control" value="@ViewBag.CompanyName" readonly />
+
+                    <!-- Still keep the hidden input to submit the value -->
+                    <input type="hidden" asp-for="CompanyId" />
+                </div>
+
+                <!-- Username -->
+                <div class="col-md-6">
+                    <label asp-for="UserName" class="form-label">Username</label>
+                    <input asp-for="UserName" class="form-control" readonly />
+                </div>
+
+                <!-- Full Name -->
+                <div class="col-md-6">
+                    <label asp-for="UserFullName" class="form-label">Full Name</label>
+                    <input asp-for="UserFullName" class="form-control" />
+                </div>
+
+                <!-- Phone -->
+                <div class="col-md-6">
+                    <label asp-for="Telephone" class="form-label">Phone No</label>
+                    <input asp-for="Telephone" class="form-control" />
+                </div>
+
+                <!-- Email -->
+                <div class="col-md-6">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input asp-for="Email" class="form-control" type="email" />
+                </div>
+
+                <!-- Lock User -->
+                <div class="col-md-3">
+                    <label asp-for="ULock" class="form-label">Lock</label>
+                    <select asp-for="ULock" class="form-select">
+                        <option value="Y">Yes</option>
+                        <option value="N">No</option>
+                    </select>
+                </div>
+
+                <!-- User Status -->
+                <div class="col-md-3">
+                    <label asp-for="UStatus" class="form-label">Status</label>
+                    <select asp-for="UStatus" class="form-select">
+                        <option value="A">Active</option>
+                        <option value="I">Inactive</option>
+                    </select>
+                </div>
+
+
+
+                <!-- Reset Password Option -->
+                <div class="col-md-12 mb-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="resetPasswordCheckbox" />
+                        <label class="form-check-label" for="resetPasswordCheckbox">
+                            Reset Password
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Password Fields (Hidden by Default) -->
+                <div class="col-md-3 password-section d-none">
+                    <label class="form-label">Password (Leave blank to keep old)</label>
+                    <div class="input-group">
+                        <input asp-for="PasswordHash" class="form-control" type="password" id="PasswordHash" placeholder="New Password" />
+                        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-md-3 password-section d-none">
+                    <label class="form-label">Confirm Password</label>
+                    <div class="input-group">
+                        <input type="password" id="ConfirmPassword" class="form-control" placeholder="Confirm Password" />
+                        <button class="btn btn-outline-secondary" type="button" id="toggleConfirmPassword">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+
+                <!-- Buttons -->
+                <div class="col-12 mt-3 d-flex justify-content-end gap-2">
+                    <button type="button" class="btn btn-primary" id="btnUpdate">
+                        <i class="bi bi-save"></i> Update
+                    </button>
+
+                    @if (string.IsNullOrEmpty(ViewBag.LastLogin as string))
+                    {
+                        <button type="button" class="btn btn-danger" id="btnDelete">
+                            <i class="bi bi-trash"></i> Delete
+                        </button>
+                    }
+
+                    <a href="https://t.me/eTicket_Notif_bot?start=@ViewBag.User"
+                       class="btn btn-success" target="_blank" style="color:white">
+                        <i class="bi bi-telegram"></i> Join Telegram
+                    </a>
+
+                    <a href="@Url.Action("Index", "User")" class="btn btn-secondary">
+                        <i class="bi bi-x-circle"></i> Cancel
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Branch Assignments -->
+    <div class="card shadow-lg border-0 mt-4">
+        <div class="card-header bg-secondary text-white" style="background-color:#0099CC !important">
+            <h5 class="mb-0">Branch Assignments</h5>
+        </div>
+        <div class="card-body" id="cardBodySection">
+            <table class="table table-bordered table-sm" id="SubBranchTable">
+                <thead class="table-light">
+                    <tr>
+                        <th>#</th>
+                        <th>Branch ID</th>
+                        <th>Branch Name</th>
+                        <th>Assign</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.SelectedBranches != null && Model.SelectedBranches.Count > 0)
+                    {
+                        for (int i = 0; i < Model.SelectedBranches.Count; i++)
+                        {
+                            var branch = Model.SelectedBranches[i];
+                            <tr>
+                                <td>@(i + 1)</td>
+                                <td>@branch.CompanyId</td>
+                                <td>@branch.Name</td>
+                                
+
+                                <td>
+                                    @if (ViewBag.FullAuthorize == "Y" && ViewBag.UserType != "Client")
+                                    {
+                                        <select asp-for="SelectedBranches[@i].Assign" class="form-select form-select-sm" 
+                                                asp-items="@(new SelectList(new[] {
+                                                new { Value = "Y", Text = "Yes" },
+                                                new { Value = "N", Text = "No" }
+                                            }, "Value", "Text", branch.Assign))">
+                                        </select>
+                                    }
+                                    else
+                                    {
+                                        <select asp-for="SelectedBranches[@i].Assign" class="form-select form-select-sm" disabled
+                                                asp-items="@(new SelectList(new[] {
+                                                new { Value = "Y", Text = "Yes" },
+                                                new { Value = "N", Text = "No" }
+                                            }, "Value", "Text", branch.Assign))">
+                                        </select>
+                                    }
+                                    
+
+                                    <input type="hidden" asp-for="SelectedBranches[@i].CompanyId" />
+                                    <input type="hidden" asp-for="SelectedBranches[@i].Name" />
+                                    <input type="hidden" asp-for="SelectedBranches[@i].LineNum" value="@(i + 1)" />
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4" class="text-center">No sub branches found</td>
+                        </tr>
+                    }
+                </tbody>
+
+
+            </table>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            // ===== UPDATE BUTTON =====
+            $("#btnUpdate").click(function () {
+ 
+                const pass = $("#PasswordHash").val();
+                const confirm = $("#ConfirmPassword").val();
+
+                if (pass !== "" && pass !== confirm) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Password Mismatch',
+                        text: 'Password and Confirm Password do not match.',
+                        confirmButtonText: 'OK'
+                    });
+                    return;
+                }
+
+                var model = buildUserModel();
+                $.ajax({
+                    url: '@Url.Action("EditUser", "User")',
+                    type: 'POST',
+                    contentType: "application/json",
+                    data: JSON.stringify(model),
+                    success: function (res) {
+                        if (res.success) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Updated',
+                                text: res.message,
+                                timer: 2000,
+                                showConfirmButton: false
+                            }).then(() => window.location.href = '@Url.Action("Index", "User")');
+                        } else {
+                            Swal.fire('Error', res.message, 'error');
+                        }
+                    },
+                    error: function () {
+                        Swal.fire('Error', 'Unexpected error occurred.', 'error');
+                    }
+                });
+            });
+
+            // ===== DELETE BUTTON =====
+            $("#btnDelete").click(function () {
+
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'This user will be permanently deleted!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (!result.isConfirmed) return;
+
+                    var model = buildUserModel();
+                    const antiToken = $('input[name="__RequestVerificationToken"]').first().val();
+                    model.__RequestVerificationToken = antiToken;
+
+                    $.ajax({
+                        url: '@Url.Action("DeleteUser", "User")',
+                        type: 'POST',
+                        contentType: "application/json",
+                        data: JSON.stringify(model),
+                        success: function (resp) {
+                            if (resp.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Deleted',
+                                    text: resp.message || 'User deleted.',
+                                    timer: 1400,
+                                    showConfirmButton: false
+                                }).then(() => window.location.href = '@Url.Action("Index", "User")');
+                            } else {
+                                Swal.fire('Error', resp.message || 'Could not delete user.', 'error');
+                            }
+                        },
+                        error: function () {
+                            Swal.fire('Error', 'Unexpected error occurred.', 'error');
+                        }
+                    });
+                });
+            });
+
+            // ===== PASSWORD TOGGLE & RESET =====
+            $("#resetPasswordCheckbox").change(function () {
+                if ($(this).is(":checked")) {
+                    $(".password-section").removeClass("d-none");
+                } else {
+                    $(".password-section").addClass("d-none");
+                    $("#PasswordHash").val("");
+                    $("#ConfirmPassword").val("");
+                }
+            });
+
+            $("#togglePassword").click(function () {
+                const password = $("#PasswordHash");
+                password.attr("type", password.attr("type") === "password" ? "text" : "password");
+                $(this).find("i").toggleClass("bi-eye bi-eye-slash");
+            });
+
+            $("#toggleConfirmPassword").click(function () {
+                const confirmPassword = $("#ConfirmPassword");
+                confirmPassword.attr("type", confirmPassword.attr("type") === "password" ? "text" : "password");
+                $(this).find("i").toggleClass("bi-eye bi-eye-slash");
+            });
+
+            // ===== Helper: Build Model from Form =====
+            function buildUserModel() {
+                const resetPassword = $("#resetPasswordCheckbox").is(":checked") ? "Y" : "N";
+
+                var model = {
+                    UserId: $("#UserId").val(),
+                    UserName: $("#UserName").val(),
+                    UserFullName: $("#UserFullName").val(),
+                    Telephone: $("#Telephone").val(),
+                    Email: $("#Email").val(),
+                    Type: $("#Type").val(),
+                    FullAuthorization: $("#FullAuthorization").val(),
+                    ULock: $("#ULock").val(),          // ✅ Added
+                    UStatus: $("#UStatus").val(),      // ✅ Added
+                    CompanyId: "@Model.CompanyId",
+                    PasswordHash: $("#PasswordHash").val(),
+                    ConfirmPassword: $("#ConfirmPassword").val(),
+                    ResetPassword: resetPassword,
+                    SelectedBranches: []
+                };
+
+
+                $("#SubBranchTable tbody tr").each(function () {
+                    var assign = $(this).find("select").val();
+                    var companyId = $(this).find("input[name$='.CompanyId']").val();
+                    var name = $(this).find("input[name$='.Name']").val();
+                    var linenum = $(this).find("input[name$='.LineNum']").val();
+                    model.SelectedBranches.push({ CompanyId: companyId, Name: name, Assign: assign, LineNum: linenum });
+                });
+
+                return model;
+            }
+
+        });
+
+    </script>
+
+}

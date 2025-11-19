@@ -1,0 +1,299 @@
+﻿@model user
+@{
+    ViewData["Title"] = "Add User";
+    var branchList = ViewBag.Branch as List<CompanyBranch>;
+}
+
+<div class="container mt-4">
+
+    <!-- Main Information -->
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-primary text-white" style="background-color:#0099CC !important">
+            <h5 class="mb-0">Main Information</h5>
+        </div>
+        <div class="card-body">
+            <div class="row g-3">
+
+               
+
+                <!-- User Type -->
+                <div class="col-md-2">
+                    <label class="form-label">User Type</label>
+                    <select asp-for="Type" class="form-select" asp-items="ViewBag.TypeList"></select>
+                </div>
+
+                <!-- Super User -->
+                <div class="col-md-2">
+                    <label class="form-label">Super User</label>
+                    <select asp-for="FullAuthorization" class="form-select" asp-items="ViewBag.SuperUserList"></select>
+                </div>
+
+                <!-- Main Branch -->
+                <div class="col-md-2">
+                    <label class="form-label">Main Branch</label>
+                    <select id="MainBranch" name="CompanyId" class="form-select">
+                        <option value="">-- Select Main Branch --</option>
+                        @foreach (var item in branchList)
+                        {
+                            <option value="@item.CompanyId" data-shortname="@item.ShortName">@item.CompanyName</option>
+                        }
+                    </select>
+                </div>
+
+                <!-- Short Name -->
+                <div class="col-md-1">
+                    <label class="form-label">Prefix</label>
+                    <input type="text" id="MainBranchShortName" class="form-control" placeholder="" readonly />
+                </div>
+
+
+                <!-- Username -->
+                <div class="col-md-5">
+                    <label asp-for="UserName" class="form-label">Username</label>
+                    <input asp-for="UserName" class="form-control" placeholder="Username" />
+                </div>
+
+
+
+                <!-- Full Name -->
+                <div class="col-md-6">
+                    <label asp-for="UserFullName" class="form-label">Full Name</label>
+                    <input asp-for="UserFullName" class="form-control" />
+                </div>
+
+                <!-- Phone -->
+                <div class="col-md-6">
+                    <label asp-for="Telephone" class="form-label">Phone No</label>
+                    <input asp-for="Telephone" class="form-control" />
+                </div>
+
+                <!-- Email -->
+                <div class="col-md-6">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input asp-for="Email" class="form-control" type="email" />
+                </div>
+
+                <!-- Password -->
+                <div class="col-md-3">
+                    <label class="form-label">Password</label>
+                    <div class="input-group">
+                        <input asp-for="PasswordHash" class="form-control" type="password" id="PasswordHash" placeholder="Password" />
+                        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="col-md-3">
+                    <label class="form-label">Confirm Password</label>
+                    <div class="input-group">
+                        <input type="password" id="ConfirmPassword" class="form-control" placeholder="Confirm Password" />
+                        <button class="btn btn-outline-secondary" type="button" id="toggleConfirmPassword">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="col-12 mt-3 d-flex justify-content-end gap-2">
+                    <button type="button" class="btn btn-primary" id="btnSave">
+                        <i class="bi bi-save"></i> Save
+                    </button>
+
+                    <a href="@Url.Action("Index", "User")" class="btn btn-secondary">
+                        <i class="bi bi-x-circle"></i> Cancel
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Branch Assignments -->
+    <div class="card shadow-lg border-0 mt-4">
+        <div class="card-header bg-secondary text-white" style="background-color:#0099CC !important">
+            <h5 class="mb-0">Branch Assignments</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-sm" id="SubBranchTable">
+                <thead class="table-light">
+                    <tr>
+                        <th>#</th>
+                        <th>Branch Name</th>
+                        <th>Short Name</th>
+                        <th>Assign</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Filled dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Toggle password visibility
+        const togglePassword = document.getElementById('togglePassword');
+        const password = document.getElementById('PasswordHash');
+        togglePassword.addEventListener('click', () => {
+            const type = password.type === 'password' ? 'text' : 'password';
+            password.type = type;
+            togglePassword.querySelector('i').classList.toggle('bi-eye');
+            togglePassword.querySelector('i').classList.toggle('bi-eye-slash');
+        });
+
+        const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+        const confirmPassword = document.getElementById('ConfirmPassword');
+        toggleConfirmPassword.addEventListener('click', () => {
+            const type = confirmPassword.type === 'password' ? 'text' : 'password';
+            confirmPassword.type = type;
+            toggleConfirmPassword.querySelector('i').classList.toggle('bi-eye');
+            toggleConfirmPassword.querySelector('i').classList.toggle('bi-eye-slash');
+        });
+
+        // Update Short Name when Main Branch changes
+        const mainBranch = document.getElementById('MainBranch');
+        const shortNameInput = document.getElementById('MainBranchShortName');
+        mainBranch.addEventListener('change', () => {
+            const selected = mainBranch.selectedOptions[0];
+            shortNameInput.value = selected ? selected.dataset.shortname : '';
+        });
+
+        $(document).ready(function () {
+
+            // Confirm Password validation
+            $("#ConfirmPassword").on("keyup", function () {
+                const pass = $("#PasswordHash").val();
+                const confirm = $(this).val();
+                if (confirm !== pass) {
+                    $(this).addClass("is-invalid");
+                } else {
+                    $(this).removeClass("is-invalid");
+                }
+            });
+
+            // Load Sub Branches when Main Branch changes
+            $("#MainBranch").change(function () {
+                const companyId = $(this).val();
+                const shortName = $(this).find(":selected").data("shortname");
+                $("#MainBranchShortName").val(shortName || "");
+
+                const tbody = $("#SubBranchTable tbody");
+                tbody.empty();
+
+                if (companyId) {
+                    $.ajax({
+                        url: '@Url.Action("GetBranches", "User")',
+                        type: 'POST',
+                        data: { companyId: companyId },
+                        success: function (data) {
+                            if (data.length > 0) {
+                                $.each(data, function (i, branch) {
+                                    tbody.append(`
+                                                <tr>
+                                                    <td>${i + 1}</td>
+                                                    <td>${branch.companyName}</td>
+                                                    <td>${branch.shortName}</td>
+                                                    <td>
+                                                        <select class="form-select form-select-sm" name="SelectedBranches[${i}].Assign">
+                                                            <option value="Y">Yes</option>
+                                                            <option value="N" selected>No</option>
+                                                        </select>
+                                                        <input type="hidden" name="SelectedBranches[${i}].CompanyId" value="${branch.companyId}" />
+                                                        <input type="hidden" name="SelectedBranches[${i}].Name" value="${branch.companyName}" />
+                                                    </td>
+                                                </tr>
+                                            `);
+                                });
+                            } else {
+                                tbody.append("<tr><td colspan='4' class='text-center'>No sub branches found</td></tr>");
+                            }
+                        }
+                    });
+                }
+            });
+
+            // Handle Save button click with Ajax and SweetAlert
+            $("#btnSave").click(function () {
+                const pass = $("#PasswordHash").val();
+                const confirm = $("#ConfirmPassword").val();
+
+                if (pass !== confirm) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Password Mismatch',
+                        text: 'Password and Confirm Password do not match.',
+                        confirmButtonText: 'OK',
+                        timer: 3000
+                    });
+                    return;
+                }
+
+                var model = {
+                    UserName: $("#UserName").val(),
+                    UserFullName: $("#UserFullName").val(),
+                    Telephone: $("#Telephone").val(),
+                    Email: $("#Email").val(),
+                    Type: $("#Type").val(),
+                    FullAuthorization: $("#FullAuthorization").val(),
+                    CompanyId: $("#MainBranch").val(),
+                    PasswordHash: pass,
+                    ConfirmPassword: confirm,
+                    SelectedBranches: []
+                };
+
+                $("#SubBranchTable tbody tr").each(function () {
+                    var assign = $(this).find("select").val();
+                    var companyId = $(this).find("input[name$='.CompanyId']").val();
+                    var name = $(this).find("input[name$='.Name']").val();
+                    model.SelectedBranches.push({ CompanyId: companyId, Name: name, Assign: assign });
+                });
+
+                $.ajax({
+                    url: '@Url.Action("AddUser", "User")',
+                    type: 'POST',
+                    contentType: "application/json",
+                    data: JSON.stringify(model),
+                    success: function (res) {
+                        if (res.success) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Saved',
+                                text: res.message,
+                                confirmButtonText: 'OK',
+                                timer: 2000
+                            }).then(() => {
+                                window.location.href = '@Url.Action("Index", "User")';
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: res.message,
+                                confirmButtonText: 'OK',
+                                timer: 3000
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Unexpected Error',
+                            text: 'An unexpected error occurred while saving user.',
+                            confirmButtonText: 'OK',
+                            timer: 3000
+                        });
+                    }
+                });
+            });
+
+        });
+    </script>
+}
+
+

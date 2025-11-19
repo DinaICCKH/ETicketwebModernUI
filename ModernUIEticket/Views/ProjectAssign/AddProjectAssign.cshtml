@@ -1,0 +1,412 @@
+﻿@model ETicketNewUI.Models.ProjectAssignHeader
+@{
+    ViewData["Title"] = "Project Assignment";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+<link href="~/css/forticketassign.css" rel="stylesheet" />
+
+@Html.AntiForgeryToken()
+
+<div class="container mt-5" style="min-width:100% !important">
+    <div class="row">
+        <!-- Left Column: Project Info -->
+        <div class="col-md-12">
+            <div class="ticket-card bg-light p-3">
+                <h5 class="mb-3"><i class="bi bi-briefcase-fill me-2"></i> Project Info</h5>
+                <dl class="row g-2 ticket-info">
+                    <dt class="col-sm-4"><i class="bi bi-building me-1"></i> Company</dt>
+                    <dd class="col-sm-8 text-primary">
+                        <select class="form-select form-select-sm" id="companySelect">
+                            <option value="">-- Select Company --</option>
+                            @foreach (var company in (IEnumerable<ETicketNewUI.Models.ProjectAvailable>)ViewBag.MainCompany)
+                            {
+                                <option value="@company.CompanyId">@company.CompanyName (@company.ShortName)</option>
+                            }
+                        </select>
+                        <div class="form-text small text-muted">Choose company first to load branches.</div>
+                    </dd>
+
+                    <!-- From + To Date -->
+                    <dt class="col-sm-4"><i class="bi bi-calendar-date me-1"></i> Period</dt>
+
+                    <!-- From Date -->
+                    <div class="col-md-4">
+                        <input type="text" class="form-control form-control-sm" id="fromDate" name="fromDate" placeholder="Select date" />
+                        <span class="text-danger small" data-valmsg-for="fromDate" data-valmsg-replace="true"></span>
+                    </div>
+
+                    <!-- To Date -->
+                    <div class="col-md-4">
+                        <input type="text" class="form-control form-control-sm" id="toDate" name="toDate" placeholder="Select date" />
+                        <span class="text-danger small" data-valmsg-for="toDate" data-valmsg-replace="true"></span>
+                    </div>
+
+
+
+                    <dt class="col-sm-4"><i class="bi bi-card-text me-1"></i> Remark</dt>
+                    <dd class="col-sm-8 text-primary">
+                        <textarea class="form-control form-control-sm" id="remarkInput" rows="2" placeholder="Enter remark"></textarea>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+       
+        <!-- Right Column: Staff Assignment -->
+        <div class="col-md-12">
+            <div class="assign-card bg-white p-3 rounded shadow-sm">
+                <h5 class="mb-3"><i class="bi bi-people-fill me-2"></i> Assign Staff</h5>
+
+                <!-- Staff Selection -->
+                <div class="mb-3 d-flex gap-2">
+                    <select class="form-select form-select-sm flex-grow-1" id="staffSelect">
+                        <option value="">-- Choose Staff --</option>
+                        @foreach (var staff in (IEnumerable<ETicketNewUI.Models.StaffListAssign>)ViewBag.SupporterList)
+                        {
+                            <option value="@staff.StaffID" data-name="@staff.FullStaffName">@staff.FullStaffName</option>
+                        }
+                    </select>
+                    <button id="addSelectedBtn" class="btn btn-sm btn-primary" type="button" title="Add selected staff">Add</button>
+                    <button id="clearAllBtn" class="btn btn-sm btn-outline-danger" type="button" title="Clear rows">Clear</button>
+                </div>
+
+                <div class="mb-2">
+                    <small class="text-muted">Each row must select a <strong>Branch</strong> (ClientID) — project detail is assigned per row.</small>
+                </div>
+
+                <!-- Dynamic Assignment Table -->
+                <table class="table table-bordered table-sm mt-2" id="assignTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width:4%">#</th>
+                            <th style="width:20%">Staff</th>
+                            <th style="width:15%">Branch (Client)</th>
+                            <th style="width:14%">Role</th>
+                            <th style="width:12%">From</th>
+                            <th style="width:12%">To</th>
+                            <th style="width:17%">Remark</th>
+                            <th style="width:6%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+                <div class="row mt-3 align-items-center gx-2">
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-primary" onclick="submitProjectAssign()">
+                            <i class="bi bi-check-circle me-1"></i> Save
+                        </button>
+                    </div>
+                    <div class="col-auto">
+                        <span id="rowCount" class="text-muted">0 rows</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            flatpickr("#fromDate", { dateFormat: "d-M-Y", allowInput: true });
+            flatpickr("#toDate", { dateFormat: "d-M-Y", allowInput: true });
+        });
+
+        // Cached sub-branches for selected company
+        window.subBranches = [];
+        let selectedStaffIds = [];
+
+        // Role options from server
+        const roleList = @Html.Raw(Json.Serialize(
+        (ViewBag.Role as List<ETicketNewUI.Models.TicketAttribute> ?? new List<ETicketNewUI.Models.TicketAttribute>())
+        .Select(r => new { r.AttributeId, r.Description })
+        ));
+
+        function branchId(item) {
+            return item?.companyId ?? '';
+        }
+
+        function branchLabel(item) {
+            return item?.companyName ?? item?.shortName ?? `Branch ${branchId(item)}`;
+        }
+
+        // Build branch dropdown options
+        function buildBranchOptions(selectedValue) {
+            if (!window.subBranches || window.subBranches.length === 0) {
+                return `<option value="">-- No branch available --</option>`;
+            }
+            const options = ['<option value="">-- Select Branch --</option>'];
+            window.subBranches.forEach(b => {
+                const id = branchId(b);
+                const label = branchLabel(b);
+                options.push(`<option value="${id}" ${selectedValue == id ? 'selected' : ''}>${label}</option>`);
+            });
+            return options.join('');
+        }
+
+        // Build role dropdown options
+        function buildRoleOptions(selectedValue) {
+            if (!roleList || roleList.length === 0) {
+                return `<option value="">-- No role available --</option>`;
+            }
+            const options = ['<option value="">-- Select Role --</option>'];
+            roleList.forEach(r => {
+                options.push(`<option value="${r.attributeId}" ${selectedValue == r.attributeId ? 'selected' : ''}>${r.description}</option>`);
+            });
+            return options.join('');
+        }
+
+        // Reindex row numbers and row count display
+        function reindexRows() {
+            const rows = Array.from(document.querySelectorAll('#assignTable tbody tr'));
+            rows.forEach((r, i) => {
+                r.querySelector('.rowIndex').innerText = i + 1;
+            });
+            document.getElementById('rowCount').innerText = `${rows.length} row(s)`;
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const companySelect = document.getElementById('companySelect');
+            const staffSelect = document.getElementById('staffSelect');
+            const addSelectedBtn = document.getElementById('addSelectedBtn');
+            const clearAllBtn = document.getElementById('clearAllBtn');
+            const assignTableBody = document.querySelector('#assignTable tbody');
+            const token = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
+
+            // Load branches when company changes
+            companySelect.addEventListener('change', function () {
+                const companyId = this.value;
+                window.subBranches = [];
+                document.querySelectorAll('.clientSelect').forEach(s => {
+                    s.innerHTML = `<option value="">-- Select Branch --</option>`;
+                });
+
+                if (!companyId) return;
+
+                fetch('@Url.Action("GetBranches", "ProjectAssign")', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'RequestVerificationToken': token
+                    },
+                    body: new URLSearchParams({ companyId: companyId }).toString()
+                })
+                    .then(r => r.json())
+                    .then(data => {
+                        window.subBranches = Array.isArray(data) ? data : [];
+                        document.querySelectorAll('.clientSelect').forEach(s => {
+                            const cur = s.value;
+                            s.innerHTML = buildBranchOptions(cur);
+                        });
+                    })
+                    .catch(err => {
+                        console.error('Failed to load branches', err);
+                        Swal.fire('Error', 'Failed to load branches for selected company.', 'error');
+                    });
+            });
+
+            // Add staff row
+            addSelectedBtn.addEventListener('click', () => {
+                const staffId = staffSelect.value;
+                const staffName = staffSelect.selectedOptions[0]?.dataset.name;
+                if (!staffId) return;
+                addStaffRow(staffId, staffName);
+                staffSelect.value = '';
+            });
+
+            staffSelect.addEventListener('change', function () {
+                const staffId = this.value;
+                const staffName = this.selectedOptions[0]?.dataset.name;
+                if (!staffId) return;
+                addStaffRow(staffId, staffName);
+                this.value = '';
+            });
+
+            // Clear all rows
+            clearAllBtn.addEventListener('click', function () {
+                assignTableBody.innerHTML = '';
+                selectedStaffIds = [];
+                reindexRows();
+            });
+
+            // Add staff row function
+            function addStaffRow(staffId, staffName) {
+                if (!companySelect.value) {
+                    Swal.fire('Select Company', 'Please select a company first so branches can be loaded.', 'warning');
+                    return;
+                }
+
+                const tr = document.createElement('tr');
+                tr.dataset.staffId = staffId;
+
+                const branchOptions = buildBranchOptions();
+                const roleOptions = buildRoleOptions();
+
+                tr.innerHTML = `
+                            <td class="rowIndex" style="text-align:center !important"></td>
+                            <td>${staffName}</td>
+                            <td>
+                                <select class="form-select form-select-sm clientSelect">${branchOptions}</select>
+                            </td>
+                            <td>
+                                <select class="form-select form-select-sm roleSelect">${roleOptions}</select>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control form-control-sm fromDateInput" placeholder="Select date" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control form-control-sm toDateInput" placeholder="Select date" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control form-control-sm remarkInput" placeholder="Enter remark" />
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-danger removeRowBtn">
+                                    <i class="bi bi-x-circle"></i>
+                                </button>
+                            </td>
+                        `;
+
+                tr.querySelector('.removeRowBtn').addEventListener('click', () => {
+                    tr.remove();
+                    reindexRows();
+                });
+
+                // Apply flatpickr
+                flatpickr(tr.querySelector(".fromDateInput"), { dateFormat: "d-M-Y", allowInput: true });
+                flatpickr(tr.querySelector(".toDateInput"), { dateFormat: "d-M-Y", allowInput: true });
+
+                assignTableBody.appendChild(tr);
+                reindexRows();
+            }
+        }); // DOMContentLoaded
+
+        // Submit project assign
+        function submitProjectAssign() {
+            const rows = Array.from(document.querySelectorAll('#assignTable tbody tr'));
+            if (rows.length === 0) {
+                Swal.fire('Warning', 'Please add at least one staff.', 'warning');
+                return;
+            }
+
+            const companyId = parseInt(document.getElementById('companySelect').value);
+            const fromDate = document.querySelector("#fromDate")._flatpickr?.selectedDates[0]?.toISOString() || null;
+            const toDate = document.querySelector("#toDate")._flatpickr?.selectedDates[0]?.toISOString() || null;
+            const remark = document.getElementById('remarkInput').value;
+
+            if (!companyId) {
+                Swal.fire('Validation', 'Please select a Company.', 'warning');
+                return;
+            }
+            if (!fromDate || !toDate) {
+                Swal.fire('Validation', 'Please select From and To dates.', 'warning');
+                return;
+            }
+
+            let rowList = [];
+            try {
+                rowList = rows.map((r, i) => {
+                    const staffId = parseInt(r.dataset.staffId);
+                    const clientId = parseInt(r.querySelector('.clientSelect')?.value || 0);
+                    const role = r.querySelector('.roleSelect')?.value || '';
+                    const from = r.querySelector('.fromDateInput')._flatpickr?.selectedDates[0]?.toISOString() || null;
+                    const to = r.querySelector('.toDateInput')._flatpickr?.selectedDates[0]?.toISOString() || null;
+                    const remark = r.querySelector('.remarkInput')?.value || '';
+
+                    if (!clientId) {
+                        Swal.fire('Validation', `Please choose Branch (Client) for row ${i + 1}.`, 'warning');
+                        throw 'ValidationError';
+                    }
+
+                    return {
+                        ID: 0,
+                        RowNo: i + 1,
+                        StaffID: staffId,
+                        ClientID: clientId,
+                        Role: role,
+                        FromDate: from,
+                        ToDate: to,
+                        Remark: remark,
+                        Status: 'A'
+                    };
+                });
+            } catch (err) {
+                if (err === 'ValidationError') return;
+                throw err;
+            }
+
+            const payload = {
+                Mode: 'Add',
+                SecretCode: '',
+                ID: 0,
+                ClientID: companyId,
+                FromDate: fromDate,
+                ToDate: toDate,
+                CreatedDate: new Date().toISOString(),
+                UpdatedDate: new Date().toISOString(),
+                CreateBy: '@User?.Identity?.Name',
+                UpdateBy: '@User?.Identity?.Name',
+                Status: 'A',
+                Remark: remark,
+                RowList: rowList
+            };
+
+            const token = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
+
+            fetch('@Url.Action("AddProjectAssign", "ProjectAssign")', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': token
+                },
+                body: JSON.stringify(payload)
+            })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: data.message,
+                            timer: 15000, // 15 seconds
+                            timerProgressBar: true,
+                            willClose: () => {
+                                window.location.href = '@Url.Action("Index", "ProjectAssign")';
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: data.message || 'Save failed',
+                            timer: 15000,
+                            timerProgressBar: true
+                        });
+                    }
+                })
+                .catch(err => {
+                    if (err !== 'ValidationError') {
+                        console.error(err);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Unexpected error while saving.',
+                            timer: 15000,
+                            timerProgressBar: true
+                        });
+                    }
+                });
+
+        }
+    </script>
+}
+
+

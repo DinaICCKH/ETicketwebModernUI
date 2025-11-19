@@ -1,0 +1,221 @@
+﻿@model ETicketNewUI.Models.Client
+
+@{
+    ViewData["Title"] = "Add Client";
+}
+
+<form id="clientForm" asp-action="Create" asp-controller="Client" method="post">
+    <div class="container mt-4">
+
+        <!-- Client Information -->
+        <div class="card shadow-lg border-0">
+            <div class="card-header text-white" style="background-color:#0099CC !important">
+                <h5 class="mb-0">Client Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+
+                    <!-- Client Group -->
+                    <div class="col-md-4">
+                        <label asp-for="ClientGroup" class="form-label">Client Group</label>
+                        <select asp-for="ClientGroup" class="form-select">
+                            <option value="">-- Select Client Group --</option>
+                            @foreach (var item in ViewBag.ClientType)
+                            {
+                                <option value="@item.AttributeId">@item.Description</option>
+                            }
+                        </select>
+                    </div>
+
+                    <!-- Type (Main/Sub) -->
+                    <div class="col-md-2">
+                        <label asp-for="CompanyType" class="form-label">Type</label>
+                        <select asp-for="CompanyType" class="form-select" id="CompanyType">
+                            <option value="">-- Select Type --</option>
+                            <option value="Main">Main</option>
+                            <option value="Sub">Sub</option>
+                        </select>
+                    </div>
+
+                    <!-- Main Company -->
+                    <div class="col-md-6">
+                        <label asp-for="MainCompany" class="form-label">Main Company</label>
+                        <select asp-for="MainCompany" class="form-select" id="MainCompanyDropdown">
+                            <option value="">-- Select Main Company --</option>
+                            @foreach (var branch in ViewBag.MainCompany)
+                            {
+                                <option value="@branch.CompanyId">@branch.CompanyName (@branch.ShortName)</option>
+                            }
+                        </select>
+                    </div>
+
+                    <!-- Company Name -->
+                    <div class="col-md-6">
+                        <label asp-for="CompanyName" class="form-label">Company Name</label>
+                        <input asp-for="CompanyName" class="form-control" placeholder="Enter company name" />
+                    </div>
+
+                    <!-- Short Name -->
+                    <div class="col-md-6">
+                        <label asp-for="ShortName" class="form-label">Short Name</label>
+                        <input asp-for="ShortName" class="form-control" placeholder="Short name" />
+                    </div>
+
+                    <!-- Contact Number -->
+                    <div class="col-md-3">
+                        <label asp-for="ContactNumber" class="form-label">Contact Number</label>
+                        <input asp-for="ContactNumber" class="form-control" placeholder="Phone number" />
+                    </div>
+                    
+                    <!-- Contract Number -->
+                    <div class="col-md-3">
+                        <label asp-for="ContractNo" class="form-label">Contract Number</label>
+                        <input asp-for="ContractNo" class="form-control" placeholder="Contract Number" />
+                    </div>
+
+                    <!-- Email -->
+                    <div class="col-md-3">
+                        <label asp-for="Email" class="form-label">Email</label>
+                        <input asp-for="Email" type="email" class="form-control" placeholder="Email address" />
+                    </div>
+
+                    <!-- Website -->
+                    <div class="col-md-3">
+                        <label asp-for="Website" class="form-label">Website</label>
+                        <input asp-for="Website" class="form-control" placeholder="Website URL" />
+                    </div>
+
+                    <!-- Address -->
+                    <div class="col-md-12">
+                        <label asp-for="Address1" class="form-label">Address</label>
+                        <textarea asp-for="Address1" class="form-control" rows="2" placeholder="Enter address"></textarea>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Dates -->
+        <div class="card shadow-lg border-0 mt-4">
+            <div class="card-header text-white" style="background-color:#0099CC !important">
+                <h5 class="mb-0">Dates</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+
+                    <!-- Join Date -->
+                    <div class="col-md-3">
+                        <label asp-for="JoinDate" class="form-label">Join Date</label>
+                        <input asp-for="JoinDate" class="form-control form-control-sm" id="JoinDate" placeholder="Select date" />
+                        <span asp-validation-for="JoinDate" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Start Date -->
+                    <div class="col-md-3">
+                        <label asp-for="StartDate" class="form-label">Start Date</label>
+                        <input asp-for="StartDate" class="form-control form-control-sm" id="StartDate" placeholder="Select date" />
+                        <span asp-validation-for="StartDate" class="text-danger small"></span>
+                    </div>
+
+                    <!-- End Date -->
+                    <div class="col-md-3">
+                        <label asp-for="EndDate" class="form-label">End Date</label>
+                        <input asp-for="EndDate" class="form-control form-control-sm" id="EndDate" placeholder="Select date" />
+                        <span asp-validation-for="EndDate" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Termination Date -->
+                    <div class="col-md-3">
+                        <label asp-for="TerminationDate" class="form-label">Termination Date</label>
+                        <input asp-for="TerminationDate" class="form-control form-control-sm" id="TerminationDate" placeholder="Select date" />
+                        <span asp-validation-for="TerminationDate" class="text-danger small"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="card shadow-lg border-0 mt-4">
+            <div class="card-body d-flex justify-content-end gap-2">
+                <button type="button" id="btnSave" class="btn btn-primary">
+                    <i class="bi bi-save"></i> Save Client
+                </button>
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="bi bi-x-circle"></i> Cancel
+                </a>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function () {
+
+            // Flatpickr setup
+            flatpickr("#JoinDate", { dateFormat: "d-M-Y", allowInput: true });
+            flatpickr("#StartDate", { dateFormat: "d-M-Y", allowInput: true });
+            flatpickr("#EndDate", { dateFormat: "d-M-Y", allowInput: true });
+            flatpickr("#TerminationDate", { dateFormat: "d-M-Y", allowInput: true });
+
+            // Toggle main company dropdown
+            function toggleMainCompany() {
+                var type = $('#CompanyType').val();
+                if (type === 'Sub') {
+                    $('#MainCompanyDropdown').prop('disabled', false);
+                } else {
+                    $('#MainCompanyDropdown').prop('disabled', true).val('');
+                }
+            }
+            toggleMainCompany();
+            $('#CompanyType').change(toggleMainCompany);
+
+            // Save button click (AJAX)
+            $("#btnSave").click(function (e) {
+                e.preventDefault();
+                var form = $("#clientForm");
+
+                $.ajax({
+                    url: form.attr("action"),
+                    type: "POST",
+                    data: form.serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Success",
+                                text: response.message,
+                                confirmButtonColor: "#0099CC"
+                            }).then(() => {
+                                window.location.href = '@Url.Action("Index", "Client")';
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Error",
+                                text: response.message || "Something went wrong!",
+                                confirmButtonColor: "#d33"
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Server Error",
+                            text: "Unexpected error occurred while saving client.",
+                            confirmButtonColor: "#d33"
+                        });
+                    }
+                });
+            });
+
+        });
+    </script>
+}

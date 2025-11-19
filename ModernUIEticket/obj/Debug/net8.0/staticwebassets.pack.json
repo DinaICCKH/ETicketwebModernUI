@@ -1,0 +1,513 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ModernUIEticket.bundle.scp.css",
+      "PackagePath": "staticwebassets\\ModernUIEticket.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\Banner.png",
+      "PackagePath": "staticwebassets\\Picture\\Banner.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\Customization.jpg",
+      "PackagePath": "staticwebassets\\Picture\\Customization.jpg"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\DFL.jpg",
+      "PackagePath": "staticwebassets\\Picture\\DFL.jpg"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\DMS.png",
+      "PackagePath": "staticwebassets\\Picture\\DMS.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\Eticket.png",
+      "PackagePath": "staticwebassets\\Picture\\Eticket.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\Kubera.png",
+      "PackagePath": "staticwebassets\\Picture\\Kubera.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\Pic_16_05_2025_01_47_59_.png",
+      "PackagePath": "staticwebassets\\Picture\\Pic_16_05_2025_01_47_59_.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\SAP-Business-One.jpg",
+      "PackagePath": "staticwebassets\\Picture\\SAP-Business-One.jpg"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\UploadedFiles\\1168_23_10_2025_17_35_51_3.jpg",
+      "PackagePath": "staticwebassets\\UploadedFiles\\1168_23_10_2025_17_35_51_3.jpg"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\UploadedFiles\\18_11_2025_11_29_49_logo-4x3_5-removebg.png",
+      "PackagePath": "staticwebassets\\UploadedFiles\\18_11_2025_11_29_49_logo-4x3_5-removebg.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\ForTicketAssign.css",
+      "PackagePath": "staticwebassets\\css\\ForTicketAssign.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\ListReport.css",
+      "PackagePath": "staticwebassets\\css\\ListReport.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsivProjectAssign.css",
+      "PackagePath": "staticwebassets\\css\\TableResponsivProjectAssign.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsivStaff.css",
+      "PackagePath": "staticwebassets\\css\\TableResponsivStaff.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsivUser.css",
+      "PackagePath": "staticwebassets\\css\\TableResponsivUser.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsivadvertise.css",
+      "PackagePath": "staticwebassets\\css\\TableResponsivadvertise.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsivclient.css",
+      "PackagePath": "staticwebassets\\css\\TableResponsivclient.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveAttendace.css",
+      "PackagePath": "staticwebassets\\css\\TableResponsiveAttendace.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveAttribute.css",
+      "PackagePath": "staticwebassets\\css\\TableResponsiveAttribute.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveIndexTicketAssign.css",
+      "PackagePath": "staticwebassets\\css\\TableResponsiveIndexTicketAssign.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveMyTicketTracking.css",
+      "PackagePath": "staticwebassets\\css\\TableResponsiveMyTicketTracking.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveMyTicketindex.css",
+      "PackagePath": "staticwebassets\\css\\TableResponsiveMyTicketindex.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveProjectTracking.css",
+      "PackagePath": "staticwebassets\\css\\TableResponsiveProjectTracking.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveRecurring.css",
+      "PackagePath": "staticwebassets\\css\\TableResponsiveRecurring.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveTicketApproval.css",
+      "PackagePath": "staticwebassets\\css\\TableResponsiveTicketApproval.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveTicketAssignTracking.css",
+      "PackagePath": "staticwebassets\\css\\TableResponsiveTicketAssignTracking.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveTickettracking.css",
+      "PackagePath": "staticwebassets\\css\\TableResponsiveTickettracking.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveapproval.css",
+      "PackagePath": "staticwebassets\\css\\TableResponsiveapproval.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\dominus.min.css",
+      "PackagePath": "staticwebassets\\css\\dominus.min.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\js\\dominus.min.js",
+      "PackagePath": "staticwebassets\\js\\dominus.min.js"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\js\\popper.min.js",
+      "PackagePath": "staticwebassets\\js\\popper.min.js"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_1.png",
+      "PackagePath": "staticwebassets\\qrcodes\\session_1.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_11.png",
+      "PackagePath": "staticwebassets\\qrcodes\\session_11.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_13.png",
+      "PackagePath": "staticwebassets\\qrcodes\\session_13.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_14.png",
+      "PackagePath": "staticwebassets\\qrcodes\\session_14.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_15.png",
+      "PackagePath": "staticwebassets\\qrcodes\\session_15.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_16.png",
+      "PackagePath": "staticwebassets\\qrcodes\\session_16.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_17.png",
+      "PackagePath": "staticwebassets\\qrcodes\\session_17.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_18.png",
+      "PackagePath": "staticwebassets\\qrcodes\\session_18.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_19.png",
+      "PackagePath": "staticwebassets\\qrcodes\\session_19.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_2.png",
+      "PackagePath": "staticwebassets\\qrcodes\\session_2.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_20.png",
+      "PackagePath": "staticwebassets\\qrcodes\\session_20.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_21.png",
+      "PackagePath": "staticwebassets\\qrcodes\\session_21.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_22.png",
+      "PackagePath": "staticwebassets\\qrcodes\\session_22.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_23.png",
+      "PackagePath": "staticwebassets\\qrcodes\\session_23.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_24.png",
+      "PackagePath": "staticwebassets\\qrcodes\\session_24.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_5.png",
+      "PackagePath": "staticwebassets\\qrcodes\\session_5.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_13_20250825193020.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\photo_13_20250825193020.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_13_20250825193049.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\photo_13_20250825193049.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_14_20250826183116.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\photo_14_20250826183116.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_14_20250826183159.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\photo_14_20250826183159.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_1_20250825165654.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\photo_1_20250825165654.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_22_20250827182915.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\photo_22_20250827182915.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_23_20250827193031.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\photo_23_20250827193031.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_23_20250827193547.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\photo_23_20250827193547.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_24_20250828132220.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\photo_24_20250828132220.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_2_20250825165323.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\photo_2_20250825165323.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_2_20250825170054.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\photo_2_20250825170054.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_2_20250825170513.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\photo_2_20250825170513.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_2_20250825171155.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\photo_2_20250825171155.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_9_20250915133315.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\photo_9_20250915133315.png"
+    },
+    {
+      "Id": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_9_20250915135719.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\photo_9_20250915135719.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ModernUIEticket.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.ModernUIEticket.props",
+      "PackagePath": "build\\ModernUIEticket.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.ModernUIEticket.props",
+      "PackagePath": "buildMultiTargeting\\ModernUIEticket.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.ModernUIEticket.props",
+      "PackagePath": "buildTransitive\\ModernUIEticket.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

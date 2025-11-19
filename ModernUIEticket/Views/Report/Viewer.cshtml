@@ -1,0 +1,31 @@
+﻿@model int
+
+<h4>Attendance Report Preview</h4>
+
+<div class="d-flex mb-3">
+    <a class="btn btn-danger me-2" target="_blank"
+       asp-controller="Report" asp-action="Export"
+       asp-route-reportName="AttendanceForm"
+       asp-route-id="@Model" asp-route-format="PDF">
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+    </a>
+
+    <a class="btn btn-success me-2" target="_blank"
+       asp-controller="Report" asp-action="Export"
+       asp-route-reportName="AttendanceForm"
+       asp-route-id="@Model" asp-route-format="EXCELOPENXML">
+        <i class="bi bi-file-earmark-excel"></i> Excel
+    </a>
+
+    <a class="btn btn-primary me-2" target="_blank"
+       asp-controller="Report" asp-action="Export"
+       asp-route-reportName="AttendanceForm"
+       asp-route-id="@Model" asp-route-format="WORDOPENXML">
+        <i class="bi bi-file-earmark-word"></i> Word
+    </a>
+</div>
+
+<!-- Preview area (PDF loads automatically on page load) -->
+<iframe id="reportFrame"
+        src="@Url.Action("Export", "Report", new { reportName="AttendanceForm", id=Model, format="PDF" })"
+        style="width:100%; height:800px; border:none;"></iframe>

@@ -1,0 +1,58 @@
+
+                                ============================================================
+                                Timestamp       : 28-08-2025 13:48:59
+                                User            : Anonymous
+                                Controller      : Report
+                                Action          : Preview
+                                Message         : An error occurred during local report processing.
+                                StackTrace      :    at Microsoft.Reporting.NETCore.LocalReport.EnsureExecutionSession()
+   at Microsoft.Reporting.NETCore.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   at Microsoft.Reporting.NETCore.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   at Microsoft.Reporting.NETCore.LocalReport.Render(String format, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   at Microsoft.Reporting.NETCore.Report.Render(String format, String deviceInfo, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   at Microsoft.Reporting.NETCore.Report.Render(String format, String deviceInfo)
+   at Microsoft.Reporting.NETCore.Report.Render(String format)
+   at ReportController.GenerateReportPdf(String reportName, List`1 data) in D:\ICC Project\OneDrive - ICCKH\ICC Project\E_Ticket\ETicketNewUI\ETicketNewUI\ETicketNewUI\Controllers\ReportController.cs:line 102
+   at ReportController.Preview(String reportName, Int32 id) in D:\ICC Project\OneDrive - ICCKH\ICC Project\E_Ticket\ETicketNewUI\ETicketNewUI\ETicketNewUI\Controllers\ReportController.cs:line 20
+   at lambda_method325(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+                                InnerException  : The definition of the report 'D:\ICC Project\OneDrive - ICCKH\ICC Project\E_Ticket\ETicketNewUI\ETicketNewUI\ETicketNewUI\Printing\AttendanceForm.rdlc' is invalid.
+                                ============================================================
+
+                                ============================================================
+                                Timestamp       : 28-08-2025 13:55:11
+                                User            : Anonymous
+                                Controller      : Report
+                                Action          : Print
+                                Message         : An error occurred during local report processing.
+                                StackTrace      :    at Microsoft.Reporting.NETCore.LocalReport.EnsureExecutionSession()
+   at Microsoft.Reporting.NETCore.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   at Microsoft.Reporting.NETCore.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   at Microsoft.Reporting.NETCore.LocalReport.Render(String format, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   at Microsoft.Reporting.NETCore.Report.Render(String format, String deviceInfo, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   at Microsoft.Reporting.NETCore.Report.Render(String format, String deviceInfo)
+   at Microsoft.Reporting.NETCore.Report.Render(String format)
+   at ReportController.GenerateReportPdf(String reportName, List`1 data) in D:\ICC Project\OneDrive - ICCKH\ICC Project\E_Ticket\ETicketNewUI\ETicketNewUI\ETicketNewUI\Controllers\ReportController.cs:line 102
+   at ReportController.Print(String reportName, Int32 id) in D:\ICC Project\OneDrive - ICCKH\ICC Project\E_Ticket\ETicketNewUI\ETicketNewUI\ETicketNewUI\Controllers\ReportController.cs:line 30
+   at lambda_method325(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+                                InnerException  : The definition of the report 'D:\ICC Project\OneDrive - ICCKH\ICC Project\E_Ticket\ETicketNewUI\ETicketNewUI\ETicketNewUI\Printing\AttendanceForm.rdlc' is invalid.
+                                ============================================================

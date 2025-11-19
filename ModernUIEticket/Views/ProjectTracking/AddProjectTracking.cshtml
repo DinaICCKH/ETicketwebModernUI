@@ -1,0 +1,255 @@
+﻿@model ETicketNewUI.Models.ProjectTracking
+@{
+    ViewData["Title"] = "Project Tracking";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+<link href="~/css/forticketassign.css" rel="stylesheet" />
+@Html.AntiForgeryToken()
+
+<div class="container mt-4" style="min-width:100% !important">
+
+    <!-- Header Section -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card bg-light rounded shadow-sm p-2">
+                <h5 class="mb-2 text-primary"><i class="bi bi-kanban-fill me-2"></i> Project Information</h5>
+
+                <!-- Project Code & Remark -->
+                <div class="row g-1 align-items-center mb-1">
+                    <label class="col-sm-2 col-form-label form-label-sm"><i class="bi bi-box-seam me-1"></i> Project Code</label>
+                    <div class="col-sm-4">
+                        <select class="form-select form-select-sm" id="projectCode">
+                            <option value="">-- Select --</option>
+                            @foreach (var project in (IEnumerable<ETicketNewUI.Models.ProjectAvailable>)ViewBag.MainCompany)
+                            {
+                                <option value="@project.CompanyId">@project.CompanyName</option>
+                            }
+                        </select>
+                    </div>
+
+                    <label class="col-sm-2 col-form-label form-label-sm"><i class="bi bi-chat-left-dots me-1"></i> Remark</label>
+                    <div class="col-sm-4">
+                        <textarea class="form-control form-control-sm" id="remark" rows="1" placeholder="Enter remark"></textarea>
+                    </div>
+                </div>
+
+                <!-- Project Manager & Team -->
+                <div class="row g-1 align-items-center mb-1">
+                    <label class="col-sm-2 col-form-label form-label-sm">
+                        <i class="bi bi-person-badge me-1"></i> Manager
+                    </label>
+                    <div class="col-sm-4">
+                        <textarea class="form-control form-control-sm" id="projectManager" rows="1" placeholder="Enter manager name"></textarea>
+                    </div>
+
+
+                    <label class="col-sm-2 col-form-label form-label-sm"><i class="bi bi-people me-1"></i> Team</label>
+                    <div class="col-sm-4">
+                        <textarea class="form-control form-control-sm" id="projectTeam" rows="1" placeholder="Enter team names or IDs"></textarea>
+                    </div>
+                </div>
+
+                <!-- Start & End Date & Status -->
+                <div class="row g-1 align-items-center mb-1">
+                    <label class="col-sm-2 col-form-label form-label-sm"><i class="bi bi-calendar-date me-1"></i> Start Date</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control form-control-sm" id="startDate" placeholder="Select start date" />
+                    </div>
+
+                    <label class="col-sm-2 col-form-label form-label-sm"><i class="bi bi-calendar2-week me-1"></i> End Date</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control form-control-sm" id="endDate" placeholder="Select end date" />
+                    </div>
+
+                    <label class="col-sm-2 col-form-label form-label-sm"><i class="bi bi-bar-chart-fill me-1"></i> Status</label>
+                    <div class="col-sm-2">
+                        <select class="form-select form-select-sm" id="projectStatus">
+                            <option value="Planned">Planned</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                            <option value="On Hold">On Hold</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail Rows (Tracking Stages) -->
+    <div class="row mt-3">
+        <div class="col-12">
+            <div class="card bg-white p-2 rounded shadow-sm">
+                <h5 class="mb-2"><i class="bi bi-activity me-2"></i> Tracking Stages</h5>
+
+                <div class="mb-2 d-flex gap-1">
+                    <button class="btn btn-sm btn-primary" id="addStageBtn" type="button"><i class="bi bi-plus-circle"></i> Add Task</button>
+                    <button class="btn btn-sm btn-outline-danger" id="clearStageBtn" type="button"><i class="bi bi-trash"></i> Clear All</button>
+                </div>
+
+                <table class="table table-bordered table-sm mb-0" id="stageTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width:4%">#</th>
+                            <th style="width:20%">Task</th>
+                            <th style="width:15%">Handle By</th>
+                            <th style="width:15%">Status</th>
+                            <th style="width:12%">From</th>
+                            <th style="width:12%">To</th>
+                            <th style="width:17%">Remark</th>
+                            <th style="width:5%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stageTableBody"></tbody>
+                </table>
+
+                <div class="row mt-2 align-items-center gx-1">
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-success btn-sm" onclick="submitProjectTracking()">
+                            <i class="bi bi-check2-circle me-1"></i> Save
+                        </button>
+                    </div>
+                    <div class="col-auto">
+                        <span id="rowCount" class="text-muted">0 row(s)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JS and Plugins -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            flatpickr("#startDate", { dateFormat: "d-M-Y" });
+            flatpickr("#endDate", { dateFormat: "d-M-Y" });
+        });
+
+        function reindexRows() {
+            const rows = $('#stageTableBody tr');
+            rows.each((i, tr) => $(tr).find('.rowIndex').text(i + 1));
+            $('#rowCount').text(`${rows.length} row(s)`);
+        }
+
+        $('#addStageBtn').on('click', function () {
+            const supporterList = @Html.Raw(Json.Serialize(
+            (ViewBag.SupporterList as List<ETicketNewUI.Models.StaffListAssign> ?? new())
+            .Select(s => new { s.StaffID, s.FullStaffName })
+            ));
+
+            const supporterOptions = supporterList.map(s => `<option value="${s.staffID}">${s.fullStaffName}</option>`).join('');
+            const rowStatusOptions = ['Start', 'Processing', 'Pending', 'Reject', 'Hold']
+                .map(status => `<option value="${status}">${status}</option>`).join('');
+
+            const row = `
+                <tr>
+                    <td class="rowIndex text-center"></td>
+                    <td><textarea class="form-control form-control-sm stageNo" rows="1" placeholder="Task"></textarea></td>
+                    <td>
+                        <select class="form-select form-select-sm handleBy">
+                            <option value="">-- Select --</option>${supporterOptions}
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-select form-select-sm rowStatus">
+                            <option value="">-- Select Status --</option>${rowStatusOptions}
+                        </select>
+                    </td>
+                    <td><input type="text" class="form-control form-control-sm fromDate" placeholder="From date" /></td>
+                    <td><input type="text" class="form-control form-control-sm toDate" placeholder="To date" /></td>
+                    <td><textarea class="form-control form-control-sm remarkInput" rows="1" placeholder="Remark"></textarea></td>
+                    <td class="text-center"><button type="button" class="btn btn-sm btn-danger removeRow"><i class="bi bi-x-circle"></i></button></td>
+                </tr>`;
+            $('#stageTableBody').append(row);
+            flatpickr(".fromDate", { dateFormat: "d-M-Y" });
+            flatpickr(".toDate", { dateFormat: "d-M-Y" });
+            reindexRows();
+        });
+
+        $('#stageTableBody').on('click', '.removeRow', function () {
+            $(this).closest('tr').remove();
+            reindexRows();
+        });
+
+        $('#clearStageBtn').on('click', function () {
+            $('#stageTableBody').empty();
+            reindexRows();
+        });
+
+        function submitProjectTracking() {
+            const rows = $('#stageTableBody tr');
+            if ($('#projectCode').val().trim() === '') {
+                Swal.fire('Warning', 'Please select project code.', 'warning');
+                return;
+            }
+            if (rows.length === 0) {
+                Swal.fire('Warning', 'Please add at least one task.', 'warning');
+                return;
+            }
+
+            const header = {
+                Mode: 'Add',
+                ID: 0,
+                ProjectCode: $('#projectCode').val(),
+                ProjectManager: $('#projectManager').val(),
+                ProjectTeam: $('#projectTeam').val(),
+                ProjectCreateDate: new Date().toISOString(),
+                StartDate: $('#startDate')[0]._flatpickr?.selectedDates[0]?.toISOString() || null,
+                EndDate: $('#endDate')[0]._flatpickr?.selectedDates[0]?.toISOString() || null,
+                ProjectStatus: $('#projectStatus').val(),
+                CreatedBy: '@User?.Identity?.Name',
+                UpdatedBy: '@User?.Identity?.Name',
+                CreateDate: new Date().toISOString(),
+                UpdateDate: new Date().toISOString(),
+                Status: 'A',
+                Remark: $('#remark').val()
+            };
+
+            const rowList = [];
+            rows.each((i, tr) => {
+                rowList.push({
+                    ID: 0,
+                    RowNo: i + 1,
+                    StageNo: $(tr).find('.stageNo').val(),
+                    HandleBy: $(tr).find('.handleBy').val(),
+                    RowStatus: $(tr).find('.rowStatus').val(),
+                    FromDate: $(tr).find('.fromDate')[0]._flatpickr?.selectedDates[0]?.toISOString() || null,
+                    ToDate: $(tr).find('.toDate')[0]._flatpickr?.selectedDates[0]?.toISOString() || null,
+                    Remark: $(tr).find('.remarkInput').val()
+                });
+            });
+
+            const payload = { ...header, RowList: rowList };
+
+            fetch('@Url.Action("AddProjectTracking", "ProjectTracking")', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                },
+                body: JSON.stringify(payload)
+            })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire('Success', data.message, 'success').then(() => {
+                            window.location.href = '@Url.Action("Index", "ProjectTracking")';
+                        });
+                    } else {
+                        Swal.fire('Error', data.message || 'Save failed.', 'error');
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    Swal.fire('Error', 'Unexpected error occurred.', 'error');
+                });
+        }
+    </script>
+}

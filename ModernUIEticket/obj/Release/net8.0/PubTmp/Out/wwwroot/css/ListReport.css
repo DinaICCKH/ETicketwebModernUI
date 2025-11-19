@@ -1,0 +1,94 @@
+﻿.table-sm-font {
+    font-size: 0.75rem; /* smaller font size for table */
+}
+
+    .table-sm-font th,
+    .table-sm-font td {
+        padding: 4px 6px; /* reduce cell padding for smaller rows */
+        vertical-align: middle; /* keep content centered vertically */
+    }
+
+.action-popup {
+    width: 180px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    padding: 8px;
+    z-index: 9999;
+    display: none;
+    position: fixed;
+}
+
+    .action-popup button, .action-popup a {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        width: 100%;
+        padding: 6px 10px;
+        border-radius: 5px;
+        font-size: 0.875rem;
+    }
+
+        .action-popup button:hover, .action-popup a:hover {
+            background: #f1f1f1;
+        }
+
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+    gap: 3px;
+    margin-top: 10px;
+    justify-content: flex-end; /* right align */
+    font-size: 0.8rem;
+}
+
+    .pagination li {
+        cursor: pointer;
+        padding: 3px 6px; /* smaller buttons */
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+        .pagination li.active {
+            background: #0d6efd;
+            color: #fff;
+            border-color: #0d6efd;
+        }
+
+        .pagination li.disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+.dropdown-menu-scrollable {
+    max-height: 200px; /* adjust height as needed */
+    overflow-y: auto;
+}
+
+.ticket-card, .assign-card {
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+    .ticket-card dt {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .ticket-card dd {
+        margin-bottom: 0.75rem;
+    }
+
+
+
