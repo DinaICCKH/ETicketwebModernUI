@@ -1,0 +1,80 @@
+
+                                ============================================================
+                                Timestamp       : 07-12-2025 16:10:25
+                                User            : Anonymous
+                                Controller      : Report
+                                Action          : ExportProjectTracking
+                                Message         : The input string 'Web Development ' was not in a correct format.
+                                StackTrace      :    at System.Number.ThrowFormatException[TChar](ReadOnlySpan`1 value)
+   at System.String.System.IConvertible.ToInt32(IFormatProvider provider)
+   at ReportController.GetProjectTrackingReportData(ProjectTrackingReportParam param) in D:\ICC Project\E_Ticket\ModernUIEticket\ModernUIEticket\Controllers\ReportController.cs:line 499
+   at ReportController.ExportProjectTracking(String reportName, String fromDate, String toDate, String project, String status, String projectID, String format, Boolean inline) in D:\ICC Project\E_Ticket\ModernUIEticket\ModernUIEticket\Controllers\ReportController.cs:line 438
+   at lambda_method196(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+                                InnerException  : 
+                                ============================================================
+
+                                ============================================================
+                                Timestamp       : 07-12-2025 16:23:12
+                                User            : Anonymous
+                                Controller      : Report
+                                Action          : ExportProjectTracking
+                                Message         : An error occurred during local report processing.
+                                StackTrace      :    at Microsoft.Reporting.NETCore.LocalReport.EnsureExecutionSession()
+   at Microsoft.Reporting.NETCore.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   at Microsoft.Reporting.NETCore.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   at Microsoft.Reporting.NETCore.LocalReport.Render(String format, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   at Microsoft.Reporting.NETCore.Report.Render(String format, String deviceInfo, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   at Microsoft.Reporting.NETCore.Report.Render(String format, String deviceInfo)
+   at ReportController.GenerateProjectTrackingReport(String reportName, List`1 data, String format) in D:\ICC Project\E_Ticket\ModernUIEticket\ModernUIEticket\Controllers\ReportController.cs:line 545
+   at ReportController.ExportProjectTracking(String reportName, String fromDate, String toDate, String project, String status, String projectID, String format, Boolean inline) in D:\ICC Project\E_Ticket\ModernUIEticket\ModernUIEticket\Controllers\ReportController.cs:line 448
+   at lambda_method196(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+                                InnerException  : The definition of the report 'D:\ICC Project\E_Ticket\ModernUIEticket\ModernUIEticket\Printing\ProjectTrackingReport.rdlc' is invalid.
+                                ============================================================
+
+                                ============================================================
+                                Timestamp       : 07-12-2025 16:23:16
+                                User            : Anonymous
+                                Controller      : Report
+                                Action          : ExportProjectTracking
+                                Message         : An error occurred during local report processing.
+                                StackTrace      :    at Microsoft.Reporting.NETCore.LocalReport.EnsureExecutionSession()
+   at Microsoft.Reporting.NETCore.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, CreateAndRegisterStream createStreamCallback, Warning[]& warnings)
+   at Microsoft.Reporting.NETCore.LocalReport.InternalRender(String format, Boolean allowInternalRenderers, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   at Microsoft.Reporting.NETCore.LocalReport.Render(String format, String deviceInfo, PageCountMode pageCountMode, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   at Microsoft.Reporting.NETCore.Report.Render(String format, String deviceInfo, String& mimeType, String& encoding, String& fileNameExtension, String[]& streams, Warning[]& warnings)
+   at Microsoft.Reporting.NETCore.Report.Render(String format, String deviceInfo)
+   at ReportController.GenerateProjectTrackingReport(String reportName, List`1 data, String format) in D:\ICC Project\E_Ticket\ModernUIEticket\ModernUIEticket\Controllers\ReportController.cs:line 545
+   at ReportController.ExportProjectTracking(String reportName, String fromDate, String toDate, String project, String status, String projectID, String format, Boolean inline) in D:\ICC Project\E_Ticket\ModernUIEticket\ModernUIEticket\Controllers\ReportController.cs:line 448
+   at lambda_method196(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+                                InnerException  : The definition of the report 'D:\ICC Project\E_Ticket\ModernUIEticket\ModernUIEticket\Printing\ProjectTrackingReport.rdlc' is invalid.
+                                ============================================================

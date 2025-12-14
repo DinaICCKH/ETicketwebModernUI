@@ -269,5 +269,39 @@ namespace ModernUIEticket.Controllers
             }
         }
         #endregion
+
+        [HttpGet]
+        public async Task<IActionResult> ReportPreviewProjectTracking()
+        {
+            var token = GetTokenData();
+            if (token == null)
+                return RedirectToAction("Login", "Logout");
+
+            try
+            {
+
+
+                // Fetch filters
+                ViewBag.Project = await _context.FiltterProjectTrackings
+                    .FromSqlInterpolated($"EXEC ICC_Filtter_ProjectTrackingProject")
+                    .ToListAsync();
+
+                ViewBag.Status = await _context.FiltterProjectTrackings
+                    .FromSqlInterpolated($"EXEC ICC_Filtter_ProjectTrackingStatus")
+                    .ToListAsync();
+
+                ViewBag.ProjectID = await _context.FiltterProjectTrackings
+                    .FromSqlInterpolated($"EXEC ICC_Filtter_ProjectTrackingID")
+                    .ToListAsync();
+
+                return View("ReportPreviewProjectTracking");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return View("Error");
+            }
+        }
+
     }
 }

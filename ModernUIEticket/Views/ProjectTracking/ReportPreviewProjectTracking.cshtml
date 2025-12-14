@@ -1,0 +1,160 @@
+﻿
+@{
+    ViewData["Title"] = "Project Tracking Report";
+}
+
+<div class="row mb-4">
+
+    <!-- Filters -->
+    <div class="col-lg-12 mb-3">
+        <div class="card shadow-sm p-3 mb-4" style="background-color:#f8f9fa; border-radius:8px;">
+            <h6 class="fw-bold mb-3">📄 Project Tracking Filters</h6>
+            <div class="row g-3 mb-3">
+                <div class="col-md-2 col-sm-6">
+                    <label for="fromDate" class="form-label">From Date:</label>
+                    <input type="text" id="fromDate" class="form-control date-picker" placeholder="dd-MMM-yyyy" />
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <label for="toDate" class="form-label">To Date:</label>
+                    <input type="text" id="toDate" class="form-control date-picker" placeholder="dd-MMM-yyyy" />
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <label for="projectDropdown" class="form-label">Project:</label>
+                    <select id="projectDropdown" class="form-select">
+                  
+                        @if (ViewBag.Project != null)
+                        {
+                            foreach (var p in ViewBag.Project)
+                            {
+                                <option value="@p.ID">@p.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <label for="statusDropdown" class="form-label">Status:</label>
+                    <select id="statusDropdown" class="form-select">
+                       
+                        @if (ViewBag.Status != null)
+                        {
+                            foreach (var s in ViewBag.Status)
+                            {
+                                <option value="@s.ID">@s.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <label for="projectIDDropdown" class="form-label">Project ID:</label>
+                    <select id="projectIDDropdown" class="form-select">
+                        
+                        @if (ViewBag.ProjectID != null)
+                        {
+                            foreach (var p in ViewBag.ProjectID)
+                            {
+                                <option value="@p.ID">@p.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <!-- Report Options -->
+            <div class="d-flex justify-content-end">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="reportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-file-earmark-text me-2"></i> Report Options
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="reportDropdown">
+                        <li>
+                            <a class="dropdown-item" href="javascript:void(0)" onclick="previewProjectTrackingReport()">
+                                <i class="bi bi-eye me-2 text-primary"></i> Preview
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="javascript:void(0)" onclick="exportProjectTrackingReport('PDF')">
+                                <i class="bi bi-file-pdf me-2 text-danger"></i> Export PDF
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="javascript:void(0)" onclick="exportProjectTrackingReport('EXCELOPENXML')">
+                                <i class="bi bi-file-excel me-2 text-success"></i> Export Excel
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="javascript:void(0)" onclick="exportProjectTrackingReport('WORDOPENXML')">
+                                <i class="bi bi-file-word me-2 text-primary"></i> Export Word
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .hover-shadow:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 0.75rem 1.5rem rgba(0,0,0,0.15) !important;
+        transition: all 0.3s ease-in-out;
+    }
+</style>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        $(document).ready(function () {
+            // --- Initialize date pickers ---
+            const today = new Date();
+            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            const formattedDate = String(today.getDate()).padStart(2, '0') + '-' +
+                monthNames[today.getMonth()] + '-' + today.getFullYear();
+
+            // Set default dates
+            $('#fromDate').val("01-Jan-2024");   // fixed start date
+            $('#toDate').val(formattedDate);     // today's date
+
+            // Initialize Tempus Dominus datepickers
+            new tempusDominus.TempusDominus(document.getElementById('fromDate'), {
+                display: { components: { calendar: true, clock: false } },
+                useCurrent: false,
+                localization: { format: 'dd-MMM-yyyy' }
+            });
+
+            new tempusDominus.TempusDominus(document.getElementById('toDate'), {
+                display: { components: { calendar: true, clock: false } },
+                useCurrent: false,
+                localization: { format: 'dd-MMM-yyyy' }
+            });
+        });
+
+        // --- Preview report in PDF inline ---
+        function previewProjectTrackingReport() {
+            const fromDate = $('#fromDate').val();
+            const toDate = $('#toDate').val();
+            const project = $('#projectDropdown').val();
+            const status = $('#statusDropdown').val();
+            const projectID = $('#projectIDDropdown').val();
+
+            const url = `/Eticket/Report/ExportProjectTracking?reportName=ProjectTrackingReport&fromDate=${fromDate}&toDate=${toDate}&project=${project}&status=${status}&projectID=${projectID}&format=PDF&inline=true`;
+            const win = window.open(url, '_blank');
+            win.focus();
+        }
+
+        // --- Export report as PDF, Word, Excel ---
+        function exportProjectTrackingReport(format) {
+            const fromDate = $('#fromDate').val();
+            const toDate = $('#toDate').val();
+            const project = $('#projectDropdown').val();
+            const status = $('#statusDropdown').val();
+            const projectID = $('#projectIDDropdown').val();
+
+            const url = `/Eticket/Report/ExportProjectTracking?reportName=ProjectTrackingReport&fromDate=${fromDate}&toDate=${toDate}&project=${project}&status=${status}&projectID=${projectID}&format=${format}&inline=false`;
+            window.open(url, '_blank'); // triggers download
+        }
+    </script>
+}
+

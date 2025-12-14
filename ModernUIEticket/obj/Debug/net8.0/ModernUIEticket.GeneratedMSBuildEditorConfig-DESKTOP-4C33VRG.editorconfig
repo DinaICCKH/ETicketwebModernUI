@@ -1,0 +1,295 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ModernUIEticket
+build_property.RootNamespace = ModernUIEticket
+build_property.ProjectDir = D:\ICC Project\OneDrive - ICCKH\ICC Project\E_Ticket\ModernUIEticket\ModernUIEticket\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\ICC Project\OneDrive - ICCKH\ICC Project\E_Ticket\ModernUIEticket\ModernUIEticket
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Advertise/AddAdvertise.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWR2ZXJ0aXNlXEFkZEFkdmVydGlzZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Advertise/EditAdvertise.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWR2ZXJ0aXNlXEVkaXRBZHZlcnRpc2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Advertise/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWR2ZXJ0aXNlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Approval/AddApproval.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwcm92YWxcQWRkQXBwcm92YWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Approval/EditApproval.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwcm92YWxcRWRpdEFwcHJvdmFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Approval/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwcm92YWxcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/AsignTicket/EditTicketAssign.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNpZ25UaWNrZXRcRWRpdFRpY2tldEFzc2lnbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/AsignTicket/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNpZ25UaWNrZXRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/AsignTicket/ReportPreview.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNpZ25UaWNrZXRcUmVwb3J0UHJldmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/AsignTicket/RPTTicketAssign.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNpZ25UaWNrZXRcUlBUVGlja2V0QXNzaWduLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/AsignTicket/RPTTicketTrackingbystaff.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNpZ25UaWNrZXRcUlBUVGlja2V0VHJhY2tpbmdieXN0YWZmLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/AsignTicket/SaveTicketAssign.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNpZ25UaWNrZXRcU2F2ZVRpY2tldEFzc2lnbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/AsignTicket/TicketHistory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNpZ25UaWNrZXRcVGlja2V0SGlzdG9yeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/AsignTicket/TrackingTikcetAssing.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNpZ25UaWNrZXRcVHJhY2tpbmdUaWtjZXRBc3NpbmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Attendance/CheckIn.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW5kYW5jZVxDaGVja0luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Attendance/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW5kYW5jZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Attendance/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW5kYW5jZVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Attendance/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW5kYW5jZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Attribute/AddAttribute.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0cmlidXRlXEFkZEF0dHJpYnV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Attribute/EditAttribute.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0cmlidXRlXEVkaXRBdHRyaWJ1dGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Attribute/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0cmlidXRlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Client/AddClient.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEFkZENsaWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Client/EditClient.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEVkaXRDbGllbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Client/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Login/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/MyTicket/AcceptTaskSupporter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlUaWNrZXRcQWNjZXB0VGFza1N1cHBvcnRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/MyTicket/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlUaWNrZXRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/MyTicket/MyTicketTracking.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlUaWNrZXRcTXlUaWNrZXRUcmFja2luZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/MyTicket/RPTMyTicket.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlUaWNrZXRcUlBUTXlUaWNrZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/MyTicket/SaveAcceptTicket.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlUaWNrZXRcU2F2ZUFjY2VwdFRpY2tldC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/MyTicket/SaveCompleteTicket.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlUaWNrZXRcU2F2ZUNvbXBsZXRlVGlja2V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/MyTicket/SaveTicketAssignBySupporter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlUaWNrZXRcU2F2ZVRpY2tldEFzc2lnbkJ5U3VwcG9ydGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/MyTicket/TicketHistory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlUaWNrZXRcVGlja2V0SGlzdG9yeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/ProjectAssign/AddProjectAssign.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdEFzc2lnblxBZGRQcm9qZWN0QXNzaWduLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/ProjectAssign/EditProjectAssign.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdEFzc2lnblxFZGl0UHJvamVjdEFzc2lnbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/ProjectAssign/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdEFzc2lnblxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/ProjectTracking/AddProjectTracking.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFRyYWNraW5nXEFkZFByb2plY3RUcmFja2luZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/ProjectTracking/EditProjectTracking.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFRyYWNraW5nXEVkaXRQcm9qZWN0VHJhY2tpbmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/ProjectTracking/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFRyYWNraW5nXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Recurring/AddRecurring.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjdXJyaW5nXEFkZFJlY3VycmluZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Recurring/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjdXJyaW5nXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Recurring/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjdXJyaW5nXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Report/Viewer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0XFZpZXdlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Shared/_Layout - Local.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQgLSBMb2NhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Staff/AddStaff.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RhZmZcQWRkU3RhZmYuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Staff/EditStaff.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RhZmZcRWRpdFN0YWZmLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Staff/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RhZmZcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Ticket/AddTicket.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0XEFkZFRpY2tldC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Ticket/ApproveTicket.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0XEFwcHJvdmVUaWNrZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Ticket/AsignTicket.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0XEFzaWduVGlja2V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Ticket/EditTicket.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0XEVkaXRUaWNrZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Ticket/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Ticket/ReportPreview.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0XFJlcG9ydFByZXZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Ticket/SaveApproveTicket.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0XFNhdmVBcHByb3ZlVGlja2V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Ticket/TicketHistory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0XFRpY2tldEhpc3RvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Ticket/TicketTracking.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0XFRpY2tldFRyYWNraW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Ticket/UpdateTicketStatus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0XFVwZGF0ZVRpY2tldFN0YXR1cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/User/AddUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxBZGRVc2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/User/EditUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxFZGl0VXNlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/User/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ICC Project/OneDrive - ICCKH/ICC Project/E_Ticket/ModernUIEticket/ModernUIEticket/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-d7rc7qtvj3

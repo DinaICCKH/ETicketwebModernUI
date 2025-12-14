@@ -79,10 +79,13 @@ namespace ETicketNewUI.Models
         public DbSet<ProjectTracking> ProjectTrackings { get; set; }
         public DbSet<ProjectTrackingDetail> ProjectTrackingDetails { get; set; }
         public DbSet<ProjectTracking1> ProjectTracking1s { get; set; }
+        public DbSet<ProjectTrackingReport> ProjectTrackingReports { get; set; }
+        public DbSet<FiltterProjectTracking> FiltterProjectTrackings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<FiltterProjectTracking>().HasNoKey();
+            modelBuilder.Entity<ProjectTrackingReport>().HasNoKey();
             modelBuilder.Entity<ProjectTracking1>().HasNoKey();
             modelBuilder.Entity<ProjectTracking>(entity =>
             {

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "B46q8MqOcJ6nmHZ8OWf16/bOErqxW2UnsiH6SrObm1c=",
+  "Hash": "E5GC2XaMBrxKOehwZfXIuXniHYC6sLshMhkc7ZP5yLw=",
   "Source": "ModernUIEticket",
   "BasePath": "_content/ModernUIEticket",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "ModernUIEticket\\wwwroot",
       "Source": "ModernUIEticket",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\obj\\Debug\\net8.0\\scopedcss\\bundle\\ModernUIEticket.styles.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\obj\\Debug\\net8.0\\scopedcss\\bundle\\ModernUIEticket.styles.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Computed",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "ModernUIEticket.styles.css",
       "AssetKind": "All",
@@ -33,13 +33,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\obj\\Debug\\net8.0\\scopedcss\\bundle\\ModernUIEticket.styles.css"
+      "OriginalItemSpec": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\obj\\Debug\\net8.0\\scopedcss\\bundle\\ModernUIEticket.styles.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ModernUIEticket.bundle.scp.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ModernUIEticket.bundle.scp.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Computed",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "ModernUIEticket.bundle.scp.css",
       "AssetKind": "All",
@@ -52,13 +52,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ModernUIEticket.bundle.scp.css"
+      "OriginalItemSpec": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ModernUIEticket.bundle.scp.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\dominus.min.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\dominus.min.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "css/dominus.min.css",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\css\\dominus.min.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\ForTicketAssign.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\ForTicketAssign.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "css/ForTicketAssign.css",
       "AssetKind": "All",
@@ -93,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\css\\ForTicketAssign.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\ListReport.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\ListReport.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "css/ListReport.css",
       "AssetKind": "All",
@@ -112,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\css\\ListReport.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\site.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\site.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -131,10 +131,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsivadvertise.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsivadvertise.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "css/TableResponsivadvertise.css",
       "AssetKind": "All",
@@ -150,10 +150,10 @@
       "OriginalItemSpec": "wwwroot\\css\\TableResponsivadvertise.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsivclient.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsivclient.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "css/TableResponsivclient.css",
       "AssetKind": "All",
@@ -169,10 +169,10 @@
       "OriginalItemSpec": "wwwroot\\css\\TableResponsivclient.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveapproval.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveapproval.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "css/TableResponsiveapproval.css",
       "AssetKind": "All",
@@ -188,10 +188,10 @@
       "OriginalItemSpec": "wwwroot\\css\\TableResponsiveapproval.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveAttendace.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveAttendace.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "css/TableResponsiveAttendace.css",
       "AssetKind": "All",
@@ -207,10 +207,10 @@
       "OriginalItemSpec": "wwwroot\\css\\TableResponsiveAttendace.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveAttribute.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveAttribute.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "css/TableResponsiveAttribute.css",
       "AssetKind": "All",
@@ -226,10 +226,10 @@
       "OriginalItemSpec": "wwwroot\\css\\TableResponsiveAttribute.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveIndexTicketAssign.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveIndexTicketAssign.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "css/TableResponsiveIndexTicketAssign.css",
       "AssetKind": "All",
@@ -245,10 +245,10 @@
       "OriginalItemSpec": "wwwroot\\css\\TableResponsiveIndexTicketAssign.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveMyTicketindex.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveMyTicketindex.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "css/TableResponsiveMyTicketindex.css",
       "AssetKind": "All",
@@ -264,10 +264,10 @@
       "OriginalItemSpec": "wwwroot\\css\\TableResponsiveMyTicketindex.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveMyTicketTracking.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveMyTicketTracking.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "css/TableResponsiveMyTicketTracking.css",
       "AssetKind": "All",
@@ -283,10 +283,10 @@
       "OriginalItemSpec": "wwwroot\\css\\TableResponsiveMyTicketTracking.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveProjectTracking.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveProjectTracking.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "css/TableResponsiveProjectTracking.css",
       "AssetKind": "All",
@@ -302,10 +302,10 @@
       "OriginalItemSpec": "wwwroot\\css\\TableResponsiveProjectTracking.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveRecurring.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveRecurring.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "css/TableResponsiveRecurring.css",
       "AssetKind": "All",
@@ -321,10 +321,10 @@
       "OriginalItemSpec": "wwwroot\\css\\TableResponsiveRecurring.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveTicketApproval.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveTicketApproval.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "css/TableResponsiveTicketApproval.css",
       "AssetKind": "All",
@@ -340,10 +340,10 @@
       "OriginalItemSpec": "wwwroot\\css\\TableResponsiveTicketApproval.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveTicketAssignTracking.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveTicketAssignTracking.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "css/TableResponsiveTicketAssignTracking.css",
       "AssetKind": "All",
@@ -359,10 +359,10 @@
       "OriginalItemSpec": "wwwroot\\css\\TableResponsiveTicketAssignTracking.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveTickettracking.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsiveTickettracking.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "css/TableResponsiveTickettracking.css",
       "AssetKind": "All",
@@ -378,10 +378,10 @@
       "OriginalItemSpec": "wwwroot\\css\\TableResponsiveTickettracking.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsivProjectAssign.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsivProjectAssign.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "css/TableResponsivProjectAssign.css",
       "AssetKind": "All",
@@ -397,10 +397,10 @@
       "OriginalItemSpec": "wwwroot\\css\\TableResponsivProjectAssign.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsivStaff.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsivStaff.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "css/TableResponsivStaff.css",
       "AssetKind": "All",
@@ -416,10 +416,10 @@
       "OriginalItemSpec": "wwwroot\\css\\TableResponsivStaff.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsivUser.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\css\\TableResponsivUser.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "css/TableResponsivUser.css",
       "AssetKind": "All",
@@ -435,10 +435,10 @@
       "OriginalItemSpec": "wwwroot\\css\\TableResponsivUser.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\favicon.ico",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\favicon.ico",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",
@@ -454,10 +454,10 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\js\\dominus.min.js",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\js\\dominus.min.js",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "js/dominus.min.js",
       "AssetKind": "All",
@@ -473,10 +473,10 @@
       "OriginalItemSpec": "wwwroot\\js\\dominus.min.js"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\js\\popper.min.js",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\js\\popper.min.js",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "js/popper.min.js",
       "AssetKind": "All",
@@ -492,10 +492,10 @@
       "OriginalItemSpec": "wwwroot\\js\\popper.min.js"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\js\\site.js",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\js\\site.js",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "js/site.js",
       "AssetKind": "All",
@@ -511,10 +511,10 @@
       "OriginalItemSpec": "wwwroot\\js\\site.js"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css",
       "AssetKind": "All",
@@ -530,10 +530,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css.map",
       "AssetKind": "All",
@@ -549,10 +549,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css",
       "AssetKind": "All",
@@ -568,10 +568,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -587,10 +587,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css",
       "AssetKind": "All",
@@ -606,10 +606,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css.map",
       "AssetKind": "All",
@@ -625,10 +625,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css",
       "AssetKind": "All",
@@ -644,10 +644,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
       "AssetKind": "All",
@@ -663,10 +663,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css",
       "AssetKind": "All",
@@ -682,10 +682,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css.map",
       "AssetKind": "All",
@@ -701,10 +701,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css",
       "AssetKind": "All",
@@ -720,10 +720,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
       "AssetKind": "All",
@@ -739,10 +739,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
       "AssetKind": "All",
@@ -758,10 +758,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
       "AssetKind": "All",
@@ -777,10 +777,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
       "AssetKind": "All",
@@ -796,10 +796,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
       "AssetKind": "All",
@@ -815,10 +815,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css",
       "AssetKind": "All",
@@ -834,10 +834,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css.map",
       "AssetKind": "All",
@@ -853,10 +853,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css",
       "AssetKind": "All",
@@ -872,10 +872,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
       "AssetKind": "All",
@@ -891,10 +891,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
       "AssetKind": "All",
@@ -910,10 +910,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
       "AssetKind": "All",
@@ -929,10 +929,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
       "AssetKind": "All",
@@ -948,10 +948,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
       "AssetKind": "All",
@@ -967,10 +967,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css",
       "AssetKind": "All",
@@ -986,10 +986,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css.map",
       "AssetKind": "All",
@@ -1005,10 +1005,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css",
       "AssetKind": "All",
@@ -1024,10 +1024,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
       "AssetKind": "All",
@@ -1043,10 +1043,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
       "AssetKind": "All",
@@ -1062,10 +1062,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
       "AssetKind": "All",
@@ -1081,10 +1081,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
       "AssetKind": "All",
@@ -1100,10 +1100,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
       "AssetKind": "All",
@@ -1119,10 +1119,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js",
       "AssetKind": "All",
@@ -1138,10 +1138,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js.map",
       "AssetKind": "All",
@@ -1157,10 +1157,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js",
       "AssetKind": "All",
@@ -1176,10 +1176,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
       "AssetKind": "All",
@@ -1195,10 +1195,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js",
       "AssetKind": "All",
@@ -1214,10 +1214,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js.map",
       "AssetKind": "All",
@@ -1233,10 +1233,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js",
       "AssetKind": "All",
@@ -1252,10 +1252,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
       "AssetKind": "All",
@@ -1271,10 +1271,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js",
       "AssetKind": "All",
@@ -1290,10 +1290,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js.map",
       "AssetKind": "All",
@@ -1309,10 +1309,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js",
       "AssetKind": "All",
@@ -1328,10 +1328,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js.map",
       "AssetKind": "All",
@@ -1347,10 +1347,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\bootstrap\\LICENSE",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/bootstrap/LICENSE",
       "AssetKind": "All",
@@ -1366,10 +1366,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\LICENSE"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/jquery/dist/jquery.js",
       "AssetKind": "All",
@@ -1385,10 +1385,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/jquery/dist/jquery.min.js",
       "AssetKind": "All",
@@ -1404,10 +1404,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/jquery/dist/jquery.min.map",
       "AssetKind": "All",
@@ -1423,10 +1423,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/jquery/LICENSE.txt",
       "AssetKind": "All",
@@ -1442,10 +1442,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.js",
       "AssetKind": "All",
@@ -1461,10 +1461,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.min.js",
       "AssetKind": "All",
@@ -1480,10 +1480,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.js",
       "AssetKind": "All",
@@ -1499,10 +1499,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.min.js",
       "AssetKind": "All",
@@ -1518,10 +1518,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/jquery-validation/LICENSE.md",
       "AssetKind": "All",
@@ -1537,10 +1537,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "AssetKind": "All",
@@ -1556,10 +1556,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       "AssetKind": "All",
@@ -1575,10 +1575,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "lib/jquery-validation-unobtrusive/LICENSE.txt",
       "AssetKind": "All",
@@ -1594,10 +1594,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\Banner.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\Banner.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "Picture/Banner.png",
       "AssetKind": "All",
@@ -1613,10 +1613,10 @@
       "OriginalItemSpec": "wwwroot\\Picture\\Banner.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\Customization.jpg",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\Customization.jpg",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "Picture/Customization.jpg",
       "AssetKind": "All",
@@ -1632,10 +1632,10 @@
       "OriginalItemSpec": "wwwroot\\Picture\\Customization.jpg"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\DFL.jpg",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\DFL.jpg",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "Picture/DFL.jpg",
       "AssetKind": "All",
@@ -1651,10 +1651,10 @@
       "OriginalItemSpec": "wwwroot\\Picture\\DFL.jpg"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\DMS.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\DMS.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "Picture/DMS.png",
       "AssetKind": "All",
@@ -1670,10 +1670,10 @@
       "OriginalItemSpec": "wwwroot\\Picture\\DMS.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\Eticket.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\Eticket.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "Picture/Eticket.png",
       "AssetKind": "All",
@@ -1689,10 +1689,10 @@
       "OriginalItemSpec": "wwwroot\\Picture\\Eticket.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\Kubera.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\Kubera.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "Picture/Kubera.png",
       "AssetKind": "All",
@@ -1708,10 +1708,10 @@
       "OriginalItemSpec": "wwwroot\\Picture\\Kubera.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\Pic_16_05_2025_01_47_59_.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\Pic_16_05_2025_01_47_59_.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "Picture/Pic_16_05_2025_01_47_59_.png",
       "AssetKind": "All",
@@ -1727,10 +1727,10 @@
       "OriginalItemSpec": "wwwroot\\Picture\\Pic_16_05_2025_01_47_59_.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\SAP-Business-One.jpg",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\Picture\\SAP-Business-One.jpg",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "Picture/SAP-Business-One.jpg",
       "AssetKind": "All",
@@ -1746,10 +1746,10 @@
       "OriginalItemSpec": "wwwroot\\Picture\\SAP-Business-One.jpg"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_1.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_1.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "qrcodes/session_1.png",
       "AssetKind": "All",
@@ -1765,10 +1765,10 @@
       "OriginalItemSpec": "wwwroot\\qrcodes\\session_1.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_11.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_11.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "qrcodes/session_11.png",
       "AssetKind": "All",
@@ -1784,10 +1784,10 @@
       "OriginalItemSpec": "wwwroot\\qrcodes\\session_11.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_13.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_13.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "qrcodes/session_13.png",
       "AssetKind": "All",
@@ -1803,10 +1803,10 @@
       "OriginalItemSpec": "wwwroot\\qrcodes\\session_13.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_14.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_14.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "qrcodes/session_14.png",
       "AssetKind": "All",
@@ -1822,10 +1822,10 @@
       "OriginalItemSpec": "wwwroot\\qrcodes\\session_14.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_15.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_15.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "qrcodes/session_15.png",
       "AssetKind": "All",
@@ -1841,10 +1841,10 @@
       "OriginalItemSpec": "wwwroot\\qrcodes\\session_15.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_16.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_16.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "qrcodes/session_16.png",
       "AssetKind": "All",
@@ -1860,10 +1860,10 @@
       "OriginalItemSpec": "wwwroot\\qrcodes\\session_16.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_17.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_17.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "qrcodes/session_17.png",
       "AssetKind": "All",
@@ -1879,10 +1879,10 @@
       "OriginalItemSpec": "wwwroot\\qrcodes\\session_17.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_18.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_18.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "qrcodes/session_18.png",
       "AssetKind": "All",
@@ -1898,10 +1898,10 @@
       "OriginalItemSpec": "wwwroot\\qrcodes\\session_18.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_19.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_19.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "qrcodes/session_19.png",
       "AssetKind": "All",
@@ -1917,10 +1917,10 @@
       "OriginalItemSpec": "wwwroot\\qrcodes\\session_19.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_2.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_2.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "qrcodes/session_2.png",
       "AssetKind": "All",
@@ -1936,10 +1936,10 @@
       "OriginalItemSpec": "wwwroot\\qrcodes\\session_2.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_20.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_20.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "qrcodes/session_20.png",
       "AssetKind": "All",
@@ -1955,10 +1955,10 @@
       "OriginalItemSpec": "wwwroot\\qrcodes\\session_20.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_21.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_21.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "qrcodes/session_21.png",
       "AssetKind": "All",
@@ -1974,10 +1974,10 @@
       "OriginalItemSpec": "wwwroot\\qrcodes\\session_21.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_22.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_22.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "qrcodes/session_22.png",
       "AssetKind": "All",
@@ -1993,10 +1993,10 @@
       "OriginalItemSpec": "wwwroot\\qrcodes\\session_22.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_23.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_23.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "qrcodes/session_23.png",
       "AssetKind": "All",
@@ -2012,10 +2012,10 @@
       "OriginalItemSpec": "wwwroot\\qrcodes\\session_23.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_24.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_24.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "qrcodes/session_24.png",
       "AssetKind": "All",
@@ -2031,10 +2031,10 @@
       "OriginalItemSpec": "wwwroot\\qrcodes\\session_24.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_5.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\qrcodes\\session_5.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "qrcodes/session_5.png",
       "AssetKind": "All",
@@ -2050,10 +2050,10 @@
       "OriginalItemSpec": "wwwroot\\qrcodes\\session_5.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\UploadedFiles\\1168_23_10_2025_17_35_51_3.jpg",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\UploadedFiles\\1168_23_10_2025_17_35_51_3.jpg",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "UploadedFiles/1168_23_10_2025_17_35_51_3.jpg",
       "AssetKind": "All",
@@ -2069,10 +2069,10 @@
       "OriginalItemSpec": "wwwroot\\UploadedFiles\\1168_23_10_2025_17_35_51_3.jpg"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\UploadedFiles\\18_11_2025_11_29_49_logo-4x3_5-removebg.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\UploadedFiles\\18_11_2025_11_29_49_logo-4x3_5-removebg.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "UploadedFiles/18_11_2025_11_29_49_logo-4x3_5-removebg.png",
       "AssetKind": "All",
@@ -2088,10 +2088,29 @@
       "OriginalItemSpec": "wwwroot\\UploadedFiles\\18_11_2025_11_29_49_logo-4x3_5-removebg.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_1_20250825165654.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\UploadedFiles\\3_28_11_2025_14_25_38_2024_Dec_03_10_46_25_Location__3_.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "BasePath": "_content/ModernUIEticket",
+      "RelativePath": "UploadedFiles/3_28_11_2025_14_25_38_2024_Dec_03_10_46_25_Location__3_.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UploadedFiles\\3_28_11_2025_14_25_38_2024_Dec_03_10_46_25_Location__3_.png"
+    },
+    {
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_1_20250825165654.png",
+      "SourceId": "ModernUIEticket",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "uploads/photos/photo_1_20250825165654.png",
       "AssetKind": "All",
@@ -2107,10 +2126,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\photos\\photo_1_20250825165654.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_13_20250825193020.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_13_20250825193020.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "uploads/photos/photo_13_20250825193020.png",
       "AssetKind": "All",
@@ -2126,10 +2145,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\photos\\photo_13_20250825193020.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_13_20250825193049.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_13_20250825193049.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "uploads/photos/photo_13_20250825193049.png",
       "AssetKind": "All",
@@ -2145,10 +2164,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\photos\\photo_13_20250825193049.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_14_20250826183116.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_14_20250826183116.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "uploads/photos/photo_14_20250826183116.png",
       "AssetKind": "All",
@@ -2164,10 +2183,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\photos\\photo_14_20250826183116.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_14_20250826183159.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_14_20250826183159.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "uploads/photos/photo_14_20250826183159.png",
       "AssetKind": "All",
@@ -2183,10 +2202,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\photos\\photo_14_20250826183159.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_2_20250825165323.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_2_20250825165323.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "uploads/photos/photo_2_20250825165323.png",
       "AssetKind": "All",
@@ -2202,10 +2221,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\photos\\photo_2_20250825165323.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_2_20250825170054.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_2_20250825170054.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "uploads/photos/photo_2_20250825170054.png",
       "AssetKind": "All",
@@ -2221,10 +2240,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\photos\\photo_2_20250825170054.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_2_20250825170513.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_2_20250825170513.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "uploads/photos/photo_2_20250825170513.png",
       "AssetKind": "All",
@@ -2240,10 +2259,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\photos\\photo_2_20250825170513.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_2_20250825171155.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_2_20250825171155.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "uploads/photos/photo_2_20250825171155.png",
       "AssetKind": "All",
@@ -2259,10 +2278,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\photos\\photo_2_20250825171155.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_22_20250827182915.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_22_20250827182915.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "uploads/photos/photo_22_20250827182915.png",
       "AssetKind": "All",
@@ -2278,10 +2297,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\photos\\photo_22_20250827182915.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_23_20250827193031.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_23_20250827193031.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "uploads/photos/photo_23_20250827193031.png",
       "AssetKind": "All",
@@ -2297,10 +2316,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\photos\\photo_23_20250827193031.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_23_20250827193547.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_23_20250827193547.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "uploads/photos/photo_23_20250827193547.png",
       "AssetKind": "All",
@@ -2316,10 +2335,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\photos\\photo_23_20250827193547.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_24_20250828132220.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_24_20250828132220.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "uploads/photos/photo_24_20250828132220.png",
       "AssetKind": "All",
@@ -2335,10 +2354,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\photos\\photo_24_20250828132220.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_9_20250915133315.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_9_20250915133315.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "uploads/photos/photo_9_20250915133315.png",
       "AssetKind": "All",
@@ -2354,10 +2373,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\photos\\photo_9_20250915133315.png"
     },
     {
-      "Identity": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_9_20250915135719.png",
+      "Identity": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\uploads\\photos\\photo_9_20250915135719.png",
       "SourceId": "ModernUIEticket",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
+      "ContentRoot": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\wwwroot\\",
       "BasePath": "_content/ModernUIEticket",
       "RelativePath": "uploads/photos/photo_9_20250915135719.png",
       "AssetKind": "All",

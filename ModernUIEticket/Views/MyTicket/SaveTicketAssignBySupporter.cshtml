@@ -1,0 +1,400 @@
+﻿@model ETicketNewUI.Models.TicketTrackingDto
+@{
+    ViewData["Title"] = "Ticket Info";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+<link href="~/css/forticketassign.css" rel="stylesheet" />
+
+<div class="container mt-5" style="min-width:100% !important">
+    <div class="row">
+        <!-- Left Column: Ticket Info -->
+        <div class="col-md-5">
+            <div class="ticket-card bg-light p-3">
+                <h5 class="mb-3"><i class="bi bi-ticket-fill me-2"></i> Ticket Info</h5>
+                <dl class="row g-2 ticket-info">
+                    <dt class="col-sm-4"><i class="bi bi-hash me-1"></i> Ref ID</dt>
+                    <dd class="col-sm-8 text-primary">@Model.RefID</dd>
+
+                    <dt class="col-sm-4"><i class="bi bi-card-text me-1"></i> Title</dt>
+                    <dd class="col-sm-8 text-primary">@Model.Title</dd>
+
+                    <dt class="col-sm-4"><i class="bi bi-file-text me-1"></i> Description</dt>
+                    <dd class="col-sm-8 text-primary">@Model.Description</dd>
+
+                    <dt class="col-sm-4"><i class="bi bi-person-fill me-1"></i> Created By</dt>
+                    <dd class="col-sm-8 text-primary">@Model.CreateByName</dd>
+
+                    <dt class="col-sm-4"><i class="bi bi-geo-alt me-1"></i> Branch</dt>
+                    <dd class="col-sm-8 text-primary">@Model.Branch</dd>
+
+                    <dt class="col-sm-4"><i class="bi bi-diagram-3 me-1"></i> Module</dt>
+                    <dd class="col-sm-8 text-primary">@Model.Module</dd>
+
+                    <dt class="col-sm-4"><i class="bi bi-flag me-1"></i> Priority</dt>
+                    <dd class="col-sm-8 text-primary">@Model.Priority</dd>
+
+                    <dt class="col-sm-4"><i class="bi bi-exclamation-circle me-1"></i> Problem Type</dt>
+                    <dd class="col-sm-8 text-primary">@Model.ProblemType</dd>
+
+                    <dt class="col-sm-4"><i class="bi bi-exclamation-triangle me-1"></i> Sub Problem Type</dt>
+                    <dd class="col-sm-8 text-primary">@Model.SubProblemType</dd>
+                    <dt class="col-sm-4"><i class="bi bi-clipboard-check me-1"></i> Status</dt>
+                    <dd class="col-sm-8 text-primary">
+                        <span class="ticket-status" style="background-color:@(
+                            Model.Status == "Request" ? "blue" :
+                            Model.Status == "Reject" ? "red" :
+                            Model.Status == "Pending" ? "orange" :
+                            Model.Status == "Progress" ? "lime" :
+                            Model.Status == "Done" ? "green" :
+                            Model.Status == "Feedback" ? "purple" :
+                            Model.Status == "Update" ? "teal" :
+                            Model.Status == "Closed" ? "gray" :
+                            Model.Status == "Cancel" ? "darkred" :
+                            "black"
+                        );">@Model.Status</span>
+                    </dd>
+                    <dt class="col-sm-4"><i class="bi bi-paperclip me-1"></i> Attachment</dt>
+                    <dd class="col-sm-8 text-primary">
+                        @if (!string.IsNullOrEmpty(Model.Attachment))
+                        {
+                            var ext = System.IO.Path.GetExtension(Model.Attachment).ToLower();
+                            var fileName = System.IO.Path.GetFileName(Model.Attachment);
+
+                            if (ext == ".jpg" || ext == ".png" || ext == ".jpeg" || ext == ".gif")
+                            {
+                                <img src="@Url.Content(Model.Attachment)" alt="Attachment"
+                                     style="max-width:100%; height:auto; border-radius:0.25rem; margin-bottom:0.5rem;" />
+
+                                <!-- Download button for image -->
+                                <a href="@Url.Content(Model.Attachment)" target="_blank" download class="btn btn-outline-secondary btn-sm">
+                                    <i class="bi bi-download me-1"></i> Download (@fileName)
+                                </a>
+                            }
+                            else
+                            {
+                                <!-- Download button for non-image -->
+                                <a href="@Url.Content(Model.Attachment)" target="_blank" download class="btn btn-outline-secondary btn-sm">
+                                    <i class="bi bi-download me-1"></i> Download (@fileName)
+                                </a>
+                            }
+                        }
+                        else
+                        {
+                            <span class="text-muted">No attachment</span>
+                        }
+                    </dd>
+
+
+                </dl>
+            </div>
+        </div>
+
+
+
+        <!-- Right Column: Assignment -->
+        <div class="col-md-7">
+            <div class="assign-card bg-white p-3 rounded shadow-sm">
+                <h5 class="mb-3"><i class="bi bi-person-plus-fill me-2"></i> Assign Ticket</h5>
+
+                <!-- Staff Selection -->
+                <div class="mb-3">
+                    <label class="form-label">Select Staff</label>
+                    <select class="form-select form-select-sm" id="staffSelect">
+                        <option value="">-- Choose Staff --</option>
+                        @foreach (var staff in (IEnumerable<ETicketNewUI.Models.StaffListAssign>)ViewBag.StaffList)
+                        {
+                            <option value="@staff.StaffID" data-name="@staff.FullStaffName">@staff.FullStaffName</option>
+                        }
+                    </select>
+                </div>
+
+                <!-- Dynamic Assignment Table -->
+                <table class="table table-bordered table-sm mt-2" id="assignTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width:2%">ID</th>
+                            <th style="width:20%">Staff Name</th>
+                            <th style="width:22%">Supporter</th>
+                            <th style="width:13%">Issue Level</th>
+                            <th style="width:25%">Deadline</th>
+                            <th style="width:13%">Remark</th>
+                            <th style="width:5%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows will be dynamically added here -->
+                    </tbody>
+                </table>
+
+                <!-- Remark -->
+                <div class="mb-3">
+                    <label class="form-label">Remark</label>
+                    <textarea class="form-control form-control-sm" id="remarkInput" placeholder="Enter remark" rows="2" style="font-size:13px !important;"></textarea>
+                </div>
+
+
+
+                <div class="row mt-2">
+                    <!-- Assign Button -->
+                    <div class="col-3">
+                        <button type="button" class="btn btn-primary w-100"
+                                onclick="submitAssignment(@Model.TicketId)">
+                            <i class="bi bi-check-circle me-1"></i> Assign
+                        </button>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn w-100"
+                                style="background-color: #dc3545; color: white; border: none;"
+                                onclick="rejectSession(@Model.TicketId)">
+                            <i class="bi bi-x-circle me-1"></i> Reject
+                        </button>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+
+
+        function rejectSession(ticketId) {
+            Swal.fire({
+                title: 'Reject Ticket',
+                input: 'textarea',
+                inputLabel: 'Reason for rejection',
+                inputPlaceholder: 'Enter your reason here...',
+                inputAttributes: {
+                    'aria-label': 'Reason for rejection',
+                    'style': 'font-size:13px;'
+                },
+                showCancelButton: true,
+                confirmButtonText: 'Reject',
+                confirmButtonColor: '#dc3545',
+                cancelButtonText: 'Cancel',
+                preConfirm: (reason) => {
+                    if (!reason) {
+                        Swal.showValidationMessage('Reason is required');
+                    }
+                    return reason;
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const reason = result.value;
+
+                    // Use URLSearchParams to send parameters as form data
+                    const formData = new URLSearchParams();
+                    formData.append('TicketId', ticketId);
+                    formData.append('Reason', reason);
+
+                    fetch('@Url.Action("RejectTicket", "MyTicket")', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: formData.toString()
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.success) {
+                                Swal.fire({
+                                    title: 'Rejected',
+                                    text: data.message,
+                                    icon: 'success',
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                    didOpen: () => Swal.showLoading()
+                                }).then(() => {
+                                    window.location.href = '@Url.Action("Index", "AsignTicket")';
+                                });
+                            } else {
+                                Swal.fire('Error', data.message, 'error');
+                            }
+                        })
+                        .catch(() => Swal.fire('Error', 'Unexpected error occurred.', 'error'));
+                }
+            });
+        }
+
+
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const staffSelect = document.getElementById('staffSelect');
+            const assignTableBody = document.querySelector('#assignTable tbody');
+            let selectedStaffIds = [];
+
+            staffSelect.addEventListener('change', function () {
+                const staffId = this.value;
+                const staffName = this.selectedOptions[0]?.dataset.name;
+                if (!staffId || selectedStaffIds.includes(staffId)) return;
+
+                selectedStaffIds.push(staffId);
+
+                const row = document.createElement('tr');
+                row.dataset.staffId = staffId;
+
+                // Supporter dropdown
+                let supporterHtml = `<select class="form-select form-select-sm supporterSelect">
+                        <option value="">-- Choose Supporter --</option>
+                        @foreach (var sup in (IEnumerable<ETicketNewUI.Models.StaffListAssign>)ViewBag.SupporterList)
+                        {
+                            <text><option value="@sup.StaffID">@sup.FullStaffName</option></text>
+                        }
+                    </select>`;
+
+                // Issue level dropdown
+                const issueLevelHtml = `<select class="form-select form-select-sm issueLevelSelect">
+                        <option value="Easy">Easy</option>
+                        <option value="Medium Easy">Medium Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Medium Hard">Medium Hard</option>
+                        <option value="Hard">Hard</option>
+                    </select>`;
+
+                // unique id for picker
+                const pickerId = `deadlinePicker_${staffId}_${Date.now()}`;
+                row.classList.add('table-sm-font');
+
+                row.innerHTML = `
+                    <td style="text-align:center !important">${staffId}</td>
+                    <td>${staffName}</td>
+                    <td>${supporterHtml}</td> <!-- if this contains <select>, it will now be 13px -->
+                    <td>${issueLevelHtml}</td>
+                    <td>
+                        <div class="input-group input-group-sm deadlinePicker" id="${pickerId}">
+                            <input type="text" class="form-control form-control-sm deadlineInput" data-td-target="#${pickerId}" />
+                            <span class="input-group-text" data-td-toggle="datetimepicker" data-td-target="#${pickerId}">
+                                <i class="bi bi-calendar-date"></i>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <textarea class="form-control form-control-sm remarkInput" placeholder="Remark" rows="1" style="font-size:13px !important;"></textarea>
+                    </td>
+                    <td><button type="button" class="btn btn-sm btn-danger removeRowBtn"><i class="bi bi-x-circle"></i></button></td>
+                `;
+
+
+                assignTableBody.appendChild(row);
+
+                // Initialize TempusDominus for this row only
+                new tempusDominus.TempusDominus(document.getElementById(pickerId), {
+                    display: {
+                        components: {
+                            calendar: true,
+                            clock: true
+                        }
+                    },
+                    useCurrent: true,
+                    localization: {
+                        format: 'dd-MMM-yyyy HH:mm'
+                    }
+                });
+
+                // Remove row
+                row.querySelector('.removeRowBtn').addEventListener('click', function () {
+                    row.remove();
+                    selectedStaffIds = selectedStaffIds.filter(id => id !== staffId);
+                });
+
+                this.value = '';
+            });
+
+        });
+
+        function submitAssignment(ticketId) {
+            const rows = Array.from(document.querySelectorAll('#assignTable tbody tr'));
+            if (rows.length === 0) {
+                Swal.fire('Warning', 'Please add at least one staff.', 'warning');
+                return;
+            }
+
+            const rowList = rows.map((r, index) => ({
+                Id: 1, // new row
+                LineNum: index + 1,
+                StaffId: parseInt(r.dataset.staffId),
+                Supporter: r.querySelector('.supporterSelect').value ? parseInt(r.querySelector('.supporterSelect').value) : null,
+                TransferTo: null,
+                AssignDate: new Date().toISOString(),
+                DeadlineDate: r.querySelector('.deadlineInput').value ? new Date(r.querySelector('.deadlineInput').value).toISOString() : null,
+                TransferDate: null,
+                Status: 'Assigned',
+                Remark: r.querySelector('.remarkInput').value,
+                ProgessStatus: null,
+                IssueLevel: r.querySelector('.issueLevelSelect').value
+            }));
+
+            const payload = {
+                Mode: 'Add',
+                SecretCode: 'Tga5vz5oWiClgzayaLMZAx7KoTGLSJGrCQkY01gNb0c=', // your secret code
+                Id: 1,
+                TicketRef: '@Model.RefID',
+                CreatedDate: new Date().toISOString(),
+                UpdatedDate: new Date().toISOString(),
+                CreateBy: '@User.Identity.Name',
+                UpdateBy: '@User.Identity.Name',
+                Status: 'Request',
+                Progress: 'Pending',
+                Remark: document.getElementById('remarkInput').value,
+                RowList: rowList
+            };
+
+
+
+            fetch('@Url.Action("SaveTicketAssignBySupporter", "MyTicket")', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                },
+                body: JSON.stringify(payload)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            title: 'Success',
+                            text: data.message,
+                            icon: 'success',
+                            timer: 3000, // 3 seconds
+                            timerProgressBar: true,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        }).then(() => {
+                            // Redirect after 15 seconds
+                            window.location.href = '@Url.Action("Index", "AsignTicket")';
+                        });
+
+                        document.querySelector('#assignTable tbody').innerHTML = '';
+                        selectedStaffIds = [];
+                    } else {
+                        Swal.fire('Error', data.message, 'error');
+                    }
+                })
+                .catch(err => Swal.fire('Error', 'Unexpected error occurred.', 'error'));
+
+        }
+
+
+        new tempusDominus.TempusDominus(document.querySelector('.deadlinePicker'), {
+            display: {
+                components: {
+                    calendar: true,
+                    clock: true
+                }
+            },
+            useCurrent: true,
+            localization: {
+                format: 'dd-MMM-yyyy HH:mm'
+            }
+        });
+    </script>
+}

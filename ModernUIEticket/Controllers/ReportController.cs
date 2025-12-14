@@ -424,5 +424,124 @@ public class ReportController : Controller
 
     #endregion
 
+    public IActionResult ExportProjectTracking(
+    string reportName,
+    string fromDate,
+    string toDate,
+    string project,
+    string status,
+    string projectID,
+    string format = "PDF",
+    bool inline = true)
+    {
+        // 1️⃣ Get data from database
+        var data = GetProjectTrackingReportData(new ProjectTrackingReportParam
+        {
+            FromDate = fromDate,
+            ToDate = toDate,
+            Project = project,
+            Status = status,
+            ProjectID = projectID
+        });
 
+        // 2️⃣ Generate report bytes
+        var reportBytes = GenerateProjectTrackingReport(reportName, data, format);
+
+        // 3️⃣ Determine MIME type & file extension
+        string mimeType = format switch
+        {
+            "PDF" => "application/pdf",
+            "WORDOPENXML" => "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "EXCELOPENXML" => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            _ => "application/pdf"
+        };
+
+        string fileExt = format switch
+        {
+            "PDF" => "pdf",
+            "WORDOPENXML" => "docx",
+            "EXCELOPENXML" => "xlsx",
+            _ => "pdf"
+        };
+
+        string fileName = $"{reportName}.{fileExt}";
+
+        // 4️⃣ Content-Disposition header
+        Response.Headers["Content-Disposition"] = (format == "PDF" && inline)
+            ? $"inline; filename=\"{fileName}\""
+            : $"attachment; filename=\"{fileName}\"";
+
+        // 5️⃣ Return file
+        return File(reportBytes, mimeType);
+    }
+
+    private List<ProjectTrackingReport> GetProjectTrackingReportData(ProjectTrackingReportParam param)
+    {
+        var list = new List<ProjectTrackingReport>();
+
+        using var conn = new SqlConnection(_connectionString);
+        conn.Open();
+
+        using var cmd = new SqlCommand("ICC_REPORT_ProjectTracking", conn)
+        {
+            CommandType = System.Data.CommandType.StoredProcedure
+        };
+
+        cmd.Parameters.AddWithValue("@FromDate", param.FromDate);
+        cmd.Parameters.AddWithValue("@ToDate", param.ToDate);
+        cmd.Parameters.AddWithValue("@Project", param.Project ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@Status", param.Status ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@ProjectID", param.ProjectID ?? (object)DBNull.Value);
+
+        using var reader = cmd.ExecuteReader();
+        while (reader.Read())
+        {
+            list.Add(new ProjectTrackingReport
+            {
+                ID = reader["ID"] != DBNull.Value ? Convert.ToInt32(reader["ID"]) : 0,
+                ProjectCode = reader["ProjectCode"] as string,
+                RemarkHeader = reader["RemarkHeader"] as string,
+                ProjectCreateDate = reader["ProjectCreateDate"] as string,
+                StartDate = reader["StartDate"] as string,
+                EndDate = reader["EndDate"] as string,
+                ProjectManager = reader["ProjectManager"] as string,
+                ProjectTeam = reader["ProjectTeam"] as string,
+                ProjectStatus = reader["ProjectStatus"] as string,
+                LineNum = reader["LineNum"] != DBNull.Value ? Convert.ToInt32(reader["LineNum"]) : 0,
+                StageNo = reader["StageNo"] as string,
+                HandleBy = reader["HandleBy"] as string,
+                StaffName = reader["StaffName"] as string,
+                FromDate = reader["FromDate"] as string,
+                ToDate = reader["ToDate"] as string,
+                Remark = reader["Remark"] as string,
+                RowStatus = reader["RowStatus"] as string,
+                PFromDate = reader["PFromDate"] as string,
+                PToDate = reader["PToDate"] as string,
+                PProject = reader["PProject"] as string,
+                PStatus = reader["PStatus"] as string
+            });
+        }
+
+        return list;
+    }
+
+    private byte[] GenerateProjectTrackingReport(string reportName, List<ProjectTrackingReport> data, string format)
+    {
+        using var report = new LocalReport();
+        report.ReportPath = Path.Combine(Directory.GetCurrentDirectory(), "Printing", $"{reportName}.rdlc");
+        report.DataSources.Add(new ReportDataSource("DataSet1", data));
+
+        string deviceInfo = $@"
+        <DeviceInfo>
+            <OutputFormat>{format}</OutputFormat>
+            <PageWidth>11.69in</PageWidth>    <!-- A4 Landscape -->
+            <PageHeight>8.27in</PageHeight>
+            <MarginTop>0.5in</MarginTop>
+            <MarginLeft>0.5in</MarginLeft>
+            <MarginRight>0.5in</MarginRight>
+            <MarginBottom>0.5in</MarginBottom>
+        </DeviceInfo>";
+
+        return report.Render(format, deviceInfo);
+    }
 }

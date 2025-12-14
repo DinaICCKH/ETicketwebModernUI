@@ -1,0 +1,116 @@
+﻿/* Keep table compact on smaller screens */
+@media (max-width: 992px) {
+    #sessionTable th,
+    #sessionTable td {
+        font-size: 0.75rem !important;
+        padding: 0.4rem !important;
+        white-space: nowrap;
+    }
+
+        #sessionTable td .badge {
+            font-size: 0.65rem !important;
+            padding: 0.25em 0.4em !important;
+        }
+}
+
+/* Mobile card layout with label/value side by side */
+@media (max-width: 768px) {
+    #sessionTable thead {
+        display: none; /* hide headers */
+    }
+
+    #sessionTable,
+    #sessionTable tbody,
+    #sessionTable tr,
+    #sessionTable td {
+        display: block;
+        width: 100%;
+    }
+
+        #sessionTable tr {
+            margin-bottom: 1rem;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        #sessionTable td {
+            display: flex;
+            padding: 0.3rem 0.5rem;
+            border: none;
+            border-bottom: 1px dashed #eee;
+            font-size: 0.8rem;
+        }
+
+            #sessionTable td:last-child {
+                border-bottom: none;
+            }
+
+            #sessionTable td:before {
+                content: attr(data-label) ":";
+                flex: 0 0 20%; /* label width ~20% */
+                font-weight: 600;
+                color: #555;
+                text-align: left;
+                padding-right: 0.5rem;
+            }
+
+            #sessionTable td span.value {
+                flex: 1; /* value width ~80% */
+                text-align: left;
+            }
+
+            /* Inject header labels via nth-child (fallback) for mobile */
+            #sessionTable td:nth-child(1):before {
+                content: "No:";
+            }
+
+            #sessionTable td:nth-child(2):before {
+                content: "As.Ref:";
+            }
+
+            #sessionTable td:nth-child(3):before {
+                content: "Ticket:";
+            }
+
+            #sessionTable td:nth-child(4):before {
+                content: "Branch:";
+            }
+
+            #sessionTable td:nth-child(5):before {
+                content: "Title:";
+            }
+
+            #sessionTable td:nth-child(6):before {
+                content: "Assign Comment:";
+            }
+
+            #sessionTable td:nth-child(7):before {
+                content: "Priority:";
+            }
+
+            #sessionTable td:nth-child(8):before {
+                content: "AssignDate:";
+            }
+
+            #sessionTable td:nth-child(9):before {
+                content: "DeadLine:";
+            }
+
+            #sessionTable td:nth-child(10):before {
+                content: "Request By:";
+            }
+
+            #sessionTable td:nth-child(11):before {
+                content: "Assign By:";
+            }
+
+            #sessionTable td:nth-child(12):before {
+                content: "Action:";
+            }
+
+
+}
+

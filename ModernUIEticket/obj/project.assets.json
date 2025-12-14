@@ -4871,11 +4871,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\ModernUIEticket.csproj",
+      "projectUniqueName": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\ModernUIEticket.csproj",
       "projectName": "ModernUIEticket",
-      "projectPath": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\ModernUIEticket.csproj",
+      "projectPath": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\ModernUIEticket.csproj",
       "packagesPath": "C:\\Users\\VONG DINA\\.nuget\\packages\\",
-      "outputPath": "D:\\ICC Project\\OneDrive - ICCKH\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\obj\\",
+      "outputPath": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

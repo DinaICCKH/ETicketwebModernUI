@@ -492,6 +492,167 @@ namespace ModernUIEticket.Controllers
 
 
 
+        public async Task<IActionResult> AcceptTaskSupporter(
+          string status = "Request",
+          DateTime? dateFrom = null,
+          DateTime? dateTo = null,
+          string priority = "ALL",
+          string branchCompany = "ALL",
+          string createBy = "ALL")
+        {
+            var token = GetTokenData();
+            if (token == null) return RedirectToAction("Login", "Logout");
+
+            // ------------------- 1) Ticket Tracking List -------------------
+            var tickets = await _context.ICC_GET_TICKET_AssignListV2Results
+                .FromSqlInterpolated($@"
+            EXEC ICC_GET_TICKET_AssignListV2
+                @User = {token.UserId},
+                @Status = {status},
+                @DateFrom = {dateFrom},
+                @DateTo = {dateTo},
+                @Priority = {priority},
+                @BranchCompany = {branchCompany},
+                @CreateBy = {createBy}")
+                .ToListAsync();
+
+            // ------------------- 2) Report Tracking Parameters -------------------
+            // Branch list
+            var branchList = await _context.ReportTrackingResults
+                .FromSqlInterpolated($"EXEC ICC_ReportTracking_ParameterV2 @Type = {"Branch"}")
+                .ToListAsync();
+
+            // CreateBy list
+            var createByList = await _context.ReportTrackingResults
+                .FromSqlInterpolated($"EXEC ICC_ReportTracking_ParameterV2 @Type = {"CreateBy"}")
+                .ToListAsync();
+
+            // ------------------- 3) Pass to View -------------------
+            ViewBag.BranchList = branchList;
+            ViewBag.CreateByList = createByList;
+
+            return View(tickets);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> SaveTicketAssignBySupporter(int id)
+        {
+            var token = GetTokenData();
+            if (token == null) return RedirectToAction("Login", "Logout");
+
+            // Load ticket info
+            var ticketResult = await _context.ICC_GET_TICKET_TrackingListV2Results
+             .FromSqlInterpolated($"EXEC ICC_GET_TICKET_ByIDV2 @ID = {id}")
+             .ToListAsync();
+
+            var ticket = ticketResult.FirstOrDefault();  // take the first item
+
+            if (ticket == null) return NotFound();
+
+            var staffList = await _context.StaffListAssignResult
+              .FromSqlInterpolated($"EXEC ICC_GET_StaffByAssignCompanyV2Supporter @Branch = {ticket.BranchID},@ID={id},@UserID={token.UserId}")
+              .ToListAsync();
+
+ 
+
+            var supporterList = await _context.StaffListAssignResult
+              .FromSqlInterpolated($"EXEC ICC_GET_StaffAllV2")
+              .ToListAsync();
+
+            ViewBag.StaffList = staffList;
+            ViewBag.SupporterList = supporterList;
+            // Pass ticket to the view
+            return View(ticket);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SaveTicketAssignBySupporter([FromBody] TicketAssignHeader model)
+        {
+            var token = GetTokenData();
+            if (token == null)
+                return Json(new { success = false, message = "Unauthorized" });
+
+            model.Mode ??= "Add";
+            model.CreateBy = token.UserId.ToString();
+            model.UpdateBy = token.UserId.ToString();
+            model.CreatedDate ??= DateTime.Now;
+            model.UpdatedDate ??= DateTime.Now;
+            model.Status ??= "A";
+            model.Progress ??= "Assign to Suppporter";
+
+            // Ensure RowList dates
+            if (model.RowList != null)
+            {
+                foreach (var row in model.RowList)
+                {
+                    row.AssignDate ??= DateTime.Now;
+                    row.ProgessStatus = "Start";
+                    row.Status = "A";
+                    // DeadlineDate is nullable; JSON.NET will parse ISO strings automatically
+                }
+            }
+
+            var jsonString = JsonConvert.SerializeObject(model);
+
+            try
+            {
+                var spResults = await _context.Set<SpResult>()
+                    .FromSqlRaw("EXEC dbo.ICC_TaskAssigment @MasterType, @Trantype, @EntryPrimary, @JsonBody",
+                        new SqlParameter("@MasterType", "Task"),
+                        new SqlParameter("@Trantype", model.Mode == "Add" ? "A" : "U"),
+                        new SqlParameter("@EntryPrimary", model.Id.HasValue ? model.Id.Value.ToString() : "0"),
+                        new SqlParameter("@JsonBody", jsonString))
+                    .AsNoTracking()
+                    .ToListAsync();
+
+                var result = spResults.FirstOrDefault();
+                if (result != null && result.Code == 200)
+                    return Json(new { success = true, message = result.Message });
+
+                return Json(new { success = false, message = result?.Message ?? "Error saving assignment." });
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception: " + ex.Message);
+                return Json(new { success = false, message = "Unexpected error occurred while saving assignment." });
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RejectTicket(string TicketId, string Reason)
+        {
+            var token = GetTokenData();
+            if (token == null)
+                return Json(new { success = false, message = "Unauthorized" });
+
+            if (string.IsNullOrWhiteSpace(Reason))
+                return Json(new { success = false, message = "Reason is required" });
+
+            try
+            {
+                var spResults = await _context.Set<SpResult>()
+                    .FromSqlRaw("EXEC dbo.ICC_UPDATE_TICKET_STATUS @User, @EntryPrimary, @Status, @Reason",
+                        new SqlParameter("@User", token.UserId),
+                        new SqlParameter("@EntryPrimary", TicketId),
+                        new SqlParameter("@Status", "Reject"),
+                        new SqlParameter("@Reason", Reason))
+                    .AsNoTracking()
+                    .ToListAsync();
+
+                var result = spResults.FirstOrDefault();
+                if (result != null && result.Code == 200)
+                    return Json(new { success = true, message = result.Message });
+
+                return Json(new { success = false, message = result?.Message ?? "Error rejecting ticket." });
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception: " + ex.Message);
+                return Json(new { success = false, message = "Unexpected error occurred while rejecting ticket." });
+            }
+        }
+
         //API 
 
         [HttpGet("api/MyTicket")]
@@ -566,7 +727,7 @@ namespace ModernUIEticket.Controllers
 
 
         [HttpPost("api/SaveAcceptTicket")]
-        public async Task<IActionResult> SaveAcceptTicket()
+        public async Task<IActionResult> SaveAcceptTicketAPI()
         {
             // ----- Read values from headers -----
             string userId = Request.Headers["UserId"].ToString();

@@ -7,6 +7,51 @@
 <link href="~/css/forticketassign.css" rel="stylesheet" />
 @Html.AntiForgeryToken()
 
+<style>
+    /* Make overall page font smaller */
+    body {
+        font-size: 13px !important;
+    }
+
+    /* Smaller card header */
+    .card h5 {
+        font-size: 13px !important;
+    }
+
+    /* Smaller labels */
+    .form-label-sm,
+    .col-form-label {
+        font-size: 13px !important;
+    }
+
+    /* Smaller selects & inputs */
+    .form-control-sm,
+    .form-select-sm,
+    textarea.form-control-sm {
+        font-size: 13px !important;
+        padding: 2px 4px !important;
+    }
+
+    /* Smaller table text */
+    #stageTable th,
+    #stageTable td {
+        font-size: 13px !important;
+        padding: 2px 4px !important;
+    }
+
+    /* Smaller buttons */
+    .btn-sm {
+        font-size: 11px !important;
+        padding: 2px 6px !important;
+    }
+
+    /* Smaller SweetAlert text */
+    .swal2-popup {
+        font-size: 13px !important;
+    }
+
+</style>
+
 <div class="container mt-4" style="min-width:100% !important">
 
     <!-- Header Section -->
@@ -145,7 +190,7 @@
             ));
 
             const supporterOptions = supporterList.map(s => `<option value="${s.staffID}">${s.fullStaffName}</option>`).join('');
-            const rowStatusOptions = ['Start', 'Processing', 'Pending', 'Reject', 'Hold']
+            const rowStatusOptions = ['Start', 'Processing', 'Pending', 'Reject', 'Hold','Done']    
                 .map(status => `<option value="${status}">${status}</option>`).join('');
 
             const row = `

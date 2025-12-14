@@ -7,6 +7,51 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
 <link href="~/css/forticketassign.css" rel="stylesheet" />
 
+<style>
+    /* Make overall page font smaller */
+    body {
+        font-size: 13px !important;
+    }
+
+    /* Smaller card header */
+    .card h5 {
+        font-size: 13px !important;
+    }
+
+    /* Smaller labels */
+    .form-label-sm,
+    .col-form-label {
+        font-size: 13px !important;
+    }
+
+    /* Smaller selects & inputs */
+    .form-control-sm,
+    .form-select-sm,
+    textarea.form-control-sm {
+        font-size: 13px !important;
+        padding: 2px 4px !important;
+    }
+
+    /* Smaller table text */
+    #stageTable th,
+    #stageTable td {
+        font-size: 13px !important;
+        padding: 2px 4px !important;
+    }
+
+    /* Smaller buttons */
+    .btn-sm {
+        font-size: 11px !important;
+        padding: 2px 6px !important;
+    }
+
+    /* Smaller SweetAlert text */
+    .swal2-popup {
+        font-size: 13px !important;
+    }
+
+</style>
+
 @Html.AntiForgeryToken()
 
 <div class="container mt-5" style="min-width:100% !important">
@@ -355,31 +400,49 @@
         // --- Submit Approval ---
         function submitApproval() {
             const rows = Array.from(document.querySelectorAll('#approvalTable tbody tr'));
+
             if (!rows.length) {
-                Swal.fire('Warning', 'Please add at least one approver.', 'warning');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Warning',
+                    text: 'Please add at least one approver.',
+                    customClass: { popup: 'swal-small-text' }
+                });
                 return;
             }
 
-            const companyId = parseInt(document.getElementById('companySelect').value);
-            const remark = document.getElementById('remarkInput').value;
+            const companyId = parseInt(document.getElementById('companySelect').value || 0);
+            const remarkHeader = document.getElementById('remarkInput').value || '';
             const token = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
             const modelId = '@Model.ID';
             const companyStatus = document.getElementById('companyStatusSelect').value;
 
             if (!companyId) {
-                Swal.fire('Validation', 'Please select a Company.', 'warning');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Validation',
+                    text: 'Please select a Company.',
+                    customClass: { popup: 'swal-small-text' }
+                });
                 return;
             }
 
             let rowList = [];
+
             try {
                 rowList = rows.map((r, i) => {
                     const staffId = parseInt(r.querySelector('.staffIdInput')?.value || 0);
                     const subCompanyId = parseInt(r.querySelector('.branchSelect')?.value || 0);
-                    const fromDate = r.querySelector('.fromDateInput')._flatpickr?.selectedDates[0]?.toISOString() || null;
-                    const toDate = r.querySelector('.toDateInput')._flatpickr?.selectedDates[0]?.toISOString() || null;
+
+                    const fromDateObj = r.querySelector('.fromDateInput')?._flatpickr?.selectedDates[0] || null;
+                    const toDateObj = r.querySelector('.toDateInput')?._flatpickr?.selectedDates[0] || null;
+
                     const remark = r.querySelector('.remarkInput')?.value || '';
                     const status = r.querySelector('.statusSelect')?.value || 'A';
+
+                    if (!staffId) {
+                        throw new Error(`Row ${i + 1}: Staff is required`);
+                    }
 
                     return {
                         ID: null,
@@ -387,13 +450,18 @@
                         UserId: staffId,
                         SubcompanyId: subCompanyId,
                         Status: status,
-                        FromDate: fromDate,
-                        ToDate: toDate,
+                        FromDate: toIsoNoTimezone(fromDateObj),
+                        ToDate: toIsoNoTimezone(toDateObj),
                         Remark: remark
                     };
                 });
             } catch (err) {
-                Swal.fire('Validation', err.message || 'Error reading row data', 'warning');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Validation',
+                    text: err.message || 'Error reading row data',
+                    customClass: { popup: 'swal-small-text' }
+                });
                 return;
             }
 
@@ -404,9 +472,11 @@
                 UpdateBy: '@User?.Identity?.Name',
                 UpdateDate: new Date().toISOString(),
                 Status: companyStatus,
-                Remark: remark,
+                Remark: remarkHeader,
                 RowList: rowList
             };
+
+            console.log(payload);
 
             fetch('@Url.Action("EditApproval", "Approval")', {
                 method: 'POST',
@@ -425,16 +495,40 @@
                             text: data.message,
                             timer: 15000,
                             timerProgressBar: true,
-                            willClose: () => window.location.href = '@Url.Action("Index", "Approval")'
+                            customClass: { popup: 'swal-small-text' },
+                            willClose: () => {
+                                window.location.href = '@Url.Action("Index", "Approval")';
+                            }
                         });
                     } else {
-                        Swal.fire('Error', data.message || 'Update failed', 'error');
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: data.message || 'Update failed',
+                            customClass: { popup: 'swal-small-text' }
+                        });
                     }
                 })
                 .catch(err => {
                     console.error(err);
-                    Swal.fire('Error', 'Unexpected error while updating approval.', 'error');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Unexpected error while updating approval.',
+                        customClass: { popup: 'swal-small-text' }
+                    });
                 });
+        }
+
+        // --- Convert Date to ISO without timezone ---
+        function toIsoNoTimezone(date) {
+            if (!date) return null;
+
+            const yyyy = date.getFullYear();
+            const mm = String(date.getMonth() + 1).padStart(2, '0');
+            const dd = String(date.getDate()).padStart(2, '0');
+
+            return `${yyyy}-${mm}-${dd}T00:00:00`;
         }
     </script>
 }

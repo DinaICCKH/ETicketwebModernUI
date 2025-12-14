@@ -10,6 +10,51 @@
 <link href="~/css/forticketassign.css" rel="stylesheet" />
 @Html.AntiForgeryToken()
 
+<style>
+    /* Make overall page font smaller */
+    body {
+        font-size: 13px !important;
+    }
+
+    /* Smaller card header */
+    .card h5 {
+        font-size: 13px !important;
+    }
+
+    /* Smaller labels */
+    .form-label-sm,
+    .col-form-label {
+        font-size: 13px !important;
+    }
+
+    /* Smaller selects & inputs */
+    .form-control-sm,
+    .form-select-sm,
+    textarea.form-control-sm {
+        font-size: 13px !important;
+        padding: 2px 4px !important;
+    }
+
+    /* Smaller table text */
+    #stageTable th,
+    #stageTable td {
+        font-size: 13px !important;
+        padding: 2px 4px !important;
+    }
+
+    /* Smaller buttons */
+    .btn-sm {
+        font-size: 11px !important;
+        padding: 2px 6px !important;
+    }
+
+    /* Smaller SweetAlert text */
+    .swal2-popup {
+        font-size: 13px !important;
+    }
+
+</style>
+
 <div class="container mt-4" style="min-width:100% !important">
 
     <!-- Header Section -->
@@ -228,14 +273,14 @@
                                                 <option value="Hold" selected>Hold</option>
                                                 <option value="Done">Done</option>
                                             }
-                                            else
+                                            else if (r.RowStatus == "Done")
                                             {
                                                 <option value="Start">Start</option>
                                                 <option value="Processing">Processing</option>
                                                 <option value="Pending">Pending</option>
                                                 <option value="Reject">Reject</option>
                                                 <option value="Hold">Hold</option>
-                                                <option value="Done">Done</option>
+                                                <option value="Done" selected>Done</option>
                                             }
                                         </select>
                                     </td>
@@ -269,17 +314,18 @@
                             <i class="bi bi-check2-circle me-1"></i> @(isEdit ? "Update" : "Save")
                         </button>
                     </div>
+
                     <div class="col-auto">
                         <span id="rowCount" class="text-muted">@(rows.Count) row(s)</span>
                     </div>
 
                     <div class="col-auto">
-                        <button type="button" class="btn btn-danger" id="deleteProjectBtn">
+                        <button type="button" class="btn btn-danger btn-sm" id="deleteProjectBtn">
                             <i class="bi bi-trash me-1"></i> Delete
                         </button>
                     </div>
-
                 </div>
+
             </div>
         </div>
     </div>

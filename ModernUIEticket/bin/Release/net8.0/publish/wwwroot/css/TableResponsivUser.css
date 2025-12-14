@@ -1,0 +1,121 @@
+﻿/* Keep table compact on smaller screens */
+@media (max-width: 992px) {
+    #userTable th,
+    #userTable td {
+        font-size: 0.75rem !important;
+        padding: 0.4rem !important;
+        white-space: nowrap;
+    }
+
+        #userTable td .badge {
+            font-size: 0.65rem !important;
+            padding: 0.25em 0.4em !important;
+        }
+}
+
+/* Mobile card layout with label/value side by side */
+@media (max-width: 768px) {
+    /* Hide table headers */
+    #userTable thead {
+        display: none;
+    }
+
+    /* Make table elements block-level */
+    #userTable,
+    #userTable tbody,
+    #userTable tr,
+    #userTable td {
+        display: block;
+        width: 100%;
+    }
+
+        /* Style table rows as cards */
+        #userTable tr {
+            margin-bottom: 1rem;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* Style each cell */
+        #userTable td {
+            display: flex;
+            padding: 0.3rem 0.5rem;
+            border: none;
+            border-bottom: 1px dashed #eee;
+            font-size: 0.8rem;
+            align-items: center;
+        }
+
+            /* Remove bottom border for last cell */
+            #userTable td:last-child {
+                border-bottom: none;
+            }
+
+            /* Labels before values */
+            #userTable td:before {
+                flex: 0 0 35%;
+                font-weight: 600;
+                color: #555;
+                text-align: left;
+                padding-right: 0.5rem;
+                white-space: nowrap;
+            }
+
+            /* Values */
+            #userTable td span,
+            #userTable td div {
+                flex: 1;
+                white-space: normal;
+                word-break: break-word;
+                overflow-wrap: break-word;
+                text-align: left;
+            }
+
+            /* Fallback labels using nth-child */
+            #userTable td:nth-child(1):before {
+                content: "No:";
+            }
+
+            #userTable td:nth-child(2):before {
+                content: "User ID:";
+            }
+
+            #userTable td:nth-child(3):before {
+                content: "Username:";
+            }
+
+            #userTable td:nth-child(4):before {
+                content: "Full Name:";
+            }
+
+            #userTable td:nth-child(5):before {
+                content: "Email:";
+            }
+
+            #userTable td:nth-child(6):before {
+                content: "Telephone:";
+            }
+
+            #userTable td:nth-child(7):before {
+                content: "Company:";
+            }
+
+            #userTable td:nth-child(8):before {
+                content: "Status:";
+            }
+
+            #userTable td:nth-child(9):before {
+                content: "Created Date:";
+            }
+
+            #userTable td:nth-child(10):before {
+                content: "Last Login:";
+            }
+
+            #userTable td:nth-child(11):before {
+                content: "Action:";
+            }
+}

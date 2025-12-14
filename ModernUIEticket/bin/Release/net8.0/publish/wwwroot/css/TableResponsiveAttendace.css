@@ -1,0 +1,109 @@
+﻿/* Keep table compact on smaller screens */
+@media (max-width: 992px) {
+    #sessionTable th,
+    #sessionTable td {
+        font-size: 0.75rem !important;
+        padding: 0.4rem !important;
+        white-space: nowrap;
+    }
+
+        #sessionTable td .badge {
+            font-size: 0.65rem !important;
+            padding: 0.25em 0.4em !important;
+        }
+}
+
+/* Mobile card layout with label/value side by side */
+@media (max-width: 768px) {
+    /* Hide table headers */
+    #sessionTable thead {
+        display: none;
+    }
+
+    /* Make table elements block-level */
+    #sessionTable,
+    #sessionTable tbody,
+    #sessionTable tr,
+    #sessionTable td {
+        display: block;
+        width: 100%;
+    }
+
+        /* Style table rows as cards */
+        #sessionTable tr {
+            margin-bottom: 1rem;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* Style each cell */
+        #sessionTable td {
+            display: flex;
+            padding: 0.3rem 0.5rem;
+            border: none;
+            border-bottom: 1px dashed #eee;
+            font-size: 0.8rem;
+            align-items: center;
+        }
+
+            /* Remove bottom border for last cell */
+            #sessionTable td:last-child {
+                border-bottom: none;
+            }
+
+            /* Labels before values */
+            #sessionTable td:before {
+                content: attr(data-label) ":"; /* Use data-label if present */
+                flex: 0 0 35%; /* label width ~35% */
+                font-weight: 600;
+                color: #555;
+                text-align: left;
+                padding-right: 0.5rem;
+                white-space: nowrap;
+            }
+
+            /* Values */
+            #sessionTable td span.value {
+                flex: 1; /* value width ~65% */
+                white-space: normal;
+                word-break: break-word;
+                overflow-wrap: break-word;
+                text-align: left;
+            }
+
+            /* Fallback labels using nth-child if data-label not provided */
+            #sessionTable td:nth-child(1):before {
+                content: "ID:";
+            }
+
+            #sessionTable td:nth-child(2):before {
+                content: "Company:";
+            }
+
+            #sessionTable td:nth-child(3):before {
+                content: "Training Date:";
+            }
+
+            #sessionTable td:nth-child(4):before {
+                content: "Start / End:";
+            }
+
+            #sessionTable td:nth-child(5):before {
+                content: "Status:";
+            }
+
+            #sessionTable td:nth-child(6):before {
+                content: "Created By:";
+            }
+
+            #sessionTable td:nth-child(7):before {
+                content: "Remark:";
+            }
+
+            #sessionTable td:nth-child(8):before {
+                content: "Action:";
+            }
+}

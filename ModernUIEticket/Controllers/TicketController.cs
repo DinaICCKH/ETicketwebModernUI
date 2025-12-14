@@ -1249,6 +1249,10 @@ namespace ETicketNewUI.Controllers
                 return StatusCode(500, new { success = false, message = $"Unexpected error: {ex.Message}" });
             }
         }
+        public static DateTime TrimMilliseconds(DateTime dt)
+        {
+            return new DateTime(dt.Ticks - (dt.Ticks % TimeSpan.TicksPerMillisecond), DateTimeKind.Utc);
+        }
 
 
         [HttpGet("api/GetUpdateTicketStatusbyID")]
@@ -1333,7 +1337,8 @@ namespace ETicketNewUI.Controllers
                     row.Remark ??= "";
                     row.Hide ??= "N";
                     row.CreateBy ??= entryPrimary;
-                    row.CreatedDate = DateTime.Now;
+                    row.CreatedDate = TrimMilliseconds(DateTime.UtcNow);
+
                 }
 
                 // 4️⃣ Build JSON body for SP

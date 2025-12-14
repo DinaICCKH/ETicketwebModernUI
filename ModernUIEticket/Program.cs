@@ -18,9 +18,9 @@ builder.Services.AddControllersWithViews(options =>
 
 // 2. Add DbContext
 builder.Services.AddDbContext<TicketDbContext>(options =>
-//options.UseSqlServer("Server=103.112.107.159;Database=E_Ticket;User Id=sa;Password=!QAZ2wsx#EDC;TrustServerCertificate=True"));
+options.UseSqlServer("Server=103.112.107.159;Database=E_Ticket;User Id=sa;Password=!QAZ2wsx#EDC;TrustServerCertificate=True"));
 
-options.UseSqlServer("Server=103.112.107.159;Database=E_Ticket_Dev;User Id=sa;Password=!QAZ2wsx#EDC;TrustServerCertificate=True"));
+//options.UseSqlServer("Server=103.112.107.159;Database=E_Ticket_Dev;User Id=sa;Password=!QAZ2wsx#EDC;TrustServerCertificate=True"));
 
 // 3. Add Session services
 builder.Services.AddDistributedMemoryCache();

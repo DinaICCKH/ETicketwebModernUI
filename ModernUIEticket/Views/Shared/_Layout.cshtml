@@ -121,6 +121,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu" aria-labelledby="taskDropdown">
+                                    <li><a class="dropdown-item @(currentController == "MyTicket" && currentAction == "AcceptTaskSupporter" ? "active" : "")" href="/Eticket/MyTicket/AcceptTaskSupporter">Task Assign</a></li>
                                     <li><a class="dropdown-item @(currentController == "MyTicket" && currentAction == "" ? "active" : "")" href="/Eticket/MyTicket">Tasks Pending</a></li>
                                     <li><a class="dropdown-item @(currentController == "MyTicket" && currentAction == "MyTicketTracking" ? "active" : "")" href="/Eticket/MyTicket/MyTicketTracking">Task Process</a></li>
                                     <li><a class="dropdown-item @(currentController == "MyTicket" && currentAction == "RPTMyTicket" ? "active" : "")" href="/Eticket/MyTicket/RPTMyTicket">Task Report</a></li>
@@ -142,6 +143,7 @@
                                     <li><a class="dropdown-item @(currentController == "Client" ? "active" : "")" href="/Eticket/Client">Client</a></li>
                                     <li><a class="dropdown-item @(currentController == "ProjectAssign" ? "active" : "")" href="/Eticket/ProjectAssign">Project Assign</a></li>
                                     <li><a class="dropdown-item @(currentController == "ProjectTracking" ? "active" : "")" href="/Eticket/ProjectTracking">Project Tracking</a></li>
+                                    <li><a class="dropdown-item @(currentController == "ProjectTracking" ? "active" : "")" href="/Eticket/ProjectTracking/ReportPreviewProjectTracking">Project Tracking Report</a></li>
                                     <li><a class="dropdown-item @(currentController == "Recurring" && currentAction == "AddRecurring" ? "active" : "")" href="/Eticket/Recurring/AddRecurring">New Recurring Task</a></li>
                                     <li><a class="dropdown-item @(currentController == "Recurring" && currentAction == "RecurringList" ? "active" : "")" href="/Eticket/Recurring">Recurring Task List</a></li>
                                     <li><a class="dropdown-item @(currentController == "Staff" ? "active" : "")" href="/Eticket/Staff">Staff</a></li>
@@ -192,8 +194,10 @@
                                 </a>
 
                                 <ul class="dropdown-menu" aria-labelledby="taskDropdown">
+                                    <li><a class="dropdown-item @(currentController == "MyTicket" && currentAction == "AcceptTaskSupporter" ? "active" : "")" href="/Eticket/MyTicket/AcceptTaskSupporter">Task Assign</a></li>
                                     <li><a class="dropdown-item @(currentController == "MyTicket" && currentAction == "" ? "active" : "")" href="/Eticket/MyTicket">Tasks Pending</a></li>
                                     <li><a class="dropdown-item @(currentController == "MyTicket" && currentAction == "MyTicketTracking" ? "active" : "")" href="/Eticket/MyTicket/MyTicketTracking">Task Process</a></li>
+
                                     <li><a class="dropdown-item @(currentController == "MyTicket" && currentAction == "RPTMyTicket" ? "active" : "")" href="/Eticket/MyTicket/RPTMyTicket">Task Report</a></li>
                                 </ul>
                             </li>
@@ -206,7 +210,17 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="adminDropdown">
                                     <li><a class="dropdown-item @(currentController == "User" ? "active" : "")" href="/Eticket/User">User</a></li>
+                                    <li>
+                                        <a class="dropdown-item @(currentController == "Attendance" && currentAction == "Index" ? "active" : "")"
+                                           href="/Eticket/Attendance">
+                                            E Attendance
+                                        </a>
+
+                                    </li>
+                                    <li><a class="dropdown-item @(currentController == "ProjectTracking" ? "active" : "")" href="/Eticket/ProjectTracking">Project Tracking</a></li>
+                                    <li><a class="dropdown-item @(currentController == "ProjectTracking" ? "active" : "")" href="/Eticket/ProjectTracking/ReportPreviewProjectTracking">Project Tracking Report</a></li>
                                 </ul>
+
                             </li>
                         }
 
@@ -265,6 +279,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu" aria-labelledby="taskDropdown">
+                                    <li><a class="dropdown-item @(currentController == "MyTicket" && currentAction == "AcceptTaskSupporter" ? "active" : "")" href="/Eticket/MyTicket/AcceptTaskSupporter">Task Assign</a></li>
                                     <li><a class="dropdown-item @(currentController == "MyTicket" && currentAction == "" ? "active" : "")" href="/Eticket/MyTicket">Tasks Pending</a></li>
                                     <li><a class="dropdown-item @(currentController == "MyTicket" && currentAction == "MyTicketTracking" ? "active" : "")" href="/Eticket/MyTicket/MyTicketTracking">Task Process</a></li>
                                     <li><a class="dropdown-item @(currentController == "MyTicket" && currentAction == "RPTMyTicket" ? "active" : "")" href="/Eticket/MyTicket/RPTMyTicket">Task Report</a></li>
@@ -287,6 +302,7 @@
 
                                     </li>
                                     <li><a class="dropdown-item @(currentController == "ProjectTracking" ? "active" : "")" href="/Eticket/ProjectTracking">Project Tracking</a></li>
+                                    <li><a class="dropdown-item @(currentController == "ProjectTracking" ? "active" : "")" href="/Eticket/ProjectTracking/ReportPreviewProjectTracking">Project Tracking Report</a></li>
                                 </ul>
                                 
                             </li>

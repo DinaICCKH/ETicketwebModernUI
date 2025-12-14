@@ -3,6 +3,59 @@ using System.Numerics;
 
 namespace ETicketNewUI.Models
 {
+  
+
+
+    public class FiltterProjectTracking
+    {
+        public string ID { get; set; }       // NVARCHAR(100)
+        public string Name { get; set; }        // NVARCHAR(50)
+    }
+
+
+    public class ProjectTrackingReportParam
+    {
+        public string FromDate { get; set; }      // NVARCHAR(50)
+        public string ToDate { get; set; }        // NVARCHAR(50)
+        public string Project { get; set; }       // NVARCHAR(100)
+        public string Status { get; set; }        // NVARCHAR(50)
+        public string ProjectID { get; set; }        // NVARCHAR(50)
+    }
+
+
+    public class ProjectTrackingReport
+    {
+        public int ID { get; set; }
+        public string ProjectCode { get; set; }
+        public string RemarkHeader { get; set; }
+
+        // Formatted Dates (string because SQL returns text)
+        public string ProjectCreateDate { get; set; }
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
+
+        public string ProjectManager { get; set; }
+        public string ProjectTeam { get; set; }
+        public string ProjectStatus { get; set; }
+
+        public int LineNum { get; set; }
+        public string StageNo { get; set; }
+        public string HandleBy { get; set; }
+        public string StaffName { get; set; }
+
+        // Stage formatted dates
+        public string FromDate { get; set; }
+        public string ToDate { get; set; }
+
+        public string Remark { get; set; }
+        public string RowStatus { get; set; }
+
+        // Output Filters
+        public string PFromDate { get; set; }
+        public string PToDate { get; set; }
+        public string PProject { get; set; }
+        public string PStatus { get; set; }
+    }
 
 
     public class ProjectTracking
