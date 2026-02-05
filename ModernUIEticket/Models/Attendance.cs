@@ -43,12 +43,12 @@
 
         [Required]
         public string ParticipantName { get; set; }
-        [Required]
+   
         public string PicturePath { get; set; }
         public DateTime PictureTakenDate { get; set; }
-        [Required]
+     
         public decimal Latitude { get; set; }
-        [Required]
+  
         public decimal Longitude { get; set; }
 
         public string DeviceName { get; set; }

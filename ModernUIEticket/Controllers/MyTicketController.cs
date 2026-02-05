@@ -878,7 +878,7 @@ namespace ModernUIEticket.Controllers
         {
             // ------------------- 1) Prepare model -------------------
             model.Mode = "Add";
-            model.Status = "Complete";
+     
             model.Remark = model.Comment; // Copy Comment to Remark
 
             // ------------------- 2) Handle file upload -------------------

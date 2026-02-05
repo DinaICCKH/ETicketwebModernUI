@@ -80,7 +80,7 @@
                 </div>
 
                 <div class="d-grid mt-3">
-                    <button id="checkInBtn" type="submit" class="btn btn-primary btn-lg" style="background-color:#0099CC !important" disabled>
+                    <button id="checkInBtn" type="submit" class="btn btn-primary btn-lg" style="background-color:#0099CC !important" >
                         <i class="bi bi-box-arrow-in-right"></i> Check In
                     </button>
                 </div>
@@ -101,17 +101,7 @@
 
     let stream = null;
 
-    // Enable/Disable Check In button
-    function toggleCheckInButton() {
-        if (photoPreview && photoPreview.src && photoPreview.style.display !== "none") {
-            checkInBtn.disabled = false;
-        } else {
-            checkInBtn.disabled = true;
-        }
-    }
 
-    // Run when page loads (if existing photo is already set)
-    window.addEventListener("load", toggleCheckInButton);
 
     // Open Camera
     openCameraBtn.addEventListener('click', async () => {
@@ -159,18 +149,6 @@
         openCameraBtn.style.display = 'inline-block';
     }
 
-    // Prevent submit if no photo
-    checkInForm.addEventListener('submit', e => {
-        const hasExistingPhoto = photoPreview.src && !photoPreview.src.includes("data:image/png");
-        if (!photoDataInput.value && !hasExistingPhoto) {
-            e.preventDefault();
-            Swal.fire({
-                icon: 'warning',
-                title: 'Warning',
-                text: 'Please take a photo before submitting.'
-            });
-        }
-    });
 
     // SweetAlert for result
     var result = @Html.Raw(System.Text.Json.JsonSerializer.Serialize((object)ViewBag.Result));

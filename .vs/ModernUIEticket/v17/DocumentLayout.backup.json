@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{56B7F2FF-E4F4-42E5-86C8-FABD75B805A2}|ModernUIEticket\\ModernUIEticket.csproj|d:\\icc project\\e_ticket\\modernuieticket\\modernuieticket\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56B7F2FF-E4F4-42E5-86C8-FABD75B805A2}|ModernUIEticket\\ModernUIEticket.csproj|solutionrelative:modernuieticket\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{56B7F2FF-E4F4-42E5-86C8-FABD75B805A2}|ModernUIEticket\\ModernUIEticket.csproj|d:\\icc project\\e_ticket\\modernuieticket\\modernuieticket\\controllers\\attendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56B7F2FF-E4F4-42E5-86C8-FABD75B805A2}|ModernUIEticket\\ModernUIEticket.csproj|solutionrelative:modernuieticket\\controllers\\attendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{56B7F2FF-E4F4-42E5-86C8-FABD75B805A2}|ModernUIEticket\\ModernUIEticket.csproj|d:\\icc project\\e_ticket\\modernuieticket\\modernuieticket\\views\\approval\\addapproval.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{56B7F2FF-E4F4-42E5-86C8-FABD75B805A2}|ModernUIEticket\\ModernUIEticket.csproj|solutionrelative:modernuieticket\\views\\approval\\addapproval.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{56B7F2FF-E4F4-42E5-86C8-FABD75B805A2}|ModernUIEticket\\ModernUIEticket.csproj|d:\\icc project\\e_ticket\\modernuieticket\\modernuieticket\\models\\attendance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56B7F2FF-E4F4-42E5-86C8-FABD75B805A2}|ModernUIEticket\\ModernUIEticket.csproj|solutionrelative:modernuieticket\\models\\attendance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{56B7F2FF-E4F4-42E5-86C8-FABD75B805A2}|ModernUIEticket\\ModernUIEticket.csproj|d:\\icc project\\e_ticket\\modernuieticket\\modernuieticket\\views\\approval\\editapproval.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{56B7F2FF-E4F4-42E5-86C8-FABD75B805A2}|ModernUIEticket\\ModernUIEticket.csproj|solutionrelative:modernuieticket\\views\\approval\\editapproval.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{56B7F2FF-E4F4-42E5-86C8-FABD75B805A2}|ModernUIEticket\\ModernUIEticket.csproj|d:\\icc project\\e_ticket\\modernuieticket\\modernuieticket\\controllers\\approvalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56B7F2FF-E4F4-42E5-86C8-FABD75B805A2}|ModernUIEticket\\ModernUIEticket.csproj|solutionrelative:modernuieticket\\controllers\\approvalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{56B7F2FF-E4F4-42E5-86C8-FABD75B805A2}|ModernUIEticket\\ModernUIEticket.csproj|d:\\icc project\\e_ticket\\modernuieticket\\modernuieticket\\views\\attendance\\checkin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{56B7F2FF-E4F4-42E5-86C8-FABD75B805A2}|ModernUIEticket\\ModernUIEticket.csproj|solutionrelative:modernuieticket\\views\\attendance\\checkin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -47,54 +43,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\Program.cs",
-              "RelativeDocumentMoniker": "ModernUIEticket\\Program.cs",
-              "ToolTip": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\Program.cs",
-              "RelativeToolTip": "ModernUIEticket\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "AttendanceController.cs",
+              "DocumentMoniker": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\Controllers\\AttendanceController.cs",
+              "RelativeDocumentMoniker": "ModernUIEticket\\Controllers\\AttendanceController.cs",
+              "ToolTip": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\Controllers\\AttendanceController.cs",
+              "RelativeToolTip": "ModernUIEticket\\Controllers\\AttendanceController.cs",
+              "ViewState": "AgIAANgAAAAAAAAAAAAAAN0AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-14T09:09:12Z",
+              "WhenOpened": "2026-01-13T11:06:02.687Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AddApproval.cshtml",
-              "DocumentMoniker": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\Views\\Approval\\AddApproval.cshtml",
-              "RelativeDocumentMoniker": "ModernUIEticket\\Views\\Approval\\AddApproval.cshtml",
-              "ToolTip": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\Views\\Approval\\AddApproval.cshtml",
-              "RelativeToolTip": "ModernUIEticket\\Views\\Approval\\AddApproval.cshtml",
-              "ViewState": "AgIAAEwBAAAAAAAAAAAswGUBAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-14T08:46:25.094Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ApprovalController.cs",
-              "DocumentMoniker": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\Controllers\\ApprovalController.cs",
-              "RelativeDocumentMoniker": "ModernUIEticket\\Controllers\\ApprovalController.cs",
-              "ToolTip": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\Controllers\\ApprovalController.cs",
-              "RelativeToolTip": "ModernUIEticket\\Controllers\\ApprovalController.cs",
-              "ViewState": "AgIAAN8AAAAAAAAAAAAgwOwAAAAMAAAAAAAAAA==",
+              "Title": "Attendance.cs",
+              "DocumentMoniker": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\Models\\Attendance.cs",
+              "RelativeDocumentMoniker": "ModernUIEticket\\Models\\Attendance.cs",
+              "ToolTip": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\Models\\Attendance.cs",
+              "RelativeToolTip": "ModernUIEticket\\Models\\Attendance.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAAABwAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-14T08:11:19.07Z",
+              "WhenOpened": "2026-01-13T11:03:49.588Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "EditApproval.cshtml",
-              "DocumentMoniker": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\Views\\Approval\\EditApproval.cshtml",
-              "RelativeDocumentMoniker": "ModernUIEticket\\Views\\Approval\\EditApproval.cshtml",
-              "ToolTip": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\Views\\Approval\\EditApproval.cshtml",
-              "RelativeToolTip": "ModernUIEticket\\Views\\Approval\\EditApproval.cshtml",
-              "ViewState": "AgIAAPkBAAAAAAAAAAAAAAoCAAAIAAAAAAAAAA==",
+              "Title": "CheckIn.cshtml",
+              "DocumentMoniker": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\Views\\Attendance\\CheckIn.cshtml",
+              "RelativeDocumentMoniker": "ModernUIEticket\\Views\\Attendance\\CheckIn.cshtml",
+              "ToolTip": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\Views\\Attendance\\CheckIn.cshtml",
+              "RelativeToolTip": "ModernUIEticket\\Views\\Attendance\\CheckIn.cshtml",
+              "ViewState": "AgIAAEMAAAAAAAAAAABBwFYAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-14T08:12:42.652Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-13T11:02:01.734Z"
             }
           ]
         }

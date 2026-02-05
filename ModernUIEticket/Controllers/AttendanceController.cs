@@ -121,7 +121,10 @@ namespace ETicketNewUI.Controllers
                 }
             }
 
-            model.QrCodeImagePath = "/Eticket/qrcodes/" + fileName;
+            model.QrCodeImagePath = !string.IsNullOrWhiteSpace(fileName)
+            ? $"/Eticket/qrcodes/{fileName}"
+            : "/Eticket/uploads/photos/DF.png";
+
 
             // Update header with QR code info
             _context.AttendanceHeaders.Update(model);
@@ -351,8 +354,8 @@ namespace ETicketNewUI.Controllers
                     ParticipantName = participantName,
                     PicturePath = photoPath,
                     PictureTakenDate = DateTime.Now,
-                    Latitude = Convert.ToDecimal(latitude),
-                    Longitude = Convert.ToDecimal(longitude),
+                    Latitude = latitude ?? 0,
+                    Longitude = longitude ?? 0,
                     DeviceName = deviceName,
                     Remark = remark,
                     Position = position
