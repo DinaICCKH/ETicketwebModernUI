@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ModernUIEticket")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c6b8c7b187e8407387d74d385446f43519592b2a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d4d345e68ce55e71de30129d6b67d3bbf823be28")]
 [assembly: System.Reflection.AssemblyProductAttribute("ModernUIEticket")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ModernUIEticket")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
