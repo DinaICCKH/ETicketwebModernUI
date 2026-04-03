@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{56B7F2FF-E4F4-42E5-86C8-FABD75B805A2}|ModernUIEticket\\ModernUIEticket.csproj|d:\\icc project\\e_ticket\\modernuieticket\\modernuieticket\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{56B7F2FF-E4F4-42E5-86C8-FABD75B805A2}|ModernUIEticket\\ModernUIEticket.csproj|solutionrelative:modernuieticket\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{56B7F2FF-E4F4-42E5-86C8-FABD75B805A2}|ModernUIEticket\\ModernUIEticket.csproj|d:\\icc project\\e_ticket\\modernuieticket\\modernuieticket\\controllers\\attendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{56B7F2FF-E4F4-42E5-86C8-FABD75B805A2}|ModernUIEticket\\ModernUIEticket.csproj|solutionrelative:modernuieticket\\controllers\\attendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -22,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -41,21 +45,42 @@
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3fd5e0cc-709a-4f8c-94c3-7f0f8dff5bb2}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\appsettings.json",
+              "RelativeDocumentMoniker": "ModernUIEticket\\appsettings.json",
+              "ToolTip": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\appsettings.json",
+              "RelativeToolTip": "ModernUIEticket\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-03T03:46:21.507Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "AttendanceController.cs",
               "DocumentMoniker": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\Controllers\\AttendanceController.cs",
               "RelativeDocumentMoniker": "ModernUIEticket\\Controllers\\AttendanceController.cs",
               "ToolTip": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\Controllers\\AttendanceController.cs",
               "RelativeToolTip": "ModernUIEticket\\Controllers\\AttendanceController.cs",
-              "ViewState": "AgIAANgAAAAAAAAAAAAAAN0AAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAAAHkAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-13T11:06:02.687Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Attendance.cs",
               "DocumentMoniker": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\Models\\Attendance.cs",
               "RelativeDocumentMoniker": "ModernUIEticket\\Models\\Attendance.cs",
@@ -63,12 +88,11 @@
               "RelativeToolTip": "ModernUIEticket\\Models\\Attendance.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAAAABwAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-13T11:03:49.588Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-13T11:03:49.588Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "CheckIn.cshtml",
               "DocumentMoniker": "D:\\ICC Project\\E_Ticket\\ModernUIEticket\\ModernUIEticket\\Views\\Attendance\\CheckIn.cshtml",
               "RelativeDocumentMoniker": "ModernUIEticket\\Views\\Attendance\\CheckIn.cshtml",
